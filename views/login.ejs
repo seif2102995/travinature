@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travinture login or sign up</title>
+   
+</head>
+
+<body>
+    <div id="hello">
+        <video muted autoplay loop id="vid1">
+            <source src="./resources/globe1.webm" type="video/mp4">
+        </video>
+    </div>
+    <div id="frm">
+        <h1 id="wel">WELCOME</h1>
+        <form action="" method="post" id="interface-form" name="form">
+            <div id="fields">
+                <i class="fa fa-solid fa-user iicon"></i>
+                <input class="login-field" type="text" name="username" placeholder="Username" id="username">
+                <div id="user-err"></div>
+                <br>
+                <i class="fa-solid fa-lock icon"></i>
+                <input class="login-field" type="password" name="password" placeholder="Password" id="password">
+                <div id="pass-err"> </div>
+                <br>
+            </div>
+            <div id="sgu">
+                <p> Not a member yet ? <a href="./html/signuPage.html">Sign Up</a></p>
+            </div>
+        </form>
+        <input type="submit" name="submit" id="sb" onclick="signin()" class="login-field">
+        
+    </div>
+    
+    
+</body>
+
+</html>
