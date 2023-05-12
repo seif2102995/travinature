@@ -31,6 +31,9 @@ app.get('/', function(req, res) {
   app.get('/eg', function(req, res) {
     res.render('eg');
   });
+  app.get('/about', function(req, res) {
+    res.render('about');
+  });
 
 
 

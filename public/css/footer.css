@@ -1,0 +1,132 @@
+.footer {
+    background-color: #0d0d0d;
+  }
+  .footer p {
+    color: #bdbec4;
+  }
+  .footer a {
+    color: #bdbec4;
+  }
+  .footer a:hover, footer a:active {
+    color: #ffffff;
+  }
+  .footer h4 {
+    color: #ffffff;
+  }
+  .footer hr {
+    border: 1px solid #5c5c5c;
+  }
+  .footer .footerSubscribe {
+    padding: 72px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1280px;
+    margin: 0 auto;
+    gap: 32px;
+  }
+  .footer .footerSubscribe input {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: #9c9eaa;
+    width: 400px;
+    padding: 13px 0 13px 24px;
+    border-radius: 10px 0px 0px 10px;
+    border: none;
+  }
+  .footer .footerSubscribe button {
+    background-color: #fe6f46;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 150%;
+    padding: 13px 32px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 0px 10px 10px 0px;
+    border: none;
+    cursor: pointer;
+  }
+  .footer .footerSubscribe button:hover, footer .footerSubscribe button:active {
+    color: #fe6f46;
+    background-color: #ffffff;
+  }
+  .footer .footerSubscribe form {
+    display: flex;
+  }
+  .footer .footerSubscribe h3 {
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 135%;
+  }
+  .footer .footerSubscribe p {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+  }
+  
+  .footerDetail {
+    padding: 72px 0;
+    display: flex;
+    row-gap: 48px;
+  }
+  .footerDetail p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 160%;
+  }
+  .footerDetail h4 {
+    margin-bottom: 20px;
+  }
+  .footerDetail .socialMedia {
+    flex-basis: 30%;
+    margin-right: 20px;
+  }
+  .footerDetail .socialMedia p {
+    max-width: 252px;
+    margin: 16px 0 32px 0;
+  }
+  .footerDetail .socialMedia .socialMediaLogos {
+    display: flex;
+    gap: 16px;
+  }
+  .footerDetail .company {
+    flex-basis: 20%;
+  }
+  .footerDetail .company li {
+    margin-bottom: 10px;
+  }
+  .footerDetail .products {
+    flex-basis: 20%;
+  }
+  .footerDetail .products li {
+    margin-bottom: 10px;
+  }
+  .footerDetail .contactUs p:first-child {
+    max-width: 233px;
+    margin-bottom: 16px;
+  }
+  .footerDetail .contactUs .contact {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .policies {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 160%;
+    padding-bottom: 32px;
+  }
+  .policies ul {
+    display: flex;
+    gap: 12px;
+  }
+  .policies ul span {
+    color: #8f8f8f;
+  }
