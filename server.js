@@ -4,7 +4,7 @@ const path=require('path')
 //Read the current directory name
 
 const hostname = "127.0.0.1";
-const port = 3000;
+const port = 8080;
 const app = express();
 app.use(express.static(path.join(__dirname,'public')))
 app.use(express.static('public/js'));
@@ -34,7 +34,23 @@ app.get('/', function(req, res) {
   app.get('/about', function(req, res) {
     res.render('about');
   });
+  app.get('/login', function(req, res) {
+    res.render('login');
+  });
+// connecting to database
+const mongoose = require('mongoose');
+ 
+mongoose.connect("mongodb+srv://seif2102995:travi231@travinature.3akvybv.mongodb.net/")
+  .then( (result) => {
+    app.listen(3010);
+    console.log('connected to db successfully');
+  })
+  .catch( (err) => {
+    console.log(err);
+  }); 
+  
+  
 
 
-
-  app.listen(3000);
+  app.listen(8080);
+  console.log("listening on port " +port);
