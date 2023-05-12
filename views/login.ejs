@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travinture login or sign up</title>
-   
+    <link rel="stylesheet" href="css/interface.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" >
 </head>
 
 <body>
     <div id="hello">
         <video muted autoplay loop id="vid1">
-            <source src="./resources/globe1.webm" type="video/mp4">
+            <source src="resources/globe1.webm" type="video/mp4">
         </video>
     </div>
     <div id="frm">
@@ -28,14 +31,14 @@
                 <br>
             </div>
             <div id="sgu">
-                <p> Not a member yet ? <a href="./html/signuPage.html">Sign Up</a></p>
+                <p> Not a member yet ? <a class="link" href="/signup">Sign Up</a></p>
             </div>
         </form>
         <input type="submit" name="submit" id="sb" onclick="signin()" class="login-field">
         
     </div>
-    
-    
+    <script src="js/interface.js"></script>
+    <footer> <%- include('./partials/footer'); %></footer>
 </body>
 
 </html>
