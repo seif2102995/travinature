@@ -24,11 +24,11 @@ mongoose.connect("mongodb+srv://seif2102995:travi231@travinature.3akvybv.mongodb
   }); 
 
 app.get('/', function(req, res) {
-    res.render('login');
+    res.render('home');
   });
 
-  app.get('/home', function(req, res) {
-    res.render('home');
+  app.get('/book', function(req, res) {
+    res.render('map');
   });
 
   app.get('/admin', function(req, res) {
