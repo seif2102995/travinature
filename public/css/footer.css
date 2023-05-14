@@ -68,7 +68,7 @@
   }
   
   .footerDetail {
-    padding: 72px 0;
+    padding: 72px 72px 72px 30px;
     display: flex;
     row-gap: 48px;
   }
