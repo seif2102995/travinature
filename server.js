@@ -8,13 +8,13 @@ const hostname = "127.0.0.1";
 const port = 8080;
 const app = express();
 const mongoose = require('mongoose');
+
 app.use(express.static(path.join(__dirname,'public')))
 app.use(express.static('public/js'));
 app.use(express.static('public/resources'));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended:true})); // for post method 
 mongoose.connect("mongodb+srv://seif2102995:travi231@travinature.3akvybv.mongodb.net/")
-
   .then( (result) => {
     app.listen(3010);
     console.log('connected to db successfully');
@@ -22,6 +22,8 @@ mongoose.connect("mongodb+srv://seif2102995:travi231@travinature.3akvybv.mongodb
   .catch( (err) => {
     console.log(err);
   }); 
+
+
 
 app.get('/', function(req, res) {
     res.render('home');
@@ -49,6 +51,9 @@ app.get('/', function(req, res) {
   app.get('/login', function(req, res) {
     res.render('login');
   });
+  app.get('/reports-admin',(req,res)=>{
+    res.render('reports-admin');
+  })
 
   app.post('/signup', (req,res)=>{
     // const fst = document.getElementsByClassName("firstNext");

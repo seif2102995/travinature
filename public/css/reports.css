@@ -1,0 +1,38 @@
+h1{
+    color:coral;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 300;
+    
+}
+#container{
+width: 1500px;
+height: 1500px;
+position: relative;
+}
+#first-div{
+
+position:rela;
+width: 600px;
+height: 600px;
+margin-top: 300px;
+margin-left: 200px;
+float: left;
+top: 550px;
+
+
+}
+#second-div{
+ position :absolute;
+ float: right;
+width: 600px;
+height: 400px;
+margin-top: 300px;
+margin-left: 1100px;
+
+}
+
+
+body{
+    background-color: #1d2634;
+    color: #9e9ea4;
+}
