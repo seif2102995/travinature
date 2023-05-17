@@ -1,15 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 
-
-#hello{
+#hello {
   width: 100%;
   height: 100%;
   padding: 0px;
   margin: 0px;
 }
-#vid1{
+#vid1 {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
@@ -20,7 +19,7 @@
   bottom: 0;
   z-index: -1;
 }
-#frm{
+#frm {
   border-radius: 50px;
   font-family: monospace;
   width: 600px;
@@ -28,24 +27,44 @@
   padding: 0%;
   overflow: hidden;
   display: flex;
-  position: absolute;
-  top: 50%;
+  position: relative;
+  top: 340px;
   left: 50%;
   height: 500px;
-  transform: translate(-50% , -50%);
+  transform: translate(-50%, -50%);
   background: #fff;
 }
-#fields{
+#foot {
+  position: relative;
+  left: 0;
+  bottom: 0;
+}
+#fff {
+  width: 100%;
+  /* margin-left: 44%; */
+  display: block;
+  position: relative;
+  font-size: 10px;
+  text-align: center;
+  top: 236px;
+  z-index: 0;
+  font-family: Poppins;
+  left: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+}
+#fields {
   padding: 30%;
   margin: 30%;
   top: -50%;
   border-radius: 30px;
   position: fixed;
 }
-#fields i{
+#fields i {
   position: absolute;
 }
-.login-field{
+.login-field {
   /* height: 20px; */
   position: fixed;
   border-style: solid;
@@ -59,18 +78,18 @@
   border-color: #3e8eba;
   border-left-style: none;
 }
-#sb{
+#sb {
   height: 15%;
   border: transparent;
   border-style: none;
-  color: whitesmoke ;
+  color: whitesmoke;
   background-color: #3e8eba;
   text-align: center;
   font-size: larger;
   /* -webkit-text-stroke-width: 1px; */
-  -webkit-text-stroke-color: rgba(000,000, 000, 0.5) ;
+  -webkit-text-stroke-color: rgba(000, 000, 000, 0.5);
   /* font-family: 'Open Sans', sans-serif; */
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   border-style: none;
   padding: 20px;
   width: 200px;
@@ -80,37 +99,38 @@
   left: -40%;
   top: 65%;
 }
-#sb:hover{
+#sb:hover {
   border: #3e8eba;
   border-style: solid;
   color: transparent;
   background-color: transparent;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #3e8eba ;
+  -webkit-text-stroke-color: #3e8eba;
 }
-#sgu a , #sgu{
+#sgu a,
+#sgu {
   text-decoration: none;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   text-align: center;
   font-size: medium;
   padding: 20px;
   width: 200px;
   margin: 20px;
-  position:absolute;
+  position: absolute;
   left: 22%;
   top: 77%;
 }
-#sgu a{
-  color:#3e8eba;
+#sgu a {
+  color: #3e8eba;
   left: 40%;
   top: -3%;
 }
-#sgu a:hover{
-  color:#36096D;
+#sgu a:hover {
+  color: #36096d;
   left: 40%;
   top: -3%;
 }
-.iicon{
+.iicon {
   left: -14%;
   top: 200px;
   border-radius: 20px 0px 0px 20px;
@@ -121,7 +141,7 @@
   text-align: center;
   height: 20px;
 }
-.icon{
+.icon {
   left: -14%;
   top: 315px;
   border-radius: 20px 0px 0px 20px;
@@ -133,19 +153,17 @@
   text-align: center;
   height: 20px;
 }
-#wel
-{
+#wel {
   margin-left: 25%;
-    display: block;
-    position: fixed;
-    font-size: 60px;
-    text-align: center;
-    top: -3%;
-    z-index: 1;
-    font-family: Poppins;
+  display: block;
+  position: fixed;
+  font-size: 60px;
+  text-align: center;
+  top: -3%;
+  z-index: 1;
+  font-family: Poppins;
 }
-footer
-{
+footer {
   margin-left: 44%;
   display: block;
   position: fixed;

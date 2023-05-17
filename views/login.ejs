@@ -8,34 +8,37 @@
     <link rel="stylesheet" href="css/interface.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" >
+        crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 
 <body>
-    <%- include('./partials/vidbg'); %>
-    <div id="frm">
-        <h1 id="wel">WELCOME</h1>
-        <form action="" method="post" id="interface-form" name="form">
-            <div id="fields">
-                <i class="fa fa-solid fa-user iicon"></i>
-                <input class="login-field" type="text" name="username" placeholder="Username" id="username">
-                <div id="user-err"></div>
-                <br>
-                <i class="fa-solid fa-lock icon"></i>
-                <input class="login-field" type="password" name="password" placeholder="Password" id="password">
-                <div id="pass-err"> </div>
-                <br>
-                <input type="submit" name="submit" id="sb" class="login-field">
+    <div id="cont">
+
+        <%- include('./partials/vidbg'); %>
+            <div id="frm">
+                <h1 id="wel">WELCOME</h1>
+                <form action="" method="post" id="interface-form" name="form">
+                    <div id="fields">
+                        <i class="fa fa-solid fa-user iicon"></i>
+                        <input class="login-field" type="text" name="username" placeholder="Username" id="username">
+                        <div id="user-err"></div>
+                        <br>
+                        <i class="fa-solid fa-lock icon"></i>
+                        <input class="login-field" type="password" name="password" placeholder="Password" id="password">
+                        <div id="pass-err"> </div>
+                        <br>
+                        <input type="submit" name="submit" id="sb" class="login-field">
+                    </div>
+                    <div id="sgu">
+                        <p> Not a member yet ? <a class="link" href="/signup">Sign Up</a></p>
+                    </div>
+                </form>
+                <!-- <input type="submit" name="submit" id="sb" onclick="signin()" class="login-field"> -->
+
             </div>
-            <div id="sgu">
-                <p> Not a member yet ? <a class="link" href="/signup">Sign Up</a></p>
+            <div id="foot">
+                <footer id="fff"> <%- include('./partials/footer'); %></footer>
             </div>
-        </form>
-        <!-- <input type="submit" name="submit" id="sb" onclick="signin()" class="login-field"> -->
-        
-    </div>
-    <div id="foot">
-        <footer> <%- include('./partials/footer'); %></footer>
     </div>
 </body>
 <!-- <script src="js/interface.js"></script> -->

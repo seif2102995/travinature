@@ -1,92 +1,83 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Open Sans', sans-serif;
+* {
+margin: 0;
+padding: 0;
+font-family: "Open Sans", sans-serif;
 }
 
+#fff {
+overflow: clip;
+}
 
 /* slider */
 
-.tm-slider{
-    position: relative;
+.tm-slider {
+position: relative;
 }
 
-
-.tm-sliderimage{
-    width: 100%;
-   display: block;
-   
-   
+.tm-sliderimage {
+width: 100%;
+display: block;
 }
-
-
-
 
 /* services */
 
-.tm-service{
-    max-width: 30%;
-    width: 30%;
-    margin: 1.5% 12% 1.5% 10%;  
+.tm-service {
+max-width: 30%;
+width: 30%;
+margin: 1.5% 12% 1.5% 10%;
 }
 
-.tm-servicesection{
-    display: flex;
+.tm-servicesection {
+display: flex;
 }
 
-.tm-serimage{
-    display: inline-block;
-    max-width: 20%;
-    width: 10%;
-    height: auto;
+.tm-serimage {
+display: inline-block;
+max-width: 20%;
+width: 10%;
+height: auto;
 padding-bottom: 10%;
-
-
 }
 
-.tm-service div{
-    display: inline-block;
+.tm-service div {
+display: inline-block;
 
-    max-width: 75%;
-    padding: 5%;
+max-width: 75%;
+padding: 5%;
 }
 
-.tm-service p{
-    font-size: 1.5vmax;
-    
+.tm-service p {
+font-size: 1.5vmax;
 }
-.tm-service .b{
-    padding-bottom: 2%;
-    font-weight: 700;
-}
-
-.tm-res{
-    background: #cc4151;
-    padding: 2%;
+.tm-service .b {
+padding-bottom: 2%;
+font-weight: 700;
 }
 
-
-.tm-resbutton p{
-    display: table;
-    max-width: 30%;
-    margin: 0 auto;
-    font-size: 2.5vw;
-     padding: 2%;
-    color: #fff;
-    font-weight: 700;
-    border: 1px solid #fff;
-   
-}
-.tm-resbutton a{
-     text-decoration: none;
+.tm-res {
+background: #cc4151;
+padding: 2%;
 }
 
-.tm-resbutton p:hover{
-    color: #ec3c6a;
-    background: #fff;
+.tm-resbutton p {
+display: table;
+max-width: 30%;
+margin: 0 auto;
+font-size: 2.5vw;
+padding: 2%;
+color: #fff;
+font-weight: 700;
+border: 1px solid #fff;
+}
+.tm-resbutton a {
+text-decoration: none;
 }
 
-.tm-imgslider{
-    position: relative;
+.tm-resbutton p:hover {
+color: #ec3c6a;
+background: #fff;
 }
 
+.tm-imgslider {
+position: relative;
+}
