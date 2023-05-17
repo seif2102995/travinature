@@ -3,13 +3,13 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const signup_model2 = require("./models/signupschema");
 
+
 //Read the current directory name
 
 const hostname = "127.0.0.1";
 const port = 8080;
 const app = express();
 const mongoose = require("mongoose");
-
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static("public/js"));
 app.use(express.static("public/resources"));
@@ -31,6 +31,7 @@ mongoose
 app.get("/", function (req, res) {
   res.render("home");
 });
+
 
 app.get("/book", function (req, res) {
   res.render("map");
@@ -72,11 +73,12 @@ app.get("/reports-admin", (req, res) => {
   res.render("reports-admin");
 });
 
+
 app.post("/signup", (req, res) => {
   const signup_data = new signup_model2(req.body);
   const obj = req.body;
   let count = 0;
-  for (const key in req.body) {
+  for (const key in obj) {
     if (obj[key] !== "") {
       count++;
     }
