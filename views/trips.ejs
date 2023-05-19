@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html> -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="/css/trips.css">
 </head>
 <body>
   <div class="grid-container">
@@ -16,7 +16,7 @@
         <span class="material-icons-outlined">menu</span>
       </div>
       <div class="header-left">
-        <span class="material-icons-outlined">search</span>
+        <!-- <span class="material-icons-outlined">search</span> -->
       </div>
       <div class="header-right">
         <span class="material-icons-outlined">notifications</span>
@@ -38,13 +38,13 @@
           </a>
         </li>
         <li class="sidebar-list-item">
-          <a href="/trips" target="_blank">
+          <a href="#" target="_blank">
             <span class="material-icons-outlined">airplane_ticket</span> Tickets
           </a>
         </li>
         <li class="sidebar-list-item">
-          <a href="#" target="_blank">
-            <span class="material-icons-outlined">category</span> Categories
+          <a href="/trips" target="_blank">
+            <span class="material-icons-outlined">category</span> Add Trips
           </a>
         </li>
         <li class="sidebar-list-item">
@@ -58,7 +58,7 @@
           </a>
         </li>
         <li class="sidebar-list-item">
-          <a href="#" target="_blank">
+          <a href="./reports-admin" target="_blank">
             <span class="material-icons-outlined">poll</span> Reports
           </a>
         </li>
@@ -70,50 +70,13 @@
       </ul>
     </aside>
     <main class="main-container">
-      <div class="main-title">
-        <h2>DASHBOARD</h2>
-      </div>
-      <div class="main-cards">
-        <div class="card">
-          <div class="card-inner">
-            <h3>TICKETS</h3>
-            <span class="material-icons-outlined">airplane_ticket</span>
-          </div>
-          <h1>249</h1>
-        </div>
-        <div class="card">
-          <div class="card-inner">
-            <h3>CATEGORIES</h3>
-            <span class="material-icons-outlined">category</span>
-          </div>
-          <h1>25</h1>
-        </div>
-        <div class="card">
-          <div class="card-inner">
-            <h3>CUSTOMERS</h3>
-            <span class="material-icons-outlined">groups</span>
-          </div>
-          <h1>4,500</h1>
-        </div>
-        <div class="card">
-          <div class="card-inner">
-            <h3>MESSAGES</h3>
-            <span class="material-icons-outlined">notification_important</span>
-          </div>
-          <h1>56</h1>
-        </div>
-      </div>
-      <div class="charts">
-        <div class="charts-card">
-          <h2 class="chart-title">Most Sold Tickets</h2>
-          <div id="bar-chart"></div>
-        </div>
-        <div class="charts-card">
-          <h2 class="chart-title">Purchase and Sales </h2>
-          <div id="area-chart"></div>
-        </div>
+      <div id="option">
+        <select name="gov" id="gov">
+          
+        </select>
       </div>
     </main>
   </div>
 </body>
+<script src="/js/trips.js"></script>
 </html>

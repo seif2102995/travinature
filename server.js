@@ -130,6 +130,7 @@ import admin_router from "./routes/admin.js";
 import signup_router from "./routes/signup.js";
 import arg_router from "./routes/argentina.js";
 import eg_router from "./routes/eg.js";
+import trips_router from "./routes/trips.js";
 
 
 
@@ -177,8 +178,9 @@ app.use('/book', map_router);
 app.use('/signup', signup_router);
 app.use('/admin', admin_router);
 app.use('/about', about_router);
-app.use('/arg', arg_router);
+app.use('/argentina', arg_router);
 app.use('/eg', eg_router);
+app.use('/trips', trips_router);
 
 
 
