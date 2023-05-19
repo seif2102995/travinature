@@ -186,7 +186,6 @@ app.use('/trips', trips_router);
 
 
 
-
 // error handler
 app.use(function(err, req, res, next) {
     // set locals, only providing error in development
