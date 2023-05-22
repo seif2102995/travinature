@@ -34,6 +34,7 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true })); // for post method
+
 mongoose
   .connect(
     "mongodb+srv://seif2102995:travi231@travinature.3akvybv.mongodb.net/"
