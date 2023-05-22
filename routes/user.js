@@ -1,22 +1,18 @@
 import { Router } from "express";
+import { renderSignup, renderLogin } from '../controllers/users_controller.js'
 // import {
 //   validateSignup,
 //   signupController,
 // } from "../controllers/auth.controller.js";
-
 const router = Router();
 
-router.get("/signup", function (req, res, next) {
-  res.render("signup");
-});
+router.get("/signup",renderSignup);
 
 // signup page
 // router.post("/signup", validateSignup, signupController);
 
 // login page
-router.get("/login", function (req, res, next) {
-  res.render("login");
-});
+router.get("/login",renderLogin );
 
 
 
