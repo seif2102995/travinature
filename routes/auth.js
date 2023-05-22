@@ -1,12 +1,19 @@
 import { Router } from "express";
-import {r_about , r_home} from '../controllers/auth_controller.js'
+
 
 const router = Router();
 
 // GET home page
-router.get("/", r_home );
+router.get("/", function (req, res, next) {
+  console.log("index.js: GET /");
+  res.render("home");
+});
 
-router.get("/about", r_about );
+router.get("/about", function (req, res, next) {
+  res.render("about");
+});
+
+
 
 
 export default router;

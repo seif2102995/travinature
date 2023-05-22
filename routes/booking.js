@@ -1,19 +1,19 @@
 import { Router } from "express";
-import { renderMap, renderEgypt, renderArgentina } from '../controllers/booking_controller.js'
 
 
 const router = Router();
 
-router.get("/", renderMap);
+router.get("/", function (req, res, next) {
+  res.render("map");
+});
 
-router.get("/egypt",renderEgypt );
+router.get("/egypt", function (req, res, next) {
+  res.render("eg"); 
+});
 
-router.get("/argentina", renderArgentina );
-
-
-
-
-
+router.get("/argentina", function (req, res, next) {
+    res.render("argentina");
+  });
 
 
 export default router;
