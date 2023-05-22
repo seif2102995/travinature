@@ -10,7 +10,6 @@ import home_router from "./routes/auth.js";
 import user_router from "./routes/user.js";
 import booking_router from "./routes/booking.js";
 import admin_router from "./routes/admin.js";
-import trips_router from "./routes/trips.js";
 
 
 
@@ -60,15 +59,20 @@ app.use('/admin', admin_router);
 
 
 // error handler
-app.use(function(err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+// app.use(function(err, req, res, next) {
+//     // set locals, only providing error in development
+//     res.locals.message = err.message;
+//     res.locals.error = req.app.get('env') === 'development' ? err : {};
     
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
-  });
+//     // render the error page
+//     res.status(err.status || 500);
+//     res.render('error');
+//   });
+
+// 404 page
+app.use((req, res) => {
+  res.status(404).render('error');
+});
 
 app.listen(8080);
 console.log("listening on port " + port);
