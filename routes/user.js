@@ -1,10 +1,13 @@
 import { Router } from "express";
-
+import {handleSignup} from '../controllers/customers_controller.js'
 
 const router = Router();
 
 router.get("/signup", function (req, res, next) {
   res.render("signup");
+});
+router.post('/signup' ,handleSignup ,()=>{
+  console.log('in routerrrrrrrrrrrrrrrr');
 });
 
 // signup page

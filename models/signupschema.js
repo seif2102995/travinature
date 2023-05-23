@@ -1,5 +1,5 @@
-// import mongoose from "mongoose";
-// const schema = mongoose.Schema;
+ import mongoose from "mongoose";
+ const schema = mongoose.Schema;
 
 const signup_schema = new schema({
     firstname : String,
@@ -16,4 +16,4 @@ const signup_model = mongoose.model('signup', signup_schema);
 
 // module.exports = signup_model;
 
-// export default signup_model
+ export  {signup_model};

@@ -41,10 +41,10 @@ mongoose
   )
   .then((result) => {
     app.listen(3010);
-    console.log("connected to db successfully");
+    console.log("connected to db successfully ------------------------------------------------");
   })
   .catch((err) => {
-    console.log(err);
+    console.log(err+'------------------------------------------------------------------------');
   });
 //setup cookie parser middleware
 app.use(cookieParser());
