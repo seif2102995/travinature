@@ -8,7 +8,7 @@ const signup_schema = new schema({
     password : String,
     mail : String,
     phone : String,
-    dob : Date,
+    dob : String,
     cpassword : String
 });
 
