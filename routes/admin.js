@@ -1,5 +1,5 @@
 import { Router } from 'express';
-
+import { fetchusers } from '../controllers/customers_controller.js';
 var router = Router();
 
 
@@ -12,9 +12,7 @@ router.get("/", function (req, res, next) {
   router.get("/trips", function (req, res, next) {
     res.render("trips");
   });
-  router.get("/customers", function (req, res, next) {
-    res.render("customers-admin");
-  });
+  router.get("/customers",fetchusers);
 
 
 export default router;

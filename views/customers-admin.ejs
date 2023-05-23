@@ -4,7 +4,7 @@
 <html>
 <head>
   <title>User Data</title>
-  <link rel="stylesheet" type="text/css" href="../css/styles.css">
+  <link rel="stylesheet" type="text/css" href="../css/customers.css">
   
 </head>
 <body>
@@ -18,8 +18,26 @@
       <th>email</th>
       <th>Last Name</th>
       <th>Phone</th>
-
     </tr>
+    <% users.forEach(user => { %>
+      <tr>
+      <td><%= user.firstname%></td>
+      <td><%= user.lastname%></td>
+      <td><%= user.username %></td>
+      <td><%= user.password %></td>
+      <td><%= user.mail%></td>
+      <td><%= user.phone%></td>
+    </tr>
+    <%  }); %>
+    
+
+    
+  
+ 
+ 
+
+    
+  
 
 
     

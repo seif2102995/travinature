@@ -1,0 +1,56 @@
+/* styles.css */
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1d2634;
+    margin: 0;
+    padding: 0;
+  }
+  
+
+  
+  /* Table styles */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 15px;
+    border-color: black;
+    margin-top: 10px;
+  }
+  
+  th,td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    
+  }
+  
+  th {
+    background-color:coral;
+    font-weight: bold;
+    color: black;
+    font-size: larger;
+    border: 3px solid gold;
+    
+    }
+    th:hover{
+          color:darkmagenta;
+          text-decoration: underline;
+    }
+    td{
+        color:black;
+        background-color:deepskyblue;
+        font-size: medium;
+        font-weight: bold;
+        border: 3px solid gold;
+    }
+    h1{
+        color: white;
+        text-align: center;
+    }
+  
+  
+
+  
+  
