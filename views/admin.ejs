@@ -24,51 +24,7 @@
         <span class="material-icons-outlined">account_circle</span>
       </div>
     </header>
-    <aside id="sidebar">
-      <div class="sidebar-title">
-        <div class="sidebar-brand">
-          <span class="material-icons-outlined">shopping_cart</span> STORE
-        </div>
-        <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
-      </div>
-      <ul class="sidebar-list">
-        <li class="sidebar-list-item">
-          <a href="#" target="_blank">
-            <span class="material-icons-outlined">dashboard</span> Dashboard
-          </a>
-        </li>
-        <li class="sidebar-list-item">
-          <a href="/admin/trips" target="_blank">
-            <span class="material-icons-outlined">airplane_ticket</span> Tickets
-          </a>
-        </li>
-        <li class="sidebar-list-item">
-          <a href="/admin/trips" target="_blank">
-            <span class="material-icons-outlined">category</span> Add Trips
-          </a>
-        </li>
-        <li class="sidebar-list-item">
-          <a href="/admin/customers" >
-            <span class="material-icons-outlined">groups</span> Customers
-          </a>
-        </li>
-        <li class="sidebar-list-item">
-          <a href="/" target="_blank">
-            <span class="material-icons-outlined">fact_check</span> Home
-          </a>
-        </li>
-        <li class="sidebar-list-item">
-          <a href="/admin/reports" >
-            <span class="material-icons-outlined">poll</span> Reports
-          </a>
-        </li>
-        <li class="sidebar-list-item">
-          <a href="#" target="_blank">
-            <span class="material-icons-outlined">settings</span> Settings
-          </a>
-        </li>
-      </ul>
-    </aside>
+    <%- include('./partials/sidebar-admin'); %>
     <main class="main-container">
       <div class="main-title">
         <h2>DASHBOARD</h2>

@@ -10,5 +10,5 @@ let ids = [];
   }
   ids.sort();
 })();
-console.log(ids);
+// console.log(ids);
 sessionStorage.setItem('options',JSON.stringify(ids));

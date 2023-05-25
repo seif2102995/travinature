@@ -1,19 +1,19 @@
- import mongoose from "mongoose";
- const schema = mongoose.Schema;
+import mongoose from "mongoose";
+const schema = mongoose.Schema;
 
 const signup_schema = new schema({
-    firstname : String,
-    lastname : String,
-    username : String,
-    password : String,
-    mail : String,
-    phone : String,
-    dob : String,
-    cpassword : String
+        firstname: String,
+        lastname: String,
+        username: String,
+        password: String,
+        mail: String,
+        phone: String,
+        dob: String,
+        cpassword: String,
 });
 
-const signup_model = mongoose.model('signup', signup_schema);
+const signup_model = mongoose.model("signup", signup_schema);
 
 // module.exports = signup_model;
 
- export  {signup_model};
+export { signup_model };

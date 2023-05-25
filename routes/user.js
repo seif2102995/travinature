@@ -15,9 +15,6 @@ router.post('/signup' ,handleSignup,(req,res)=>{
 // router.post("/signup", validateSignup, signupController);
 
 // login page
-router.get("/login", function (req, res, next) {
-  res.render("login");
-});
 
 
 
