@@ -24,7 +24,7 @@ const fetchusers = async (req, res, next) => {
   }
 };
 
-const login=async(req , res , next)=>{
+const login=async(req , res )=>{
   try{
     const check = await signup_model.findOne({username:req.body.username})
     if(check.password===req.body.password){
