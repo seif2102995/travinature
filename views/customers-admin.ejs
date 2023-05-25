@@ -2,11 +2,13 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>User Data</title>
   <link rel="stylesheet" type="text/css" href="../css/customers.css">
-  
+
 </head>
+
 <body>
 
   <h1>User Data</h1>
@@ -19,32 +21,45 @@
       <th>Last Name</th>
       <th>Phone</th>
     </tr>
-    <% users.forEach(user => { %>
+    <% users.forEach(user=> { %>
       <tr>
-      <td><%= user.firstname%></td>
-      <td><%= user.lastname%></td>
-      <td><%= user.username %></td>
-      <td><%= user.password %></td>
-      <td><%= user.mail%></td>
-      <td><%= user.phone%></td>
-    </tr>
-    <%  }); %>
-    
+        <td>
+          <%= user.firstname%>
+        </td>
+        <td>
+          <%= user.lastname%>
+        </td>
+        <td>
+          <%= user.username %>
+        </td>
+        <td>
+          <%= user.password %>
+        </td>
+        <td>
+          <%= user.mail%>
+        </td>
+        <td>
+          <%= user.phone%>
+        </td>
+      </tr>
+      <% }); %>
 
-    
-  
- 
- 
-
-    
-  
 
 
-    
+
+
+
+
+
+
+
+
+
 
   </table>
 
 </body>
+
 </html>
 <!-- firstname : String,
 lastname : String,
