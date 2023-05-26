@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {handleSignup,login} from '../controllers/customers_controller.js'
+import {handleSignup,login} from '../controllers/users.js'
 import {signup_model} from '../models/signupschema.js'
 const router = Router();
 
@@ -26,9 +26,9 @@ router.use((req, res, next) => {
 router.get("/login", (req, res)=> {
   res.render("login", { user: (req.session.user === undefined ? "" : req.session.user) });
 });
-router.post("/login", login, (req, res)=> {
+// router.post("/login", login, (req, res)=> {
 
-});
+// });
 
 router.get('/logout', (req, res) => {
   req.session.destroy();

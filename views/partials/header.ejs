@@ -6,18 +6,20 @@
   <a href='/'>Home</a>
   <a href='/about'>About</a>
 
- 
+  <% if(user==="" ) {%>
     <a href='/user/signup'>Sign Up</a>
     <a href='/user/login'>Login</a>
-  
-
-      <a href='/admin'>Admin</a>
-  
+  <% }
+  else { 
+    if(user.Type==="admin" ) { %>
+      <a href='/admin/viewAll'>Admin</a>
+    <% } %>
     <a href='/user/profile'>Profile</a>
     <a href='/user/logout'>Logout</a>
 
     <div class="user">
-      Welcome 
+      Welcome <%= user.username %>
     </div>
+  <% } %>
 
 </div>
