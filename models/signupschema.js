@@ -10,6 +10,7 @@ const signup_schema = new schema({
         phone: String,
         dob: String,
         cpassword: String,
+        type:String,  //aaml input type hidden value client
 });
 
 const signup_model = mongoose.model("signup", signup_schema);

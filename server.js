@@ -5,6 +5,7 @@ import logger from "morgan";
 import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
+import session from"express-session";
 
 import home_router from "./routes/auth.js";
 import user_router from "./routes/user.js";
@@ -30,6 +31,9 @@ app.set("view engine", "ejs");
 
 app.use(logger("common"));
 app.use(express.json());
+app.use(session({
+  secret:'key to sign the cookie',
+}))
 
 
 app.use(express.urlencoded({ extended: true }));

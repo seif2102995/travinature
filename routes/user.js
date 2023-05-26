@@ -4,25 +4,36 @@ import {signup_model} from '../models/signupschema.js'
 const router = Router();
 
 router.get("/signup", function (req, res) {
-  res.render("signup");
+  res.render("signup",{ user: (req.session.user === undefined ? "" : req.session.user) });
 });
 router.post('/signup' ,handleSignup,(req,res)=>{
   res.render('login')
   console.log('in routerrrrrrrrrrrrrrrr + ');
 });
 
-// signup page
-// router.post("/signup", validateSignup, signupController);
+router.use((req, res, next) => {
+  if (req.session.user !== undefined) 
+  {
+      next();
+  }
+  else {
+      res.render('error', { err: 'You must login to access this page', user: (req.session.user === undefined ? "" : req.session.user) })
+  }
+});
 
-// login page
+
 
 router.get("/login", (req, res)=> {
-  res.render("login");
+  res.render("login", { user: (req.session.user === undefined ? "" : req.session.user) });
 });
 router.post("/login", login, (req, res)=> {
 
 });
 
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+});
 
 
 export default router;
