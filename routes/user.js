@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {handleSignup,login} from '../controllers/users.js'
+import {handleSignup,login,checkUN} from '../controllers/users.js'
 import {signup_model} from '../models/signupschema.js'
 import bodyParser from "body-parser";
 const router = Router();
@@ -21,6 +21,7 @@ router.post('/signup' ,handleSignup,(req,res)=>{
 });
 
 
+router.post('/checkUN', checkUN);
 
 
 

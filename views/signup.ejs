@@ -8,6 +8,14 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
+    <script>
+      function validate() {
+          if (document.getElementById('result').innerHTML.includes('taken'))
+              return false;
+          else
+              return true;
+      }
+  </script>
   </head>
   <body>
     <%- include('./partials/vidbg'); %>
@@ -44,19 +52,19 @@
         </div>
       </div>
       <div class="form-outer">
-        <form action="/user/signup" method ='post'>
+        <form action="/user/signup" method ='post' onsubmit="return validate()">
           <div class="page slide-page">
             <div class="title">Basic Info:</div>
             <div class="field">
               <div class="label">First Name</div>
-              <input type="text" id="fn" name="firstname"/>
+              <input type="text" id="fn" name="firstname" required>
               <i class="fas fa-exclamation-circle failure-icon"></i>
               <i class="far fa-check-circle success-icon"></i><br>
             </div>
             <div class="error"></div>
             <div class="field">
               <div class="label">Last Name</div>
-              <input type="text" id="ln" name="lastname"/>
+              <input type="text" id="ln" name="lastname" required>
               <i class="fas fa-exclamation-circle failure-icon"></i>
               <i class="far fa-check-circle success-icon"></i>
             </div>
@@ -69,14 +77,14 @@
             <div class="title">Contact Info:</div>
             <div class="field">
               <div class="label">Email Address</div>
-              <input type="text" id="mail" name="mail"/>
+              <input type="text" id="mail" name="mail" required>
               <i class="fas fa-exclamation-circle failure-icon"></i>
               <i class="far fa-check-circle success-icon"></i>
             </div>
             <div class="error"></div>
             <div class="field">
               <div class="label">Phone Number</div>
-              <input type="number" id="phone" name="phone"/>
+              <input type="number" id="phone" name="phone" required>
               <i class="fas fa-exclamation-circle failure-icon"></i>
               <i class="far fa-check-circle success-icon"></i>
             </div>
@@ -90,7 +98,7 @@
             <div class="title">Date of Birth:</div>
             <div class="field">
               <div class="label">Age</div>
-              <input type="number" id="dob" name="dob"/>
+              <input type="number" id="dob" name="dob" required>
               <i class="fas fa-exclamation-circle failure-icon"></i>
               <i class="far fa-check-circle success-icon"></i>
             </div>
@@ -111,21 +119,22 @@
             <div class="title">Login Details:</div>
             <div class="field">
               <div class="label">Username</div>
-              <input type="text" id="user" name="username"/>
+              <input type="text" id="user" name="username" required>
+              <span id="result"></span>
               <i class="fas fa-exclamation-circle failure-icon"></i>
               <i class="far fa-check-circle success-icon"></i>
             </div>
             <div class="error"></div>
             <div class="field">
               <div class="label">Password</div>
-              <input type="password" id="pass" name="password"/>
+              <input type="password" id="pass" name="password" required>
               <i class="fas fa-exclamation-circle failure-icon"></i>
               <i class="far fa-check-circle success-icon"></i>
             </div>
             <div class="error"></div>
             <div class="field">
               <div class="label">Confirm Password</div>
-              <input type="password" id="passconf" name="confirmpassword"/>  
+              <input type="password" id="passconf" name="confirmpassword" required>  
               <input type="hidden" name="type" value="client">
               <i class="fas fa-exclamation-circle failure-icon"></i>
               <i class="far fa-check-circle success-icon"></i>

@@ -53,4 +53,19 @@ const login=async(req , res )=>{
     res.status(500).send("user doesn't exist");
   }
 }
-export { handleSignup, fetchusers ,login};
+const checkUN = (req, res) => {
+  var query = { username: req.body.username };
+  signup_model.find(query)
+      .then(result => {
+          if (result.length > 0) {
+              res.send('taken');
+          }
+          else {
+              res.send('available');
+          }
+      })
+      .catch(err => {
+          console.log(err);
+      });
+};
+export { handleSignup, fetchusers ,login,checkUN};
