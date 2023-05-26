@@ -1,36 +1,19 @@
 import { signup_model } from "../models/signupschema.js";
-import bcrypt from 'bcrypt';
-
 // Controller for handling the signup form submission
 const handleSignup = async (req, res, next) => {
-  const { password, cpassword } = req.body;
-  const saltRounds = 10; // Number of salt rounds to generate
-  const data = new signup_model(req.body);
-
   try {
-    const salt = await bcrypt.genSalt(saltRounds);
-    bcrypt.hash(password, salt, async function(err, hashedPassword) {
-      if (err) {
-        console.log("Error in hash function");
-      } else {
-        data.password = hashedPassword;
-
-        console.log("The hashed password: ", data.password);
-
-        console.log("Awaiting save...");
-        await data.save();
-        console.log("Data saved");
-
-        // Continue to the next middleware or redirect to a success page
-        next();
-      }
-    });
+    // Extract data from the request body
+    const data = new signup_model(req.body);
+    console.log("awaiting saveeeeeeeeeeeeeeee");
+    await data.save();
+    // Continue to the next middleware or redirect to a success page
+    next();
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
+  
   }
 };
-
 const fetchusers = async (req, res, next) => {
   try {
     const users = await signup_model.find();
