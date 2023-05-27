@@ -9,8 +9,7 @@
   <% if(user==="" ) {%>
     <a href='/user/signup'>Sign Up</a>
     <a href='/user/login'>Login</a>
-  <% }
-  else { 
+  <% } else { 
     if(user.type==="admin" ) { %>
       <a href='/admin/viewAll'>Admin</a>
     <% } %>
@@ -18,7 +17,7 @@
     <a href='/user/logout'>Logout</a>
 
     <div class="user">
-      Welcome <%= user.username %>
+      <p> Welcome <%= user.username %></p>
     </div>
   <% } %>
 

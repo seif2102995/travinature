@@ -8,14 +8,18 @@ router.use(bodyParser.json());
 
 
 router.get("/login", (req, res)=> {
+  req.session.user=req.body.username;
   res.render("login", { user: (req.session.user === undefined ? "" : req.session.user) });
 });
 
 router.get("/signup", function (req, res) {
+  req.session.user=req.body.username;
   res.render("signup",{ user: (req.session.user === undefined ? "" : req.session.user) });
 });
 
 router.post('/signup' ,handleSignup,(req,res)=>{
+  req.session.user=req.body.username;
+  console.log(req.session.user)
   res.render('home',{ user: (req.session.user === undefined ? "" : req.session.user) })
   console.log('in routerrrrrrrrrrrrrrrr + ');
 });
@@ -27,6 +31,7 @@ router.post('/checkUN', checkUN);
 
 // check if logged in
 router.use((req, res, next) => {
+  req.session.user=req.body.username;
   if (req.session.user !== undefined) 
   {
       next();
