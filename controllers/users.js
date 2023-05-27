@@ -6,7 +6,6 @@ const handleSignup = async (req, res, next) => {
   const { password, cpassword } = req.body;
   const saltRounds = 10; // Number of salt rounds to generate
   const data = new signup_model(req.body);
-
   try {
     const salt = await bcrypt.genSalt(saltRounds);
     bcrypt.hash(password, salt, async function(err, hashedPassword) {

@@ -16,7 +16,7 @@ router.get("/signup", function (req, res) {
 });
 
 router.post('/signup' ,handleSignup,(req,res)=>{
-  res.render('login')
+  res.render('home',{ user: (req.session.user === undefined ? "" : req.session.user) })
   console.log('in routerrrrrrrrrrrrrrrr + ');
 });
 
