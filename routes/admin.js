@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { fetchusers } from '../controllers/users.js';
+// import { fetchusers } from '../controllers/users.js';
 var router = Router();
 
 
@@ -21,7 +21,7 @@ router.get("/", function (req, res, next) {
   router.get("/trips", function (req, res, next) {
     res.render("trips");
   });
-  router.get("/customers",fetchusers);
+  // router.get("/customers",fetchusers);
 
 
 export default router;

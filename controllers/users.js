@@ -67,4 +67,4 @@ const checkUN = (req, res) => {
           console.log(err);
       });
 };
-export { handleSignup, fetchusers ,login,checkUN};
+export { handleSignup,login,checkUN};
