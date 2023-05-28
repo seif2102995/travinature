@@ -34,9 +34,18 @@ const handleSignup = async (req, res, next) => {
 
 const login=async(req , res )=>{
   try{
-    const check = await signup_model.findOne({username:req.body.username})
-    if(check.password===req.body.password){
-      res.render("home");
+    const check = await signup_model.findOne({username:req.body.username});
+    const pcomp= await bcrypt.compare(req.body.password,check.password);
+    if(check){
+      if(pcomp){
+        req.session.user=req.body.username;
+        // console.log(req.session.user);
+        // console.log("from user controller");
+        console.log(check);
+        // console.log("from user controlelr 2");
+
+        res.render('home',{ user: (req.session.user === undefined ? "" : check) })
+      }
     }
   }catch(err){
     console.error(err);
