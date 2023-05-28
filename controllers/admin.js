@@ -31,3 +31,20 @@ const fetchusers = async (req, res, next) => {
             console.log(err);
         });
   };
+
+  const DeleteUser = (req, res) => {
+    Employees.findByIdAndDelete(req.params.id)
+      .then(result => 
+        {
+          if (err)
+          {
+           throw err;
+         }
+         res.redirect('/admin/viewAll');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  export{toAdmin,toClient,fetchusers,DeleteUser};
