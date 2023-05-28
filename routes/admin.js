@@ -1,5 +1,5 @@
 import { Router } from 'express';
-// import { fetchusers } from '../controllers/users.js';
+import { fetchusers,toAdmin,toClient,DeleteUser } from '../controllers/Admin-con.js';
 var router = Router();
 
 
@@ -21,7 +21,13 @@ router.get("/", function (req, res, next) {
   router.get("/trips", function (req, res, next) {
     res.render("trips");
   });
-  // router.get("/customers",fetchusers);
+  router.get("/customers",fetchusers);
+  router.get("/toAdmin/:id", toAdmin);
+  router.get("/toClient/:id", toClient);
+  router.get("/delete/:id", DeleteUser);
+
+
+
 
 
 export default router;

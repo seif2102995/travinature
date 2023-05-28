@@ -14,7 +14,7 @@ const fetchusers = async (req, res, next) => {
   const toAdmin = (req, res) => {
     signup_model.findByIdAndUpdate(req.params.id, { type: 'admin' })
         .then(result => {
-            res.redirect('/admin/customers-admin')
+            res.redirect('/admin/customers')
         })
         .catch(err => {
             console.log(err);
@@ -25,7 +25,7 @@ const fetchusers = async (req, res, next) => {
   const toClient = (req, res) => {
     signup_model.findByIdAndUpdate(req.params.id, { type: 'client' })
         .then(result => {
-            res.redirect('/admin/customers-admin')
+            res.redirect('/admin/customers')
         })
         .catch(err => {
             console.log(err);
@@ -33,7 +33,7 @@ const fetchusers = async (req, res, next) => {
   };
 
   const DeleteUser = (req, res) => {
-    Employees.findByIdAndDelete(req.params.id)
+    signup_model.findByIdAndDelete(req.params.id)
       .then(result => 
         {
           if (err)

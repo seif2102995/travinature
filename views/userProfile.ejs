@@ -1,0 +1,35 @@
+<html lang="en">
+
+<head>
+
+</head>
+
+<body>
+    <header> <%- include('./partials/header'); %></header>
+        <div>
+                <h2>Customer Profile</h2>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <td>
+                            <%= user.id %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>
+                            <%= user.username %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Type</th>
+                        <td>
+                            <%= user.type %>
+                        </td>
+                    </tr>
+
+                    %>
+                </table>
+        </div>
+</body>
+</html>
