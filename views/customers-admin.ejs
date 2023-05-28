@@ -39,6 +39,16 @@
         <td>
           <%= user.phone%>
         </td>
+        <td>
+          <% if (user.type==='client' ){ %>
+            <a href="/admin/toAdmin/<%= user.id %>">Make Admin</a>
+            <% } else{ %>
+              <a href="/admin/toClient/<%= user.id %>">Make Client</a>
+              <% } %>
+        </td>
+        <td>
+          <a href="/admin/delete/<%= user.id %>">Delete</a>
+        </td>
       </tr>
       <% }); %>
 

@@ -30,16 +30,7 @@ const handleSignup = async (req, res, next) => {
   }
 };
 
-const fetchusers = async (req, res, next) => {
-  try {
-    const users = await signup_model.find();
-    console.log(users + " \nuserrssssssssssss");
-    res.render("customers-admin", { users });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Server Error");
-  }
-};
+
 
 const login=async(req , res )=>{
   try{
