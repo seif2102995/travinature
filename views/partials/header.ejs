@@ -3,8 +3,7 @@
 </head>
 
 <div class='topnav'>
-  <a href='/'>Home</a>
-  <a href='/about'>About</a>
+  
 
   <% if(user==="" ) {%>
     <a href='/user/signup'>Sign Up</a>
@@ -16,9 +15,9 @@
     <a href='/user/profile'>Profile</a>
     <a href='/user/logout'>Logout</a>
 
-    <div class="user">
-      <p> Welcome <%= user.username %></p>
-    </div>
   <% } %>
+  <a href='/about'>About</a>
+  <a href='/'>Home</a>
+  
 
 </div>
