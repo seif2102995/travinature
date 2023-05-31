@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import session from"express-session";
-
+import flash from "express-flash-message"
 import home_router from "./routes/auth.js";
 import user_router from "./routes/user.js";
 import booking_router from "./routes/booking.js";

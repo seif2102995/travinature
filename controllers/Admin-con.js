@@ -1,4 +1,7 @@
 import { signup_model } from "../models/signupschema.js";
+import mongoose from "mongoose";
+import flash from "express-flash-message"
+
 
 const fetchusers = async (req, res, next) => {
   try {
@@ -68,4 +71,22 @@ const AddUser = (req, res) => {
     });
 
 };
-export { toAdmin, toClient, fetchusers, DeleteUser,AddUser };
+const editUser = async (req,res)=>
+{
+  console.log(req.params.id);
+  signup_model.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+    .then((customer) => {
+      if (!customer) {
+        console.log("Can't retrieve data");
+        return res.redirect("error"); // Redirect to an error page if customer not found
+      }
+      res.render("editUsser", { customer: customer });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.redirect("error"); // Redirect to an error page if an error occurs
+    });
+
+
+};
+export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser };
