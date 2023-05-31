@@ -28,7 +28,7 @@ router.post('/signup' ,handleSignup, async (req,res)=>{
 });
 
 
-// router.post('/checkUN', checkUN);
+router.post('/checkUN', checkUN);
 
 
 

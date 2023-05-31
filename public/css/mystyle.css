@@ -34,3 +34,14 @@ th {
 table {
     width: 70%;
 }
+#logo
+{
+    float: left;
+    font-size: 20px;
+    color: aliceblue;
+
+}
+#logo:hover
+{
+    background-color: transparent;
+}

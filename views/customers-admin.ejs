@@ -13,11 +13,12 @@
   <table>
     <tr>
       <th>First Name</th>
-      <th>Last Name</th>
+      <th>Last Name</th> 
       <th>Username</th>
       <th>email</th>
-      <th>Last Name</th>
       <th>Phone</th>
+      <th>To admin|client</th>
+      <th>Delete users</th>
     </tr>
     <% users.forEach(user=> { %>
       <tr>
@@ -29,9 +30,6 @@
         </td>
         <td>
           <%= user.username %>
-        </td>
-        <td>
-          <%= user.password %>
         </td>
         <td>
           <%= user.mail%>
@@ -48,6 +46,9 @@
         </td>
         <td>
           <a href="/admin/delete/<%= user.id %>">Delete</a>
+        </td>
+        <td>
+          <a href="/admin/adduser">Add user</a>
         </td>
       </tr>
       <% }); %>
