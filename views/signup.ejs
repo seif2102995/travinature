@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script>
       function validate() {
           if (document.getElementById('result').innerHTML.includes('taken'))
@@ -16,6 +17,42 @@
               return true;
       }
   </script>
+  <!-- <script>
+
+$(document).ready(function() {
+    const emailInput = $('#mail');
+    const statusMessage = $('#mailerr');
+
+    emailInput.keyup(function() {
+      const email = $(this).val();
+
+      // Send AJAX request to validate email
+      $.ajax({
+        url: '/signup',
+        method: 'POST',
+        data: { email },
+        success: function(response) {
+          if (response.exists) {
+            // Email exists in the database
+            statusMessage.text('Email already exists');
+            console.log("ajax Email already exists ")
+           // statusMessage.addClass('exists'); // Apply appropriate CSS class for styling
+          } else {
+            // Email does not exist in the database
+            statusMessage.text('Email available');
+            console.log("ajax Email avail ")
+           // statusMessage.removeClass('exists'); // Remove existing CSS class
+          }
+        },
+        error: function(xhr, status, error) {
+          console.error('AJAX request error:', error);
+          // Handle error cases
+        }
+      });
+    });
+  });
+
+  </script> -->
   </head>
   <body>
     <%- include('./partials/vidbg'); %>
@@ -88,7 +125,7 @@
               <i class="fas fa-exclamation-circle failure-icon"></i>
               <i class="far fa-check-circle success-icon"></i>
             </div>
-            <div class="error"></div>
+            <div class="error"><span id="mailerr"></span> </div>
             <div class="field btns">
               <button class="prev-1 prev">Previous</button>
               <button class="next-1 next">Next</button>

@@ -1,12 +1,47 @@
 import { signup_model } from "../models/signupschema.js";
 import bcrypt from 'bcrypt';
+const handlefgtpass = async (req, res, next) => {
+  const  body1 = new signup_model(req.body);
+  const email = body1.mail;
+  console.log('email = ' , email )
 
+  const exist = await signup_model.findOne({  mail: email });
+
+  if (exist) {
+    console.log('Email exists : (' ,email , " )" );
+    res.render('reset');
+    
+  } 
+  if(!exist){
+    
+    console.log('Email does not exists : (' ,email , " )" );
+   
+  }
+};
 // Controller for handling the signup form submission
-const handleSignup = async (req, res, next) => {
+const handleSignup = async (req, res, next) => 
+{
   const { password, cpassword } = req.body;
   const saltRounds = 10; // Number of salt rounds to generate
   const data = new signup_model(req.body);
+  const email = req.body.email;
+
   try {
+    
+  //   const existingUser = await signup_model.findOne({ mail: email });
+
+  //   if (existingUser) {
+  //     // Email already exists
+  //     return res.status(400).json({ error: 'Email already exists' });
+  //   }
+
+    // Validate password and confirm password match
+    //if (password !== cpassword) {
+      //return res.status(400).json({ error: 'Passwords do not match' });
+    //}
+
+
+
     const salt = await bcrypt.genSalt(saltRounds);
     bcrypt.hash(password, salt, async function(err, hashedPassword) {
       if (err) {
@@ -29,6 +64,7 @@ const handleSignup = async (req, res, next) => {
     res.status(500).send("Internal Server Error");
   }
 };
+
 
 
 
@@ -67,4 +103,4 @@ const checkUN = (req, res) => {
           console.log(err);
       });
 };
-export { handleSignup,login,checkUN};
+export { handleSignup,login,checkUN,handlefgtpass};

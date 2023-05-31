@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 const schema = mongoose.Schema;
 
 const signup_schema = new schema({
@@ -11,6 +12,7 @@ const signup_schema = new schema({
         dob: String,
         cpassword: String,
         type:String,  //aaml input type hidden value client
+        token : Number
 });
 
 const signup_model = mongoose.model("signup", signup_schema);

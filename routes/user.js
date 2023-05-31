@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {handleSignup,login,checkUN} from '../controllers/users.js'
+import {handleSignup,login,checkUN,handlefgtpass} from '../controllers/users.js'
 import {signup_model} from '../models/signupschema.js'
 import bodyParser from "body-parser";
 const router = Router();
@@ -26,6 +26,12 @@ router.post('/signup' ,handleSignup, async (req,res)=>{
   req.session.user=req.body.username;
   res.render('home',{ user: (req.session.user === undefined ? "" : check) })
 });
+
+router.get('/forget-pass',(req,res)=>{
+  res.render('forget-pass')
+})
+router.post('/forget-pass',handlefgtpass)
+
 
 
 router.post('/checkUN', checkUN);
