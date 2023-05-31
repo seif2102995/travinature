@@ -7,7 +7,11 @@ const signup_schema = new schema({
         lastname: String,
         username: String,
         password: String,
-        mail: String,
+        mail: {
+                type: String,
+                unique: true,
+                required: true
+              },
         phone: String,
         dob: String,
         cpassword: String,

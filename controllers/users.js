@@ -10,7 +10,11 @@ const handlefgtpass = async (req, res, next) => {
   if (exist) {
     console.log('Email exists : (' ,email , " )" );
     res.render('reset');
-    
+    // Update the token variable in the existing document
+    exist.token = Math.floor(10000 + Math.random() * 90000);
+    console.log(' the token = ----------------' ,exist.token )
+    console.log(exist)
+    await exist.save();
   } 
   if(!exist){
     
