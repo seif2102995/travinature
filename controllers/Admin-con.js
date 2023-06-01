@@ -2,7 +2,7 @@ import { signup_model } from "../models/signupschema.js";
 import mongoose from "mongoose";
 import flash from "express-flash-message"
 
-
+//------------------>USER CRUD
 const fetchusers = async (req, res, next) => {
   try {
     const users = await signup_model.find();
@@ -110,4 +110,8 @@ const editpost=async(req,res)=>
     console.log(err);
   }
 }
+
+//------------------>TRIPS CRUD
+
+
 export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost };
