@@ -89,4 +89,25 @@ const editUser = async (req,res)=>
 
 
 };
-export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser };
+
+const editpost=async(req,res)=>
+{
+  try{
+    await signup_model.findOneAndUpdate({
+      firstname: req.body.fname,
+      password: req.body.pass,
+      type: req.body.type,
+      lastname: req.body.lname,
+      mail: req.body.email,
+      phone: req.body.ph,
+      dob: req.body.age,
+      username:req.body.uname
+    }).where(req.params.id);
+    res.redirect("/admin/customers");
+  }
+  catch(err)
+  {
+    console.log(err);
+  }
+}
+export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost };

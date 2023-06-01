@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import session from"express-session";
-import flash from "express-flash-message"
+
 import home_router from "./routes/auth.js";
 import user_router from "./routes/user.js";
 import booking_router from "./routes/booking.js";
@@ -76,7 +76,7 @@ app.use('/admin', admin_router);
 
 // 404 page
 app.use((req, res) => {
-  res.status(404).render('error');
+  res.status(404).render('error',{user:req.user});
 });
 
 app.listen(8080);
