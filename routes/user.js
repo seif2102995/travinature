@@ -2,9 +2,9 @@ import { Router } from "express";
 import {handleSignup,login,checkUN,handlefgtpass} from '../controllers/users.js'
 import {signup_model} from '../models/signupschema.js'
 import bodyParser from "body-parser";
+
 const router = Router();
 router.use(bodyParser.json());
-
 
 
 router.get("/login", (req, res)=> {

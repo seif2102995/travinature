@@ -1,5 +1,38 @@
 import { signup_model } from "../models/signupschema.js";
 import bcrypt from 'bcrypt';
+import { google } from 'googleapis';
+import nodemailer, { createTransport }   from 'nodemailer'
+
+
+let mailTransporter = createTransport({
+  service:'gmail',
+  auth:{
+    user : 'traventure237@gmail.com',
+    pass : 'spyuthywqmntwccr'
+  }
+});
+
+// async function sendEmail() {
+//   const clientId = '     ';
+//   const clientSecret = ' ';
+//   const refreshToken = '  ';
+
+//   const oAuth2Client = new google.auth.OAuth2(
+//     clientId,
+//     clientSecret,
+//     'https://developers.google.com/oauthplayground' // Redirect URL
+//   );
+
+
+
+
+
+
+
+
+
+
+
 const handlefgtpass = async (req, res, next) => {
   const  body1 = new signup_model(req.body);
   const email = body1.mail;
@@ -15,10 +48,27 @@ const handlefgtpass = async (req, res, next) => {
     console.log(' the token = ----------------' ,exist.token )
     console.log(exist)
     await exist.save();
+    let details = {
+      from: 'traventure237@gmail.com',
+      to:"seif2102995@miuegypt.edu.eg",
+      subject : " password reset ",
+      text : "your token for resetting your password is " + exist.token 
+    };
+
+    mailTransporter.sendMail(details,(err)=>{
+      if(err){
+        console.log(err)
+      }
+      else{
+        console.log('mail sent successfully')
+      }});
+
+
   } 
   if(!exist){
     
-    console.log('Email does not exists : (' ,email , " )" );
+    console.log('Email does not exist : (' ,email , " )" );
+    res.send('email doesnt exist').status(404);
    
   }
 };
@@ -92,6 +142,10 @@ const login=async(req , res )=>{
     res.status(500).send("user doesn't exist");
   }
 }
+
+
+
+
 const checkUN = (req, res) => {
   var query = { username: req.body.username };
   signup_model.find(query)
