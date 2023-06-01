@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { fetchusers,toAdmin,toClient,DeleteUser, AddUser,editUser } from '../controllers/Admin-con.js';
+import { fetchusers,toAdmin,toClient,DeleteUser, AddUser,editUser,editpost } from '../controllers/Admin-con.js';
 import { signup_model } from '../models/signupschema.js';
 var router = Router();
 
@@ -36,21 +36,37 @@ router.get("/", function (req, res, next) {
   router.get("/delete/:id", DeleteUser);
   router.get("/edituser/:id",editUser);
   router.post("/adduser",AddUser);
-  router.post("/edituser/:id",(req,res,next)=>{
-    signup_model.findByIdAndUpdate({_id:req.params.id},req.body,{new:true})
-    .then((customer) => {
-      if (!customer) {
-        console.log("something went wrong updating the data");
-        return res.redirect("/admin/customers"); // Redirect to an error page if customer not found
-      }
+  // router.post("/edituser/:id",(req,res,next)=>{
+  //   signup_model.findByIdAndUpdate({_id:req.params.id},req.body,{new:true})
+  //   .then((customer) => {
+  //     if (!customer) {
+  //       console.log("something went wrong updating the data");
+  //       return res.redirect("/admin/customers"); // Redirect to an error page if customer not found
+  //     }
     
-    })
-    .catch((error) => {
-      console.error(error);
-      res.redirect("error"); // Redirect to an error page if an error occurs
-    });
-  });
-
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //     res.redirect("error"); // Redirect to an error page if an error occurs
+  //   });
+  // });
+  // router.post("/edituser/:id", function (req, res, next) {
+  //   console.log(req.params.id);
+  //   signup_model.findOneAndUpdate(
+  //     { _id: req.params.id },
+  //     req.body,
+  //     { new: true },
+  //     (err, docs) => {
+  //       if (err) {
+  //         console.log("Can't update data");
+  //       } else {
+  //         res.redirect("/admin/customers"); // Redirect to the users list 
+  //       }
+  //     }
+  //   );
+  // });
+  router.post("/edituser/:id",editpost);
+  
   
 
 

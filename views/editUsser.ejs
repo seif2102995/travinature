@@ -19,7 +19,7 @@
 <body>
     <div class="container">
 
-        <h3>Edit <%= customer.firstname%> </h3>
+        <h3>Editing: <%= customer.firstname%> <%= customer.lastname%> </h3>
         <div class="table">
             <div class="tr">
                 <form action="/edituser/<%=customer.id%>" method="post" id="edit-form">
