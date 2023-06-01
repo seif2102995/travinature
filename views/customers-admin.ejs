@@ -19,7 +19,8 @@
       <th>email</th>
       <th>Phone</th>
       <th>To admin|client</th>
-      <th>Delete users</th>
+      <th>Delete User</th>
+
     </tr>
     <% users.forEach(user=> { %>
       <tr>
@@ -48,11 +49,13 @@
         <td>
           <a href="/admin/delete/<%= user.id %>">Delete</a>
         </td>
-        <td>
-          <a href="/admin/adduser">Add user</a>
-        </td>
+        
       </tr>
+      
       <% }); %>
+      <button>
+        <a href="/admin/adduser">Add user</a>
+      </button>
 
   </table>
 
