@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {handleSignup,login,checkUN,handlefgtpass} from '../controllers/users.js'
+
 import {signup_model} from '../models/signupschema.js'
 import bodyParser from "body-parser";
 
@@ -33,9 +34,11 @@ router.post('/signup' ,handleSignup, async (req,res)=>{
 router.get('/forget-pass',(req,res)=>{
   res.render('forget-pass')
 });
+router.get('/chat',(req,res)=>{
+  res.render('chatbox')
+});
 
 router.post('/forget-pass',handlefgtpass);
-
 
 
 router.post('/checkUN', checkUN);
@@ -56,6 +59,7 @@ router.use((req, res, next) => {
       res.render('error', { err: 'You must login to access this page', user: (req.session.user === undefined ? "" : req.session.user) })
   }
 });
+// router.post("/chatt",msg);
 
 
 
