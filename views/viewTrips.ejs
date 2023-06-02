@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Trips Data</title>
+  <link rel="stylesheet" type="text/css" href="../css/customers.css">
+  <%-include('./partials/icon.ejs')%>
+
+</head>
+
+<body>
+  
+  <h1>Trips Data</h1>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Price</th> 
+      <th>Description</th>
+      <th>Delete Trip</th>
+      
+
+    </tr>
+    <% vac.forEach(va=> { %>
+      <tr>
+        <td>
+          <%= va.name%>
+        </td>
+        <td>
+          <%= va.price%>
+        </td>
+        <td>
+          <%= va.description %>
+        </td>
+        <td>
+          <a href="/admin/delete/<%= va.id %>">Delete</a>
+        </td>
+        
+      </tr>
+      
+      <% }); %>
+      
+       
+        <button>
+        
+          <a href="/admin/addtrips">Add Trip</a>
+
+        </button>
+       
+      
+  </table>
+
+</body>
+
+</html>

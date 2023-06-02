@@ -134,5 +134,15 @@ const AddTrip = (req, res) => {
     });
 
 };
+const GetTrips = async (req, res, next) => {
+  try {
+    const vac = await Tripss.find();
+    console.log(vac + " \nuserrssssssssssss");
+    res.render("viewTrips", { vac });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+};
 
-export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost,AddTrip };
+export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost,AddTrip,GetTrips };

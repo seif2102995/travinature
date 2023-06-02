@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { fetchusers,toAdmin,toClient,DeleteUser, AddUser,editUser,editpost,AddTrip } from '../controllers/Admin-con.js';
+import { fetchusers,toAdmin,toClient,DeleteUser, AddUser,editUser,editpost,AddTrip,GetTrips } from '../controllers/Admin-con.js';
 import { signup_model } from '../models/signupschema.js';
 var router = Router();
 
@@ -32,7 +32,7 @@ router.get("/", function (req, res, next) {
   
 
 
-  
+  router.get("/viewTrips",GetTrips);
   router.get("/customers",fetchusers);
   router.get("/toAdmin/:id", toAdmin);
   router.get("/toClient/:id", toClient);
