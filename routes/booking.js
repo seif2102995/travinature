@@ -12,7 +12,8 @@ router.get("/egypt", function (req, res, next) {
 });
 
 router.get("/argentina", function (req, res, next) {
-    res.render("argentina",{ user: (req.session.user === undefined ? "" : req.session.user) });
+  console.log(req.session.user);
+    res.render("argentina",{ user: (req.session.user === undefined ? undefined : req.session.user) });
   });
 
 
