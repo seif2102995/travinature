@@ -144,5 +144,17 @@ const GetTrips = async (req, res, next) => {
     res.status(500).send("Server Error");
   }
 };
+const DeleteTrip = (req, res) => {
+  Tripss.findByIdAndDelete(req.params.id)
+    .then(result => {
+      if (err) {
+        throw err;
+      }
+      res.redirect('/admin/viewTrips');
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
 
-export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost,AddTrip,GetTrips };
+export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip };
