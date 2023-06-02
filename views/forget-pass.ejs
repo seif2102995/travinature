@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%-include('./partials/icon.ejs')%>
-    <link rel="stylesheet" type="text/css" href="../css/forget-pass.css">
-    
+    <title>Forget-Pass</title>
+    <link rel="stylesheet" href="../css/interface.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+        <%- include('./partials/icon.ejs'); %>
 
-    <title>forget-pass</title>
 </head>
+
 <body>
-    <div>
-        <form action="forget-pass" method="post">
-            <input type="text" name="mail" placeholder="enter your mail">
-            <label for="email">enter your mail</label>
-            <button type="submit">submit</button>
-          </form>
+    <div id="cont">
+        <%- include('./partials/vidbg'); %>
+            <div id="frm">
+                <h1 id="wel">Reset-Pass</h1>
+              
+                <form action="/user/login" method="post" id="interface-form" name="form">
+                    <div id="fields">
+                        <i class="fa fa-solid fa-user iicon"></i>
+                        <br>
+                        <input class="login-field" type="text" name="username" placeholder="Enter your email" id="username">
+                        <div id="user-err"></div>
+                        <br>
+                        <input type="submit" name="submit" id="sb" class="login-field">
+                    </div>
+                </form>
+                <!-- <input type="submit" name="submit" id="sb" onclick="signin()" class="login-field"> -->
+            </div>
+            <div id="foot">
+                <footer id="fff"> <%- include('./partials/footer'); %></footer>
+            </div>
     </div>
 </body>
+<!-- <script src="js/interface.js"></script> -->
+<script src="../js/interface.js"></script>
 </html>
