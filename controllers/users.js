@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 // import  google  from 'googleapis';
 import nodemailer, { createTransport }   from 'nodemailer'
 
+var globalMail;
 
 let mailTransporter = createTransport({
   service:'gmail',
@@ -42,7 +43,9 @@ const handlefgtpass = async (req, res, next) => {
 
   if (exist) {
     console.log('-----------------Email exists : (' ,email , " )" );
-    res.render('reset');
+globalMail = email ;
+console.log('the global mail is : ' , globalMail)
+    res.redirect('reset')
     // Update the token variable in the existing document
     exist.token = Math.floor(10000 + Math.random() * 90000);
     console.log(' the token = ----------------' ,exist.token )
@@ -72,6 +75,53 @@ const handlefgtpass = async (req, res, next) => {
    
   }
 };
+
+const validToken = async (req,res,next)=>{
+const{token,p_reset} = req.body
+
+const found = await signup_model.findOne({mail:globalMail , token:token});
+if(found){
+  console.log('the token is valid ')
+  const saltRounds = 10;
+  try {
+    
+    const salt = await bcrypt.genSalt(saltRounds);
+    bcrypt.hash(p_reset, salt, async function(err, hashedPassword) {
+      if (err) {
+        console.log("Error in hash function");
+      } else {
+        found.password = hashedPassword;
+
+        console.log("The hashed password: ", found.password);
+
+        console.log("Awaiting save...");
+        console.log('the data = ' , found)
+        await found.save();
+        console.log("Data saved");
+
+        // Continue to the next middleware or redirect to a success page
+       
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+
+
+res.send('valid token')
+
+}
+else{
+  console.log('invalid token')
+  res.send('invalid token')
+}
+
+
+}
+
+
+
 // Controller for handling the signup form submission
 const handleSignup = async (req, res, next) => 
 {
@@ -82,20 +132,6 @@ const handleSignup = async (req, res, next) =>
 
   try {
     
-  //   const existingUser = await signup_model.findOne({ mail: email });
-
-  //   if (existingUser) {
-  //     // Email already exists
-  //     return res.status(400).json({ error: 'Email already exists' });
-  //   }
-
-    // Validate password and confirm password match
-    //if (password !== cpassword) {
-      //return res.status(400).json({ error: 'Passwords do not match' });
-    //}
-
-
-
     const salt = await bcrypt.genSalt(saltRounds);
     bcrypt.hash(password, salt, async function(err, hashedPassword) {
       if (err) {
@@ -161,4 +197,4 @@ const checkUN = (req, res) => {
           console.log(err);
       });
 };
-export { handleSignup,login,checkUN,handlefgtpass};
+export { handleSignup,login,checkUN,handlefgtpass,validToken};
