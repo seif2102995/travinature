@@ -1,4 +1,4 @@
-.topnav {
+/* .topnav {
     background-color: #1c3961;
     overflow: hidden;
 }
@@ -44,4 +44,30 @@ table {
 #logo:hover
 {
     background-color: transparent;
-}
+} */
+
+* {
+    font-family: "Open Sans", sans-serif;
+  }
+  
+  .navbar {
+    z-index: 150;
+  }
+  
+  .navbar-collapse {
+    /* position: fixed;
+    left: 60%; */
+    /* top: 1%; */
+    margin-left: 510px;
+  }
+  
+  @media screen and (max-width: 1000px) {
+    .navbar-collapse {
+      left: 50%;
+    }
+  }
+  
+  .nav-link:hover {
+    border-bottom: 3px solid white;
+  }
+  

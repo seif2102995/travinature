@@ -1,9 +1,10 @@
 import { signup_model } from "../models/signupschema.js";
+
+
 import bcrypt from 'bcrypt';
 // import  google  from 'googleapis';
 import nodemailer, { createTransport }   from 'nodemailer'
 
-var globalMail;
 
 let mailTransporter = createTransport({
   service:'gmail',
