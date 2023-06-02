@@ -9,8 +9,8 @@
     <title>Reset-pass</title>
     <script>
         function validate(form) {
-          const password = form.elements['p-reset'].value;
-          const confirmPassword = form.elements['cp-reset'].value;
+          const password = form.elements['p_reset'].value;
+          const confirmPassword = form.elements['cp_reset'].value;
         
           if (password !== confirmPassword) {
             document.getElementById('err').textContent = 'Passwords do not match';
@@ -23,10 +23,10 @@
 </head>
 <body>
     <div>
-        <form action="/reset" method="post" onsubmit="return validate(this)">
-            <input type="text" name="p-reset" placeholder="enter your password" id="1">
-            <input type="text" name="cp-reset" placeholder="re-enter your password" id="2">
-            <input type="text" name="token" placeholder="enter your token">
+        <form action="/user/reset" method="post" onsubmit="return validate(this)">
+            <input type="password" name="p_reset" placeholder="enter your password" id="1">
+            <input type="password" name="cp_reset" placeholder="re-enter your password" id="2">
+            <input type="text" name="token" placeholder="enter your token" >
             <input type="submit" name="submit">
             <span id="err"></span>
              

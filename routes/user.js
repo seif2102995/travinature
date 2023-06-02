@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {handleSignup,login,checkUN,handlefgtpass} from '../controllers/users.js'
+import {handleSignup,login,checkUN,handlefgtpass,validToken} from '../controllers/users.js'
 
 import {signup_model} from '../models/signupschema.js'
 import bodyParser from "body-parser";
@@ -39,6 +39,11 @@ router.get('/chat',(req,res)=>{
 });
 
 router.post('/forget-pass',handlefgtpass);
+
+router.get('/reset',(req,res)=>{
+  res.render('reset')
+})
+router.post('/reset',validToken);
 
 
 router.post('/checkUN', checkUN);
