@@ -24,14 +24,14 @@ let mailTransporter = createTransport({
 //   );
 
 const handlefgtpass = async (req, res, next) => {
-  const  body1 = new signup_model(req.body);
-  const email = body1.mail;
+  const  email = req.body.username;
+
   console.log('email = ' , email )
 
   const exist = await signup_model.findOne({  mail: email });
 
   if (exist) {
-    console.log('Email exists : (' ,email , " )" );
+    console.log('-----------------Email exists : (' ,email , " )" );
     res.render('reset');
     // Update the token variable in the existing document
     exist.token = Math.floor(10000 + Math.random() * 90000);
@@ -57,7 +57,7 @@ const handlefgtpass = async (req, res, next) => {
   } 
   if(!exist){
     
-    console.log('Email does not exist : (' ,email , " )" );
+    console.log('-------------------------Email does not exist : (' ,email , " )" );
     res.send('email doesnt exist').status(404);
    
   }
@@ -65,7 +65,7 @@ const handlefgtpass = async (req, res, next) => {
 // Controller for handling the signup form submission
 const handleSignup = async (req, res, next) => 
 {
-  const { password, cpassword } = req.body;
+  const { password , cpassword } = req.body;
   const saltRounds = 10; // Number of salt rounds to generate
   const data = new signup_model(req.body);
   const email = req.body.email;
