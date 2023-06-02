@@ -118,12 +118,11 @@ const editpost=async(req,res)=>
 const AddTrip = (req, res) => {
   // if (err)
   //   res.status(500).send(err);
-
   const newt = new Tripss({
     name: req.body.dest,
     price: req.body.price,
     description: req.body.descr
-   
+  
   })
   newt.save()
     .then(result => {
