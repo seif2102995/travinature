@@ -24,16 +24,6 @@ let mailTransporter = createTransport({
 //     'https://developers.google.com/oauthplayground' // Redirect URL
 //   );
 
-
-
-
-
-
-
-
-
-
-
 const handlefgtpass = async (req, res, next) => {
   const  email = req.body.username;
 
@@ -156,8 +146,6 @@ const handleSignup = async (req, res, next) =>
 };
 
 
-
-
 const login=async(req , res )=>{
   try{
     const check = await signup_model.findOne({username:req.body.username});
@@ -177,8 +165,7 @@ const login=async(req , res )=>{
     console.error(err);
     res.status(500).send("user doesn't exist");
   }
-}
-
+};
 
 
 

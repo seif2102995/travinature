@@ -4,15 +4,15 @@ import { signup_model } from '../models/signupschema.js';
 var router = Router();
 
 
-// router.use((req, res, next) => 
-// {
-//   if (req.session.user !== undefined && req.session.user.Type === 'admin') {
-//       next();
-//   }
-//   else {
-//       res.render('error', { user: (req.session.user === undefined ? "" : req.session.user) })
-//   }
-// });
+router.use((req, res, next) => 
+{
+  if (req.session.user !== undefined && req.session.user.Type == 'admin') {
+      next();
+  }
+  else {
+      res.render('error', { user: (req.session.user === undefined ? "" : req.session.user) })
+  }
+});
 router.get("/", function (req, res, next) {
     res.render("admin");
   });
