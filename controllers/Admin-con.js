@@ -1,4 +1,7 @@
 import { signup_model } from "../models/signupschema.js";
+import { Tripss } from "../models/tripsSchema.js";
+import  path  from "path";
+
 import mongoose from "mongoose";
 import flash from "express-flash-message"
 
@@ -112,6 +115,24 @@ const editpost=async(req,res)=>
 }
 
 //------------------>TRIPS CRUD
+const AddTrip = (req, res) => {
+  // if (err)
+  //   res.status(500).send(err);
 
+  const newt = new Tripss({
+    name: req.body.dest,
+    price: req.body.price,
+    description: req.body.descr
+   
+  })
+  newt.save()
+    .then(result => {
+      res.redirect('/admin/customers');
+    })
+    .catch(err => {
+      console.log(err);
+    });
 
-export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost };
+};
+
+export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost,AddTrip };

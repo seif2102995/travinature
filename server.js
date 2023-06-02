@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import session from"express-session";
+import fileUpload from 'express-fileupload';
 
 import home_router from "./routes/auth.js";
 import user_router from "./routes/user.js";

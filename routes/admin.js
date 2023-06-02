@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { fetchusers,toAdmin,toClient,DeleteUser, AddUser,editUser,editpost } from '../controllers/Admin-con.js';
+import { fetchusers,toAdmin,toClient,DeleteUser, AddUser,editUser,editpost,AddTrip } from '../controllers/Admin-con.js';
 import { signup_model } from '../models/signupschema.js';
 var router = Router();
 
@@ -26,6 +26,9 @@ router.get("/", function (req, res, next) {
     res.render("adduser");
   });
  
+  router.get("/addtrips", function (req, res, next) {
+    res.render("addtrips");
+  });
   
 
 
@@ -36,6 +39,9 @@ router.get("/", function (req, res, next) {
   router.get("/delete/:id", DeleteUser);
   router.get("/edituser/:id",editUser);
   router.post("/adduser",AddUser);
+  router.post("/addtrips",AddTrip);
+  router.post("/edituser/:id",editpost);
+
   // router.post("/edituser/:id",(req,res,next)=>{
   //   signup_model.findByIdAndUpdate({_id:req.params.id},req.body,{new:true})
   //   .then((customer) => {
@@ -65,7 +71,6 @@ router.get("/", function (req, res, next) {
   //     }
   //   );
   // });
-  router.post("/edituser/:id",editpost);
   
   
 

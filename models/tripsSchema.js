@@ -15,9 +15,11 @@ const tripsSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+   
   },
   { timestamps: true }
 );
+
 
 const Tripss = mongoose.model("Tripss", tripsSchema);
 
