@@ -20,6 +20,8 @@
       <th>Phone</th>
       <th>To admin|client</th>
       <th>Delete User</th>
+      <th>Edit User</th>
+
       
 
     </tr>
@@ -48,7 +50,10 @@
               <% } %>
         </td>
         <td>
-          <a href="/admin/delete/<%= user.id %>">Delete</a>
+          <a href="/admin/delete/<%= user.id %>">Delete <%=user.firstname%></a>
+        </td>
+        <td>
+          <a href="/admin/edituser/<%= user.id %>">Edit <%=user.firstname%></a>
         </td>
         
       </tr>

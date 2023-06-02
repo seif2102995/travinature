@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <!-- meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%-include('./partials/icon.ejs')%>`
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        
+
+    <title>Edit Trip</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <h3>Edit <%=triip.name%></h3>
+        <div class="table">
+            <div class="tr">
+                <form action="/editTrip/<%=triip.id%>" method="post" id="addt-form"> 
+                    <!-- bos aal action -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputName">Where to</label>
+                            <input type="text" class="form-control" name="dest" value="<%=triip.name%>" id="inputName" placeholder="Enter name of the destination" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputSurname">Price</label>
+                            <input type="text" class="form-control" name="price" value="<%=triip.price%>" id="inputSurname" placeholder="Enter the price"
+                                required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputSurname">Description</label>
+                            <input type="text" class="form-control" name="descr" value="<%=triip.description%>" id="inputdescr" placeholder="Enter the Description"
+                                required>
+                        </div>
+                       
+                    </div>
+
+
+
+
+
+
+                    <!-- <button type="submit" class="btn btn-primary" onclick="">Add user</button> -->
+                    <input type="submit" name="submit" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+
+        <hr>
+
+    </div>
+
+    <!-- <script src="script.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+</body>
+
+</html>

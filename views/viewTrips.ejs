@@ -17,6 +17,7 @@
       <th>Price</th> 
       <th>Description</th>
       <th>Delete Trip</th>
+      <th>Edit Trip</th>
       
 
     </tr>
@@ -32,8 +33,11 @@
           <%= va.description %>
         </td>
         <td>
-          <a href="/admin/deleteTrip/<%= va.id %>">Delete</a>
+          <a href="/admin/deleteTrip/<%= va.id %>">Delete <%=va.name%></a>
         </td>
+        <td>
+            <a href="/admin/editTrip/<%= va.id %>">Edit <%=va.name%></a>
+          </td>
         
       </tr>
       

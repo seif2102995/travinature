@@ -156,5 +156,22 @@ const DeleteTrip = (req, res) => {
       console.log(err);
     });
 };
+const editTrip = async (req,res)=>
+{
+  console.log(req.params.id);
+  Tripss.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+    .then((triip) => {
+      if (!triip) {
+        console.log("Can't retrieve data");
+        return res.redirect("error"); // Redirect to an error page if customer not found
+      }
+      res.render("editTrips", { triip: triip });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.redirect("error"); // Redirect to an error page if an error occurs
+    });
 
-export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip };
+
+};
+export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip };
