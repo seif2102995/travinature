@@ -9,7 +9,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
     <script>
       function validate() {
           if (document.getElementById('result').innerHTML.includes('taken'))
@@ -18,42 +18,46 @@
               return true;
       }
   </script>
-  <!-- <script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Assuming you have included the necessary jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<script>
 $(document).ready(function() {
-    const emailInput = $('#mail');
-    const statusMessage = $('#mailerr');
-
-    emailInput.keyup(function() {
-      const email = $(this).val();
-
-      // Send AJAX request to validate email
-      $.ajax({
-        url: '/signup',
-        method: 'POST',
-        data: { email },
-        success: function(response) {
-          if (response.exists) {
-            // Email exists in the database
-            statusMessage.text('Email already exists');
-            console.log("ajax Email already exists ")
-           // statusMessage.addClass('exists'); // Apply appropriate CSS class for styling
-          } else {
-            // Email does not exist in the database
-            statusMessage.text('Email available');
-            console.log("ajax Email avail ")
-           // statusMessage.removeClass('exists'); // Remove existing CSS class
-          }
-        },
-        error: function(xhr, status, error) {
-          console.error('AJAX request error:', error);
-          // Handle error cases
-        }
-      });
-    });
+  var emailTimer;
+  $('#mail').on('input', function() {
+    clearTimeout(emailTimer);
+    emailTimer = setTimeout(validateEmail, 500); // Wait for 500ms after the last input change
   });
 
-  </script> -->
+  function validateEmail() {
+    var email = $('#mail').val();
+
+    $.ajax({
+      url: '/user/signup', // Update the URL to match your route
+      type: 'POST', // Change the request type to POST
+      data: { mail: email },
+      success: function(response) {
+        if (response.message === 'taken') {
+          $('#email-error').text('Email already taken');
+          $('#next1btn').prop('disabled', true); // Disable the button
+
+        } else {
+          $('#email-error').text('');
+          $('#next1btn').prop('disabled', false); // enable the button
+
+        }
+      },
+      error: function() {
+        $('#email-error').text('Error occurred during validation');
+      }
+    });
+  }
+});
+
+
+</script>
+
   </head>
   <body>
     <%- include('./partials/vidbg'); %>
@@ -116,6 +120,7 @@ $(document).ready(function() {
             <div class="field">
               <div class="label">Email Address</div>
               <input type="text" id="mail" name="mail" required>
+              <span id="email-error"></span>
               <i class="fas fa-exclamation-circle failure-icon"></i>
               <i class="far fa-check-circle success-icon"></i>
             </div>
@@ -128,8 +133,8 @@ $(document).ready(function() {
             </div>
             <div class="error"><span id="mailerr"></span> </div>
             <div class="field btns">
-              <button class="prev-1 prev">Previous</button>
-              <button class="next-1 next">Next</button>
+              <button  class="prev-1 prev">Previous</button>
+              <button id="next1btn"class="next-1 next">Next</button>
             </div>
           </div>
           <div class="page">
@@ -188,6 +193,22 @@ $(document).ready(function() {
       </div>
     </div>
     <script src="../js/signup.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
   

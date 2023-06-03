@@ -4,7 +4,7 @@ import fs from "fs";
 import bcrypt from 'bcrypt';
 // import  google  from 'googleapis';
 import nodemailer, { createTransport }   from 'nodemailer'
-
+var globalMail ; // m7dsh ymsho yagd3ann
 
 let mailTransporter = createTransport({
   service:'gmail',
@@ -173,6 +173,52 @@ const login = async (req, res) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+const ajax1 = async (req, res) => {
+  try {
+    const { mail } = req.body;
+
+    // Check if the email exists in the database
+    const user = await signup_model.findOne({ mail:mail });
+
+    if (user) {
+      // Email is already taken
+      res.json({ message: 'taken' });
+    } else {
+      // Email is available
+      res.json({ message: 'available' });
+    }
+  } catch (error) {
+    console.error('Error occurred during email validation:', error);
+    res.status(500).json({ message: 'Error occurred during validation' });
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const checkUN = (req, res) => {
   var query = { username: req.body.username };
   signup_model.find(query)
@@ -206,14 +252,4 @@ const logoutUser=(req,res)=>{
 req.session.destroy();
 res.redirect('/');
 }
-
-const makeDEST = (req, res) => {
-  fs.readFile('ar.svg', 'utf8', (err, data) => {
-    if (err) throw err;
-    console.log(data); // Log the SVG file contents to the console
-  });
-  res.send("done");
-};
-
-
 export { handleSignup,login,checkUN,handlefgtpass,validToken,GetUser,logoutUser};

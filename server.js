@@ -80,7 +80,7 @@ app.use('/admin', admin_router);
 
 // 404 page
 app.use((req, res) => {
-  res.status(404).render('error',{user:req.session.user});
+  res.status(404).render('error',{ user: (req.session.user === undefined ? "" : req.session.user) });
 });
 
 //app.listen(8080);
