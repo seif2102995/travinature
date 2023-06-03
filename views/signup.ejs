@@ -21,6 +21,8 @@
 
 <script>
   $(document).ready(function() {
+    var isEmailAvailable = true; // Flag variable to track email availability
+
     $('#email_id').keyup(function() {
       var email = $(this).val();
       checkEmailAvailability(email);
@@ -35,8 +37,12 @@
         success: function(response) {
           if (response.isEmailTaken) {
             $('#email-error').text('Email is already taken');
+            isEmailAvailable = false; // Set the flag to false
+            $('#next1btn').prop('disabled', true); // Disable the button
           } else {
             $('#email-error').text('');
+            isEmailAvailable = true; // Set the flag to true
+            $('#next1btn').prop('disabled', false); // Enable the button
           }
         },
         error: function(xhr, status, error) {
@@ -46,30 +52,16 @@
     }
 
     $('#registration-form').submit(function(event) {
-      event.preventDefault();
-
-      var email = $('#email_id').val();
-
-      $.ajax({
-        type: 'POST',
-        url: '/user/signup',
-        data: { mail: email },
-        dataType: 'json',
-        success: function(response) {
-          if (response.isEmailTaken) {
-            $('#email-error').text('Email is already taken');
-          } else {
-            $('#email-error').text('');
-            $('#registration-form').off('submit').submit();
-          }
-        },
-        error: function(xhr, status, error) {
-          console.log('Error:', error);
-        }
-      });
+      if (!isEmailAvailable) {
+        event.preventDefault(); // Prevent form submission
+        $('#email-feedback').text('Email is already taken');
+      }
     });
   });
 </script>
+
+
+
 
 
 
@@ -150,7 +142,7 @@
             <div class="error"><span id="mailerr"></span> </div>
             <div class="field btns">
               <button class="prev-1 prev">Previous</button>
-              <button class="next-1 next">Next</button>
+              <button id='next1btn'class="next-1 next">Next</button>
             </div>
           </div>
           <div class="page">
