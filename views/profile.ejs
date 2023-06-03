@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/profile.css" />
+    <title>Login</title>
+  </head>
+  <body>
+   <header> <%- include('./partials/header'); %></header>
+            <%- include('./partials/vidbg'); %>
+
+    <div class="outer-block">
+      <div onclick="back_to_home()" class="close-btn">&times;</div>
+      <section class="profile-body">
+    
+        <br />
+        <div class="side-block">
+          <div>
+            <label for="name">Name:</label>
+            <h1 id="name"><%=user.name%></h1>
+          </div>
+          <div>
+            <label for="email">Email:</label>
+            <h1 id="email"><%=user.mail%></h1>
+          </div>
+          <div>
+            <label for="phone">Phone:</label>
+            <h1 id="phone"><%=user.phone%></h1>
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <h1 id="password"><%=user.password%></h1>
+          </div>
+          <div class="profile-element">
+            <button class="signout" onclick="sign_out()">Sign Out</button>
+          </div>
+          <div class="profile-element">
+            <button class="delete" onclick="delete_account()">
+              Delete my account
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- <script type="text/javascript" src="./profile.js"></script> -->
+  </body>
+</html>

@@ -8,12 +8,14 @@ router.get("/", function (req, res, next) {
 });
 
 router.get("/egypt", function (req, res, next) {
+  console.log(req.session.user);
+
   res.render("eg",{ user: (req.session.user === undefined ? "" : req.session.user) }); 
 });
 
 router.get("/argentina", function (req, res, next) {
   console.log(req.session.user);
-    res.render("argentina",{ user: (req.session.user === undefined ? undefined : req.session.user) });
+    res.render("argentina",{ user: (req.session.user === undefined ? "" : req.session.user) });
   });
 
 

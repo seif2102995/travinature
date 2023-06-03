@@ -6,7 +6,7 @@ var router = Router();
 
 // router.use((req, res, next) => 
 // {
-//   if (req.session.user !== undefined && req.session.user.Type == 'admin') {
+//   if (req.session.user !== undefined && req.session.user.type == 'admin') {
 //       next();
 //   }
 //   else {

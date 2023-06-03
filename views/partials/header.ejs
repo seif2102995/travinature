@@ -84,7 +84,7 @@
             <a href="/about" class="nav-link about">About</a>
           </li>
   
-          <% if(typeof user == 'undefined') { %>
+          <% if(user === "") { %>
             <li class="nav-item">
               <a href="/user/login" class="nav-link login">Login</a>
             </li>
@@ -92,11 +92,7 @@
               <a href="/user/signup" class="nav-link signup">Sign Up</a>
             </li>
           <% } else { %>
-            <% if(user.type=="admin") { %>
-              <li class="nav-item">
-                <a href="/admin/customers" class="nav-link">Admin</a>
-              </li>
-            <% } %>
+       
             <li class="nav-item">
               <a href="/user/profile" class="nav-link">Profile</a>
             </li>

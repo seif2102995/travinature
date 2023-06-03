@@ -135,6 +135,8 @@ const handleSignup = async (req, res, next) =>
         console.log("Awaiting save...");
         await data.save();
         console.log("Data saved");
+        req.session.user=data;  
+        res.redirect("login")
 
         // Continue to the next middleware or redirect to a success page
         next();
@@ -147,26 +149,27 @@ const handleSignup = async (req, res, next) =>
 };
 
 
-const login=async(req , res )=>{
-  try{
-    const check = await signup_model.findOne({username:req.body.username});
-    const pcomp= await bcrypt.compare(req.body.password,check.password);
-    if(check){
-      if(pcomp){
-        req.session.user=req.body.username;
-        // console.log(req.session.user);
-        // console.log("from user controller");
-        console.log(check);
-        // console.log("from user controlelr 2");
-
-        res.render('home',{ user: (req.session.user === undefined ? "" : check) })
+const login = async (req, res) => {
+  try {
+    const check = await signup_model.findOne({ username: req.body.username });
+    if (check == null) {
+      res.send("taken");
+    } else {
+      const pcomp = await bcrypt.compare(req.body.password, check.password);
+      if (pcomp) {
+        req.session.user = check;
+        res.redirect("/")
+        // res.render('home',{ user: (req.session.user === undefined ? "" : req.session.user) });
+      } else {
+        res.send("error");
       }
     }
-  }catch(err){
+  } catch (err) {
     console.error(err);
     res.status(500).send("user doesn't exist");
   }
 };
+
 
 
 
@@ -185,4 +188,18 @@ const checkUN = (req, res) => {
           console.log(err);
       });
 };
-export { handleSignup,login,checkUN,handlefgtpass,validToken};
+
+const GetUser = async (req, res) => {
+  var query = { username: req.body.username };
+
+  signup_model.findOne(query)
+      .then(result => {
+          req.session.user = result;
+          res.redirect('/user/profile');
+      })
+      .catch(err => {
+          console.log(err);
+      });
+      
+};
+export { handleSignup,login,checkUN,handlefgtpass,validToken,GetUser};

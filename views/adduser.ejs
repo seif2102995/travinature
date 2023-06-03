@@ -22,7 +22,7 @@
         <h3>Add user</h3>
         <div class="table">
             <div class="tr">
-                <form action="/admin/adduser" method="post" id="add-form">
+                <form action="/admin/adduser" enctype="multipart/form-data" method="post" id="add-form">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputName">FirstName</label>
@@ -56,6 +56,9 @@
                             <label for="inputSurname">Type</label>
                             <input type="text" class="form-control" name="typee" id="inputSurname" placeholder="Enter account type"
                                 required>
+                        </div>
+                        <div>
+                            Profile Picture: <input type="file" name="img">
                         </div>
                     </div>
 

@@ -47,7 +47,7 @@ mongoose
     "mongodb+srv://seif2102995:travi231@travinature.3akvybv.mongodb.net/"
   )
   .then((result) => {
-    app.listen(3010);
+    app.listen(port);
     console.log("connected to db successfully ------------------------------------------------");
   })
   .catch((err) => {
@@ -79,9 +79,9 @@ app.use('/admin', admin_router);
 
 // 404 page
 app.use((req, res) => {
-  res.status(404).render('error',{user:req.user});
+  res.status(404).render('error',{user:req.session.user});
 });
 
-app.listen(8080);
+//app.listen(8080);
 console.log("listening on port " + port);
 // export default app;

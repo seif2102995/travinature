@@ -52,26 +52,42 @@ const DeleteUser = (req, res) => {
 };
 
 const AddUser = (req, res) => {
-  // if (err)
-  //   res.status(500).send(err);
 
-  const auser = new signup_model({
-    firstname: req.body.fname,
-    password: req.body.pass,
-    type: req.body.type,
-    lastname: req.body.lname,
-    mail: req.body.email,
-    phone: req.body.ph,
-    dob: req.body.age,
-    username:req.body.uname
-  })
-  auser.save()
-    .then(result => {
-      res.redirect('/admin/customers');
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  let imgFile;
+  let uploadPath;
+  if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).send('No files were uploaded.');
+  }
+  imgFile = req.files.img;
+  uploadPath = path.join(__dirname, '../resources/' + req.body.username + path.extname(imgFile.name));
+
+  // Use the mv() method to place the file somewhere on your server
+  imgFile.mv(uploadPath, function (err) {
+      if (err)
+          res.status(500).send(err);
+
+          const auser = new signup_model({
+            firstname: req.body.fname,
+            password: req.body.pass,
+            type: req.body.type,
+            lastname: req.body.lname,
+            mail: req.body.email,
+            phone: req.body.ph,
+            dob: req.body.age,
+            username:req.body.uname,
+            image: req.body.username +  path.extname(imgFile.name),
+
+          })
+          auser.save()
+            .then(result => {
+              res.redirect('/admin/customers');
+            })
+            .catch(err => {
+              console.log(err);
+            });
+  });
+
+
 
 };
 const editUser = async (req,res)=>

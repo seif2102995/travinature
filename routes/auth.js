@@ -13,7 +13,7 @@ const __dirname = dirname(__filename);
 
 app.use(express.json());
 
-
+ 
 
 // // very important 
 // // how countries were saved to data base
@@ -36,6 +36,14 @@ app.use(express.json());
 //   });
 //   res.render("home",{ user: (req.session.user === undefined ? "" : req.session.user) });
 // });
+
+// very important 
+// how countries were saved to data base
+// GET home page
+router.get("/", function (req, res, next) {
+ 
+  res.render("home",{ user: (req.session.user === undefined ? "" : req.session.user) });
+});
 
 
 router.get("/about", function (req, res, next) {
