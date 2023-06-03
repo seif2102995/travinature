@@ -46,6 +46,9 @@ router.get("/", function (req, res, next) {
 });
 
 
+router.get("/", function (req, res, next) {
+  res.render("home",{ user: (req.session.user === undefined ? "" : req.session.user) });
+});
 router.get("/about", function (req, res, next) {
   res.render("about",{ user: (req.session.user === undefined ? "" : req.session.user) });
 });
