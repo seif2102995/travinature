@@ -171,29 +171,44 @@ const login = async (req, res) => {
 
 
 
-// Check availability of username and email
+
+
+
+
+
+
+
+
+
 
 
 const ajax1 = async (req, res) => {
   try {
-    const mail = req.body.mail;
+    const { mail } = req.body;
 
-    const existingUser = await signup_model.findOne({ mail: mail });
+    // Check if the email exists in the database
+    const user = await signup_model.findOne({ mail:mail });
 
-    const response = {
-      isEmailTaken: false
-    };
-
-    if (existingUser) {
-      response.isEmailTaken = true;
+    if (user) {
+      // Email is already taken
+      res.json({ message: 'taken' });
+    } else {
+      // Email is available
+      res.json({ message: 'available' });
     }
-
-    res.json(response);
   } catch (error) {
-    console.log('Error checking email availability:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error('Error occurred during email validation:', error);
+    res.status(500).json({ message: 'Error occurred during validation' });
   }
 };
+
+
+
+
+
+
+
+
 
 
 

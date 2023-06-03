@@ -9,7 +9,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script>
       function validate() {
           if (document.getElementById('result').innerHTML.includes('taken'))
@@ -18,53 +18,45 @@
               return true;
       }
   </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Assuming you have included the necessary jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
-  $(document).ready(function() {
-    var isEmailAvailable = true; // Flag variable to track email availability
+$(document).ready(function() {
+  var emailTimer;
+  $('#mail').on('input', function() {
+    clearTimeout(emailTimer);
+    emailTimer = setTimeout(validateEmail, 500); // Wait for 500ms after the last input change
+  });
 
-    $('#email_id').keyup(function() {
-      var email = $(this).val();
-      checkEmailAvailability(email);
-    });
+  function validateEmail() {
+    var email = $('#mail').val();
 
-    function checkEmailAvailability(email) {
-      $.ajax({
-        type: 'POST',
-        url: '/user/signup',
-        data: { mail: email },
-        dataType: 'json',
-        success: function(response) {
-          if (response.isEmailTaken) {
-            $('#email-error').text('Email is already taken');
-            isEmailAvailable = false; // Set the flag to false
-            $('#next1btn').prop('disabled', true); // Disable the button
-          } else {
-            $('#email-error').text('');
-            isEmailAvailable = true; // Set the flag to true
-            $('#next1btn').prop('disabled', false); // Enable the button
-          }
-        },
-        error: function(xhr, status, error) {
-          console.log('Error:', error);
+    $.ajax({
+      url: '/user/signup', // Update the URL to match your route
+      type: 'POST', // Change the request type to POST
+      data: { mail: email },
+      success: function(response) {
+        if (response.message === 'taken') {
+          $('#email-error').text('Email already taken');
+          $('#next1btn').prop('disabled', true); // Disable the button
+
+        } else {
+          $('#email-error').text('');
+          $('#next1btn').prop('disabled', false); // enable the button
+
         }
-      });
-    }
-
-    $('#registration-form').submit(function(event) {
-      if (!isEmailAvailable) {
-        event.preventDefault(); // Prevent form submission
-        $('#email-feedback').text('Email is already taken');
+      },
+      error: function() {
+        $('#email-error').text('Error occurred during validation');
       }
     });
-  });
+  }
+});
+
+
 </script>
-
-
-
-
-
-
 
   </head>
   <body>
@@ -102,7 +94,7 @@
         </div>
       </div>
       <div class="form-outer">
-        <form action="/user/signup" method ='post'id='registration-form' onsubmit="return validate()">
+        <form action="/user/signup" method ='post' onsubmit="return validate()">
           <div class="page slide-page">
             <div class="title">Basic Info:</div>
             <div class="field">
@@ -127,7 +119,7 @@
             <div class="title">Contact Info:</div>
             <div class="field">
               <div class="label">Email Address</div>
-              <input type="text" id="email_id" name="mail" required>
+              <input type="text" id="mail" name="mail" required>
               <span id="email-error"></span>
               <i class="fas fa-exclamation-circle failure-icon"></i>
               <i class="far fa-check-circle success-icon"></i>
@@ -141,8 +133,8 @@
             </div>
             <div class="error"><span id="mailerr"></span> </div>
             <div class="field btns">
-              <button class="prev-1 prev">Previous</button>
-              <button id='next1btn'class="next-1 next">Next</button>
+              <button  class="prev-1 prev">Previous</button>
+              <button id="next1btn"class="next-1 next">Next</button>
             </div>
           </div>
           <div class="page">
@@ -171,7 +163,6 @@
             <div class="field">
               <div class="label">Username</div>
               <input type="text" id="user" name="username" required>
-              <span id="username-error"></span>
               <span id="result"></span>
               <i class="fas fa-exclamation-circle failure-icon"></i>
               <i class="far fa-check-circle success-icon"></i>
@@ -195,13 +186,29 @@
             <div class="error"></div>
             <div class="field btns">
               <button class="prev-3 prev">Previous</button>
-              <button id="submitbtn" class="submit">Submit </button>
+              <button class="submit">Submit</button>
             </div>
           </div>
         </form>
       </div>
     </div>
     <script src="../js/signup.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
   
