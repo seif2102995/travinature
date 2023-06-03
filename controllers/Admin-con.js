@@ -138,18 +138,15 @@ const editpost=async(req,res)=>
 
 //------------------>TRIPS CRUD
 const AddTrip = (req, res) => {
-  // if (err)
-  //   res.status(500).send(err);
 
   const newt = new Tripss({
-    name: req.body.dest,
+    name: req.body.gov,
     price: req.body.price,
-    description: req.body.descr
-   
+    description: req.body.desc
   })
   newt.save()
     .then(result => {
-      res.redirect('/admin/customers');
+      res.redirect('/admin');
     })
     .catch(err => {
       console.log(err);

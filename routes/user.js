@@ -35,21 +35,25 @@ router.post('/signup',ajax1,handleSignup)
 router.get('/forget-pass',(req,res)=>{
   res.render('forget-pass')
 });
+router.post('/forget-pass',handlefgtpass);
 
 router.get('/chat',(req,res)=>{
   res.render('chatbox')
 });
 
-router.post('/forget-pass',handlefgtpass);
 
 router.get('/reset',(req,res)=>{
   res.render('reset')
 })
 router.post('/reset',validToken);
+
+
 router.get('/profile', (req, res) => {
   res.render('profile', { user: (req.session.user === undefined ? "" : req.session.user) });
 });
 router.post('/profile',GetUser);
+
+
 router.post('/checkUN', checkUN);
 
 router.get('/logout', logoutUser);

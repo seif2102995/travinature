@@ -143,7 +143,10 @@
     line-height: 160%;
   }
   
-  
+  #abth {
+    background-color: #0d0d0d;
+    margin-bottom: 5%;
+  }
   
   .career {
     display: flex;
