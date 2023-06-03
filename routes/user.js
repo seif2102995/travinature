@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {handleSignup,login,checkUN,handlefgtpass,validToken,GetUser} from '../controllers/users.js'
+import {handleSignup,login,checkUN,handlefgtpass,validToken,GetUser,logoutUser} from '../controllers/users.js'
 
 import {signup_model} from '../models/signupschema.js'
 import bodyParser from "body-parser";
@@ -52,10 +52,8 @@ router.get('/profile', (req, res) => {
 router.post('/profile',GetUser);
 router.post('/checkUN', checkUN);
 
-router.get('/logout', (req, res) => {
-  req.session.destroy();
-  res.render('home');
-});
+router.get('/logout', logoutUser);
+
 
 // check if logged in
 router.use((req, res, next) => {

@@ -202,4 +202,8 @@ const GetUser = async (req, res) => {
       });
       
 };
-export { handleSignup,login,checkUN,handlefgtpass,validToken,GetUser};
+const logoutUser=(req,res)=>{
+req.session.destroy();
+res.redirect('/');
+}
+export { handleSignup,login,checkUN,handlefgtpass,validToken,GetUser,logoutUser};

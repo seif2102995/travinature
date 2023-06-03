@@ -59,7 +59,7 @@ const AddUser = (req, res) => {
       return res.status(400).send('No files were uploaded.');
   }
   imgFile = req.files.img;
-  uploadPath = path.join(__dirname, '../resources/' + req.body.username + path.extname(imgFile.name));
+  uploadPath = path.join(__dirname, '../public/resources/' + req.body.uname + path.extname(imgFile.name));
 
   // Use the mv() method to place the file somewhere on your server
   imgFile.mv(uploadPath, function (err) {
@@ -75,7 +75,7 @@ const AddUser = (req, res) => {
             phone: req.body.ph,
             dob: req.body.age,
             username:req.body.uname,
-            image: req.body.username +  path.extname(imgFile.name),
+            image: req.body.uname +  path.extname(imgFile.name),
 
           })
           auser.save()
@@ -134,11 +134,12 @@ const editpost=async(req,res)=>
 const AddTrip = (req, res) => {
   // if (err)
   //   res.status(500).send(err);
+
   const newt = new Tripss({
     name: req.body.dest,
     price: req.body.price,
     description: req.body.descr
-  
+   
   })
   newt.save()
     .then(result => {
