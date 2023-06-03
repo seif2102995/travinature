@@ -95,6 +95,7 @@ const AddUser = (req, res) => {
 
 
 };
+
 const editUser = async (req,res)=>
 {
   console.log(req.params.id);
@@ -117,7 +118,7 @@ const editUser = async (req,res)=>
 const editpost=async(req,res)=>
 {
   try{
-    await signup_model.findOneAndUpdate({
+    await signup_model.findByIdAndUpdate(req.params.id,{
       firstname: req.body.fname,
       password: req.body.pass,
       type: req.body.type,
@@ -126,7 +127,7 @@ const editpost=async(req,res)=>
       phone: req.body.ph,
       dob: req.body.age,
       username:req.body.uname
-    }).where(req.params.id);
+    });
     res.redirect("/admin/customers");
   }
   catch(err)
