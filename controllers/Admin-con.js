@@ -145,7 +145,6 @@ const AddTrip = (req, res) => {
     name: req.body.dest,
     price: req.body.price,
     description: req.body.descr
-   
   })
   newt.save()
     .then(result => {

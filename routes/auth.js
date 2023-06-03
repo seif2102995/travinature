@@ -3,7 +3,7 @@ import express from "express";
 import fs from "fs";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import {conts} from "../models/contryscheme.js"
+// import {conts} from "../models/contryscheme.js"
 // import  sortJson from 'sort-json';
 let app = express();
 const router = Router();
@@ -40,11 +40,6 @@ app.use(express.json());
 // very important 
 // how countries were saved to data base
 // GET home page
-router.get("/", function (req, res, next) {
- 
-  res.render("home",{ user: (req.session.user === undefined ? "" : req.session.user) });
-});
-
 
 router.get("/", function (req, res, next) {
   res.render("home",{ user: (req.session.user === undefined ? "" : req.session.user) });
