@@ -9,7 +9,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
       function validate() {
           if (document.getElementById('result').innerHTML.includes('taken'))
@@ -18,42 +18,62 @@
               return true;
       }
   </script>
-  <!-- <script>
 
-$(document).ready(function() {
-    const emailInput = $('#mail');
-    const statusMessage = $('#mailerr');
+<script>
+  $(document).ready(function() {
+    $('#email_id').keyup(function() {
+      var email = $(this).val();
+      checkEmailAvailability(email);
+    });
 
-    emailInput.keyup(function() {
-      const email = $(this).val();
-
-      // Send AJAX request to validate email
+    function checkEmailAvailability(email) {
       $.ajax({
-        url: '/signup',
-        method: 'POST',
-        data: { email },
+        type: 'POST',
+        url: '/user/signup',
+        data: { mail: email },
+        dataType: 'json',
         success: function(response) {
-          if (response.exists) {
-            // Email exists in the database
-            statusMessage.text('Email already exists');
-            console.log("ajax Email already exists ")
-           // statusMessage.addClass('exists'); // Apply appropriate CSS class for styling
+          if (response.isEmailTaken) {
+            $('#email-error').text('Email is already taken');
           } else {
-            // Email does not exist in the database
-            statusMessage.text('Email available');
-            console.log("ajax Email avail ")
-           // statusMessage.removeClass('exists'); // Remove existing CSS class
+            $('#email-error').text('');
           }
         },
         error: function(xhr, status, error) {
-          console.error('AJAX request error:', error);
-          // Handle error cases
+          console.log('Error:', error);
+        }
+      });
+    }
+
+    $('#registration-form').submit(function(event) {
+      event.preventDefault();
+
+      var email = $('#email_id').val();
+
+      $.ajax({
+        type: 'POST',
+        url: '/user/signup',
+        data: { mail: email },
+        dataType: 'json',
+        success: function(response) {
+          if (response.isEmailTaken) {
+            $('#email-error').text('Email is already taken');
+          } else {
+            $('#email-error').text('');
+            $('#registration-form').off('submit').submit();
+          }
+        },
+        error: function(xhr, status, error) {
+          console.log('Error:', error);
         }
       });
     });
   });
+</script>
 
-  </script> -->
+
+
+
   </head>
   <body>
     <%- include('./partials/vidbg'); %>
@@ -90,7 +110,7 @@ $(document).ready(function() {
         </div>
       </div>
       <div class="form-outer">
-        <form action="/user/signup" method ='post' onsubmit="return validate()">
+        <form action="/user/signup" method ='post'id='registration-form' onsubmit="return validate()">
           <div class="page slide-page">
             <div class="title">Basic Info:</div>
             <div class="field">
@@ -115,7 +135,8 @@ $(document).ready(function() {
             <div class="title">Contact Info:</div>
             <div class="field">
               <div class="label">Email Address</div>
-              <input type="text" id="mail" name="mail" required>
+              <input type="text" id="email_id" name="mail" required>
+              <span id="email-error"></span>
               <i class="fas fa-exclamation-circle failure-icon"></i>
               <i class="far fa-check-circle success-icon"></i>
             </div>
@@ -158,6 +179,7 @@ $(document).ready(function() {
             <div class="field">
               <div class="label">Username</div>
               <input type="text" id="user" name="username" required>
+              <span id="username-error"></span>
               <span id="result"></span>
               <i class="fas fa-exclamation-circle failure-icon"></i>
               <i class="far fa-check-circle success-icon"></i>
@@ -181,7 +203,7 @@ $(document).ready(function() {
             <div class="error"></div>
             <div class="field btns">
               <button class="prev-3 prev">Previous</button>
-              <button class="submit">Submit</button>
+              <button id="submitbtn" class="submit">Submit </button>
             </div>
           </div>
         </form>

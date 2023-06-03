@@ -1,10 +1,9 @@
 import { signup_model } from "../models/signupschema.js";
 
-
 import bcrypt from 'bcrypt';
 // import  google  from 'googleapis';
 import nodemailer, { createTransport }   from 'nodemailer'
-
+var globalMail ; // m7dsh ymsho yagd3ann
 
 let mailTransporter = createTransport({
   service:'gmail',
@@ -172,6 +171,37 @@ const login = async (req, res) => {
 
 
 
+// Check availability of username and email
+
+
+const ajax1 = async (req, res) => {
+  try {
+    const mail = req.body.mail;
+
+    const existingUser = await signup_model.findOne({ mail: mail });
+
+    const response = {
+      isEmailTaken: false
+    };
+
+    if (existingUser) {
+      response.isEmailTaken = true;
+    }
+
+    res.json(response);
+  } catch (error) {
+    console.log('Error checking email availability:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+
+
+
+
+
+
+
 
 const checkUN = (req, res) => {
   var query = { username: req.body.username };
@@ -206,4 +236,23 @@ const logoutUser=(req,res)=>{
 req.session.destroy();
 res.redirect('/');
 }
-export { handleSignup,login,checkUN,handlefgtpass,validToken,GetUser,logoutUser};
+
+
+const checkEmailAvailability = async (email) => {
+  try {
+    const user = await signup_model.findOne({ email });
+    return user ? false : true;
+  } catch (error) {
+    console.log('Error checking email availability:', error);
+    return false;
+  }
+};
+
+
+
+
+
+
+
+
+export { handleSignup,login,checkUN,handlefgtpass,validToken,ajax1,GetUser,logoutUser};
