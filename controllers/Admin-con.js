@@ -1,6 +1,11 @@
 import { signup_model } from "../models/signupschema.js";
 import { Tripss } from "../models/tripsSchema.js";
 import  path  from "path";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 import mongoose from "mongoose";
 import flash from "express-flash-message"
