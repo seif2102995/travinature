@@ -1,6 +1,6 @@
 import { signup_model } from "../models/signupschema.js";
 
-
+import fs from "fs";
 import bcrypt from 'bcrypt';
 // import  google  from 'googleapis';
 import nodemailer, { createTransport }   from 'nodemailer'
@@ -206,4 +206,14 @@ const logoutUser=(req,res)=>{
 req.session.destroy();
 res.redirect('/');
 }
+
+const makeDEST = (req, res) => {
+  fs.readFile('ar.svg', 'utf8', (err, data) => {
+    if (err) throw err;
+    console.log(data); // Log the SVG file contents to the console
+  });
+  res.send("done");
+};
+
+
 export { handleSignup,login,checkUN,handlefgtpass,validToken,GetUser,logoutUser};

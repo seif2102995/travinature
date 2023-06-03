@@ -1,0 +1,15 @@
+#trips{
+  display: none;
+  position: absolute;
+  background-color: green;
+  width: 200px;
+  height: 200px;
+  left: 20%;
+  padding: 20px;
+  margin: 10px;
+}
+
+#trips p {
+  width: fit-content;
+  height: fit-content;
+}

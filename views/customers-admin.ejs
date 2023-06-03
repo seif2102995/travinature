@@ -3,73 +3,90 @@
 
 <head>
   <title>User Data</title>
-  <link rel="stylesheet" type="text/css" href="../css/customers.css">
+  <link rel="stylesheet" type="text/css" href="../css/trips.css">
   <%-include('./partials/icon.ejs')%>
 
 </head>
 
 <body>
-  
-  <h1>User Data</h1>
-  <table>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th> 
-      <th>Username</th>
-      <th>email</th>
-      <th>Phone</th>
-      <th>To admin|client</th>
-      <th>Delete User</th>
-      <th>Edit User</th>
 
-      
 
-    </tr>
-    <% users.forEach(user=> { %>
-      <tr>
-        <td>
-          <%= user.firstname%>
-        </td>
-        <td>
-          <%= user.lastname%>
-        </td>
-        <td>
-          <%= user.username %>
-        </td>
-        <td>
-          <%= user.mail%>
-        </td>
-        <td>
-          <%= user.phone%>
-        </td>
-        <td>
-          <% if (user.type==='client' ){ %>
-            <a href="/admin/toAdmin/<%= user.id %>">Make Admin</a>
-            <% } else{ %>
-              <a href="/admin/toClient/<%= user.id %>">Make Client</a>
-              <% } %>
-        </td>
-        <td>
-          <a href="/admin/delete/<%= user.id %>">Delete <%=user.firstname%></a>
-        </td>
-        <td>
-          <a href="/admin/edituser/<%= user.id %>">Edit <%=user.firstname%></a>
-        </td>
+
+  <div class="grid-container">
+    <header class="header">
+      <div class="menu-icon" onclick="openSidebar()">
+        <span class="material-icons-outlined">menu</span>
+      </div>
+      <div class="header-left">
+        <!-- <span class="material-icons-outlined">search</span> -->
+      </div>
+      <div class="header-right">
+        <span class="material-icons-outlined">notifications</span>
+        <span class="material-icons-outlined">email</span>
+        <span class="material-icons-outlined">account_circle</span>
+      </div>
+    </header>
+    <%- include('./partials/sidebar-admin'); %>
+    <main class="main-container">
+      <div class="container">
         
-      </tr>
-      
-      <% }); %>
-      
-       
-        <button>
-        
-          <a href="/admin/adduser">Add user</a>
+            <h1>User Data</h1>
+            <table>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th> 
+                <th>Username</th>
+                <th>email</th>
+                <th>Phone</th>
+                <th>To admin|client</th>
+                <th>Delete User</th>
+                <th>Edit User</th>
+          
+                
+          
+              </tr>
+              <% users.forEach(user=> { %>
+                <tr>
+                  <td>
+                    <%= user.firstname%>
+                  </td>
+                  <td>
+                    <%= user.lastname%>
+                  </td>
+                  <td>
+                    <%= user.username %>
+                  </td>
+                  <td>
+                    <%= user.mail%>
+                  </td>
+                  <td>
+                    <%= user.phone%>
+                  </td>
+                  <td>
+                    <% if (user.type==='client' ){ %>
+                      <a href="/admin/toAdmin/<%= user.id %>">Make Admin</a>
+                      <% } else{ %>
+                        <a href="/admin/toClient/<%= user.id %>">Make Client</a>
+                        <% } %>
+                  </td>
+                  <td>
+                    <a href="/admin/delete/<%= user.id %>">Delete <%=user.firstname%></a>
+                  </td>
+                  <td>
+                    <a href="/admin/edituser/<%= user.id %>">Edit <%=user.firstname%></a>
+                  </td>
+                </tr>
+                <% }); %>
+                  <button>
+                    <a href="/admin/adduser">Add user</a>
+                  </button>
+                
+            </table>
+            
+    </div>
+    </main>
+  </div>
 
-        </button>
-       
-      
-  </table>
-
+ 
 </body>
-
 </html>
