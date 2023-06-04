@@ -53,6 +53,27 @@ router.post('/reset',validToken);
 router.get('/profile', (req, res) => {
   res.render('profile', { user: (req.session.user === undefined ? "" : req.session.user) });
 });
+
+router.get('/success', (req, res) => {
+  // Access the GET parameters from the URL
+  const email = req.query.email;
+  var query = { mail: email };
+
+  signup_model.findOne(query)
+    .then(result => {
+      req.session.user = result;
+      res.redirect('/');
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
+  console.log(email); // Output: value1
+
+  // Handle the logic for the /success route
+});
+
+
 router.post('/profile',GetUser);
 
 router.post('/checkout',checkout);

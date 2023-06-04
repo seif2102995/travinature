@@ -369,19 +369,19 @@ const checkout = async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: 'http://127.0.0.1:8080/user/success',
+      success_url: `http://127.0.0.1:8080/user/success?email=${req.session.user.mail}`, // Append user session as a query parameter
       cancel_url: 'http://127.0.0.1:8080/user/',
-      // customer: sess.mail, 
     });
 
     console.log(session.url);
     res.redirect(303, session.url);
-    res.json({ id: session.id });
+    // res.json({ id: session.id });
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: 'An error occurred' });
   }
 };
+
 
 
 
