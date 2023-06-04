@@ -235,4 +235,34 @@ const editTrip = async (req,res)=>
 
 
 };
-export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip };
+
+const editTripPost = async (req, res) => {
+  try {
+    await Tripss.findByIdAndUpdate(req.params.id, {
+      title: req.body.title,
+      description: req.body.description,
+      image: req.body.image,
+      'hotels.0.name': req.body.hotel1,
+      'hotels.0.roomTypes.0.name':req.body.room1Type1,
+      'hotels.0.roomTypes.0.price':req.body.room1Price1,
+      'hotels.0.roomTypes.1.name':req.body.room1Type2,
+      'hotels.0.roomTypes.1.price':req.body.room1Price2,
+      'hotels.0.activities.0.name':req.body.activity1,
+      'hotels.0.activities.1.name':req.body.activity2,
+
+      'hotels.1.name': req.body.hotel2,
+      'hotels.1.roomTypes.0.name':req.body.room2Type1,
+      'hotels.1.roomTypes.0.price':req.body.room2Price1,
+      'hotels.1.roomTypes.1.name':req.body.room2Type2,
+      'hotels.1.roomTypes.1.price':req.body.room2Price2,
+      'hotels.1.activities.0.name':req.body.activity3,
+      'hotels.1.activities.1.name':req.body.activity4,
+
+    });
+
+    res.redirect('/admin');
+  } catch (err) {
+    console.log(err);
+  }
+};
+export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip,editTripPost };

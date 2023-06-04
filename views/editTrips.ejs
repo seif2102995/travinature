@@ -1,64 +1,159 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 
 <head>
-    <!-- meta -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <%-include('./partials/icon.ejs')%>`
-    <!-- stylesheets -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Traventure Admin Dashboard</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="../css/trips.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-        
-
-    <title>Edit Trip</title>
 </head>
 
 <body>
-    <div class="container">
-
-        <h3>Edit <%=triip.name%></h3>
-        <div class="table">
-            <div class="tr">
-                <form action="/editTrip/<%=triip.id%>" method="post" id="addt-form"> 
-                    <!-- bos aal action -->
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputName">Where to</label>
-                            <input type="text" class="form-control" name="dest" value="<%=triip.name%>" id="inputName" placeholder="Enter name of the destination" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputSurname">Price</label>
-                            <input type="text" class="form-control" name="price" value="<%=triip.price%>" id="inputSurname" placeholder="Enter the price"
-                                required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputSurname">Description</label>
-                            <input type="text" class="form-control" name="descr" value="<%=triip.description%>" id="inputdescr" placeholder="Enter the Description"
-                                required>
-                        </div>
-                       
-                    </div>
-
-
-
-
-
-
-                    <!-- <button type="submit" class="btn btn-primary" onclick="">Add user</button> -->
-                    <input type="submit" name="submit" class="btn btn-primary">
-                </form>
+    <div class="grid-container">
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-icons-outlined">menu</span>
             </div>
-        </div>
+            <div class="header-left">
+                <!-- <span class="material-icons-outlined">search</span> -->
+            </div>
+            <div class="header-right">
+                <span class="material-icons-outlined">notifications</span>
+                <span class="material-icons-outlined">email</span>
+                <span class="material-icons-outlined">account_circle</span>
+            </div>
+        </header>
+        <%- include('./partials/sidebar-admin'); %>
+            <main class="main-container">
+                <div class="container">
+                    <h3>Editing <%=triip.title%>
+                    </h3>
+                    <div class="table">
+                        <div class="tr">
+                            <form action="/admin/editTrip/<%=triip.id%>" enctype="multipart/form-data" method="post"
+                                id="addt-form">
+                                <!-- bos aal action -->
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="desc">Where to</label>
+                                        <input type="text" name="desc" id="desc" placeholder="" value="<%=triip.title%>"
+                                            required>
+                                    </div>
 
-        <hr>
+                                    <div class="form-group col-md-6">
+                                        <label for="desc">Description</label>
+                                        <textarea name="desc" id="desc" cols="30" rows="5" class="form-control"
+                                            placeholder="Enter the Description" required
+                                            value="<%=triip.description%>"></textarea>
+                                    </div>
 
+                                    <div>
+                                        <input type="file" name="img" value="<%=triip.image%>">
+                                    </div>
+
+                                    <!-- Hotel 1 -->
+                                    <div class="form-group col-md-6">
+                                        <label for="hotel1">Hotel 1 Name</label>
+                                        <input type="text" class="form-control" name="hotel1" id="hotel1"
+                                            placeholder="Enter hotel name" value="<%=triip.hotels[0].name%>" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="room1Type1">Room 1 Type</label>
+                                        <input type="text" class="form-control" name="room1Type1" id="room1Type1"
+                                            placeholder="Enter room type" value="<%=triip.hotels[0].roomTypes[0].name%>"
+                                            required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="room1Price1">Room 1 Price</label>
+                                        <input type="text" class="form-control" name="room1Price1" id="room1Price1"
+                                            placeholder="Enter room price"
+                                            value="<%=triip.hotels[0].roomTypes[0].price%>" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="room1Type2">Room 2 Type</label>
+                                        <input type="text" class="form-control" name="room1Type2" id="room1Type2"
+                                            placeholder="Enter room type" value="<%=triip.hotels[0].roomTypes[1].name%>"
+                                            required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="room1Price2">Room 2 Price</label>
+                                        <input type="text" class="form-control" name="room1Price2" id="room1Price2"
+                                            placeholder="Enter room price"
+                                            value="<%=triip.hotels[0].roomTypes[1].price%>" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="activity1">Activity 1</label>
+                                        <input type="text" class="form-control" name="activity1" id="activity1"
+                                            placeholder="Enter activity name"
+                                            value="<%=triip.hotels[0].activities[0].name%>" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="activity2">Activity 2</label>
+                                        <input type="text" class="form-control" name="activity2" id="activity2"
+                                            placeholder="Enter activity name"
+                                            value="<%=triip.hotels[0].activities[1].name%>" required>
+                                    </div>
+
+                                    <!-- Hotel 2 -->
+                                    <div class="form-group col-md-6">
+                                        <label for="hotel2">Hotel 2 Name</label>
+                                        <input type="text" class="form-control" name="hotel2" id="hotel2"
+                                            placeholder="Enter hotel name" value="<%=triip.hotels[1].name%>" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="room2Type1">Room 1 Type</label>
+                                        <input type="text" class="form-control" name="room2Type1" id="room2Type1"
+                                            placeholder="Enter room type" value="<%=triip.hotels[1].roomTypes[0].name%>"
+                                            required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="room2Price1">Room 1 Price</label>
+                                        <input type="text" class="form-control" name="room2Price1" id="room2Price1"
+                                            placeholder="Enter room price"
+                                            value="<%=triip.hotels[1].roomTypes[0].price%>" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="room2Type2">Room 2 Type</label>
+                                        <input type="text" class="form-control" name="room2Type2" id="room2Type2"
+                                            placeholder="Enter room type" value="<%=triip.hotels[1].roomTypes[1].name%>"
+                                            required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="room2Price2">Room 2 Price</label>
+                                        <input type="text" class="form-control" name="room2Price2" id="room2Price2"
+                                            placeholder="Enter room price"
+                                            value="<%=triip.hotels[1].roomTypes[1].price%>" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="activity3">Activity 3</label>
+                                        <input type="text" class="form-control" name="activity3" id="activity3"
+                                            placeholder="Enter activity name"
+                                            value="<%=triip.hotels[1].activities[0].name%>" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="activity4">Activity 4</label>
+                                        <input type="text" class="form-control" name="activity4" id="activity4"
+                                            placeholder="Enter activity name"
+                                            value="<%=triip.hotels[1].activities[1].name%>" required>
+                                    </div>
+
+                                </div>
+                                <!-- <button type="submit" class="btn btn-primary" onclick="">Add user</button> -->
+                                <input type="submit" name="submit" class="btn btn-primary">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </main>
     </div>
-
-    <!-- <script src="script.js"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </body>
+<script src="../js/trips.js"></script>
 
 </html>
