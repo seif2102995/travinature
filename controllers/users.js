@@ -1,6 +1,10 @@
 import { signup_model } from "../models/signupschema.js";
 import {body,validationResult} from 'express-validator';
+import{Tripss} from'../models/tripsSchema.js';
 
+import Stripe from 'stripe';
+const stripe = new Stripe('sk_test_51NEZrSBSmlXfR1acKokUt6gxjLNgc1h0hCWF3Iu08TSrthiGWkOqPQddUzsb3BFJrgPhfC1SE0oXZqaKuGqgx3QG00FjWHuR7C');
+ 
 
 import fs from "fs";
 import bcrypt from 'bcrypt';
@@ -314,6 +318,70 @@ const checkEmailAvailability = async (email) => {
   }
 };
 
+// app.post("/create-checkout-session", async (req, res) => { 
+//   const { product } = req.body; 
+//   const session = await stripe.checkout.sessions.create({ 
+//     payment_method_types: ["card"], 
+//     line_items: [ 
+//       { 
+//         price_data: {  
+//           currency: "usd", 
+//           product_data: { 
+//             name: "test", 
+//           }, 
+//           unit_amount: 100 * 100, 
+//         }, 
+//         quantity: 2, 
+//       }, 
+//     ], 
+//     mode: "payment", 
+//     success_url: "http://localhost:8080/success", 
+//     cancel_url: "http://localhost:8080/cancel", 
+//   }); 
+//   res.json({ id: session.id }); 
+//   console.log(session.id );
+// }); 
+
+const checkout = async (req, res) => {
+  try {
+    var query = { name: req.body.name };
+    const result = await Tripss.findOne(query);
+    const sess = req.session.user;
+    console.log(sess);
+
+    if (!result) {
+      throw new Error('Trip not found');
+    }
+
+    console.log(result.price);
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: result.name,
+            },
+            unit_amount: result.price * 100,
+          },
+          quantity: req.body.qunt,
+        },
+      ],
+      mode: 'payment',
+      success_url: 'http://127.0.0.1:8080/user/success',
+      cancel_url: 'http://127.0.0.1:8080/user/',
+      // customer: sess.mail, 
+    });
+
+    console.log(session.url);
+    res.redirect(303, session.url);
+    res.json({ id: session.id });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+};
 
 
 
@@ -321,4 +389,4 @@ const checkEmailAvailability = async (email) => {
 
 
 
-export { handleSignup,login,checkUN,handlefgtpass,validToken,ajax1,GetUser,logoutUser,DeleteUserr};
+export { handleSignup,login,checkUN,handlefgtpass,validToken,ajax1,GetUser,logoutUser,DeleteUserr,checkout};

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {handleSignup,login,checkUN,handlefgtpass,validToken,GetUser,logoutUser,ajax1, DeleteUserr} from '../controllers/users.js'
+import {handleSignup,login,checkUN,handlefgtpass,validToken,GetUser,logoutUser,ajax1, DeleteUserr,checkout} from '../controllers/users.js'
 
 import {signup_model} from '../models/signupschema.js'
 import bodyParser from "body-parser";
@@ -55,6 +55,7 @@ router.get('/profile', (req, res) => {
 });
 router.post('/profile',GetUser);
 
+router.post('/checkout',checkout);
 
 router.post('/checkUN', checkUN);
 
@@ -73,6 +74,7 @@ router.use((req, res, next) => {
   }
 });
 // router.post("/chatt",msg);
+
 
 
 

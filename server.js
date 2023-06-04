@@ -15,8 +15,8 @@ import booking_router from "./routes/booking.js";
 import admin_router from "./routes/admin.js";
 
 
-const Publishable_key=process.env.stripePublickey;
-const secret_key=process.env.stripeSecretKey;
+// const Publishable_key=process.env.stripePublickey;
+// const secret_key=process.env.stripeSecretKey;
 
 
 const hostname = "127.0.0.1";

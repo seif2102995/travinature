@@ -203,11 +203,18 @@
               <div class="slide"></div>
             </div>
             <span onclick="slideLeft()" class="btn"></span>
+           
           </div>
+          
         </div>
         </span>
       </div>
     </div>
+    <form action="/user/checkout" method="post">
+      <input type="hidden" name="name" id="name" value="Argentina">
+      <input type="number" min="1" name="qunt" id="qunt" max="10" value="1">
+      <button type="submit" class="purch">Purchase</button>
+    </form>
   </div>
   <footer> <%- include('./partials/footer'); %>    </footer>
 </body>
