@@ -45,9 +45,9 @@ body {
         font-weight: bold;
         border: 3px solid rgb(95, 94, 94);
     }
-    h3{
+    h1{
         color: white;
-        text-align:center;
+        text-align:left;
     }
     label{
         color : white;
