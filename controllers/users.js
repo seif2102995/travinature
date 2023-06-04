@@ -370,7 +370,7 @@ const checkout = async (req, res) => {
       ],
       mode: 'payment',
       success_url: `http://127.0.0.1:8080/user/success?email=${req.session.user.mail}`, // Append user session as a query parameter
-      cancel_url: 'http://127.0.0.1:8080/user/',
+      cancel_url: `http://127.0.0.1:8080/user/?email=${req.session.user.mail}`,
     });
 
     console.log(session.url);

@@ -137,34 +137,64 @@ const editpost=async(req,res)=>
 }
 
 //------------------>TRIPS CRUD
+
+
 const AddTrip = (req, res) => {
   let imgFile;
   let uploadPath;
   if (!req.files || Object.keys(req.files).length === 0) {
-      return res.status(400).send('No files were uploaded.');
+    return res.status(400).send('No files were uploaded.');
   }
   imgFile = req.files.img;
   uploadPath = path.join(__dirname, '../public/resources/' + req.body.gov + path.extname(imgFile.name));
 
   imgFile.mv(uploadPath, function (err) {
     if (err)
-        res.status(500).send(err);
-  const newt = new Tripss({
-    name: req.body.gov,
-    price: req.body.price,
-    description: req.body.desc,
-    image: req.body.gov +  path.extname(imgFile.name),
-  })
-  newt.save()
-    .then(result => {
-      res.redirect('/admin');
-    })
-    .catch(err => {
-      console.log(err);
+      res.status(500).send(err);
+    const newTrip = new Tripss({
+      title: req.body.gov,
+      description: req.body.desc,
+      image: req.body.gov + path.extname(imgFile.name),
+      hotels: [
+        {
+          name: req.body.hotel1,
+          roomTypes: [
+            { name: req.body.room1Type1, price: req.body.room1Price1 },
+            { name: req.body.room1Type2, price: req.body.room1Price2 },
+          ],
+          activities: [
+            { name: req.body.activity1 },
+            { name: req.body.activity2 }
+          ]
+        },
+        {
+          name: req.body.hotel2,
+          roomTypes: [
+            { name: req.body.room2Type1, price: req.body.room2Price1 },
+            { name: req.body.room2Type2, price: req.body.room2Price2 },
+          ],
+          activities: [
+            { name: req.body.activity3 },
+            { name: req.body.activity4 }
+          ]
+        },
+      ],
     });
-  });
 
+    newTrip.save()
+      .then(result => {
+        res.redirect('/admin');
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({ error: 'An error occurred' });
+      });
+  });
 };
+
+
+
+
 const GetTrips = async (req, res, next) => {
   try {
     const vac = await Tripss.find();

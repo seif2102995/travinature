@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%-include('./partials/icon.ejs')%>
+  <link rel="stylesheet" href="../css/argentina.css">
+</head>
+<body>
+
+  <div id="arg">
+    <div id="container">
+      <div id="image">
+        <%-data%>
+      </div>
+      <div id="text">
+        <h1>
+          <ul>
+            <li style="list-style-type: square;"></li>
+          </ul>
+        </h1>
+        <p id="hii"> is a vast country located in the southern part of South America.
+          The eighth largest country in the world,
+          it is the second largest country in South America after Brazil, <br>
+          and it's about one-third the size of the United
+          States. Argentina is bordered by the Andes Mountains and Chile to the west.
+        </p>
+        <div id="container1">
+          <div id="slider-container1">
+            <span onclick="slideRight()" class="btn"></span>
+            <div id="slider1">
+              <div class="slide"><img src="../resources/argentina-top-attractions-iguazu-falls.jpg"></img></div>
+              <div class="slide"><img src="../resources/Argentina-v-France-Final-FIFA-World-Cup-Qatar-2022.webp"></img>
+              </div>
+              <div class="slide"><img src="../resources/Coliseum-Summit-news-Argentina-La-Bombonera.jpg"></img></div>
+              <div class="slide"><img src="../resources/diego-maradona-argentina.webp"></img></div>
+              <div class="slide"><img src="../resources/iStock-622452176-835x557.jpg"></img></div>
+              <div class="slide" style="border-left: 0px;"></div>
+              <div class="slide"></div>
+              <div class="slide"></div>
+              <div class="slide"></div>
+              <div class="slide"></div>
+            </div>
+            <span onclick="slideLeft()" class="btn"></span>
+          </div>
+        </div>
+        </span>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
