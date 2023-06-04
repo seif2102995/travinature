@@ -7,10 +7,17 @@ const roomTypeSchema = new Schema({
   price: { type: Number, required: true },
 });
 
+const activitySchema = new Schema({
+  name: { type: String, required: true },
+});
+
 const hotelSchema = new Schema({
   name: { type: String, required: true },
   roomTypes: [roomTypeSchema],
+  activities:[activitySchema]
 });
+
+
 
 const tripSchema = new Schema(
   {
@@ -27,10 +34,11 @@ const tripSchema = new Schema(
       required: true,
     },
     hotels: [hotelSchema],
+    
   },
   { timestamps: true }
 );
 
 const Tripss = mongoose.model('Tripss', tripSchema);
 
-export {Tripss} ;
+export { Tripss };

@@ -162,6 +162,10 @@ const AddTrip = (req, res) => {
             { name: req.body.room1Type1, price: req.body.room1Price1 },
             { name: req.body.room1Type2, price: req.body.room1Price2 },
           ],
+          activities: [
+            { name: req.body.activity1 },
+            { name: req.body.activity2 }
+          ]
         },
         {
           name: req.body.hotel2,
@@ -169,6 +173,10 @@ const AddTrip = (req, res) => {
             { name: req.body.room2Type1, price: req.body.room2Price1 },
             { name: req.body.room2Type2, price: req.body.room2Price2 },
           ],
+          activities: [
+            { name: req.body.activity3 },
+            { name: req.body.activity4 }
+          ]
         },
       ],
     });
@@ -183,6 +191,7 @@ const AddTrip = (req, res) => {
       });
   });
 };
+
 
 
 

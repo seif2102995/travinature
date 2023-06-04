@@ -14,6 +14,7 @@
       <th>Image</th>
       <th>Hotel Names</th>
       <th>Room Types</th>
+      <th>Activity</th>
       <th>Delete Trip</th>
       <th>Edit Trip</th>
     </tr>
@@ -30,6 +31,13 @@
           <% trip.hotels.forEach(hotel => {
             hotel.roomTypes.forEach(roomType => { %>
               <%= roomType.name %> - $<%= roomType.price %><br>
+            <% });
+          }); %>
+        </td>
+        <td>
+          <% trip.hotels.forEach(hotel => {
+            hotel.activities.forEach(activity => { %>
+              <%= activity.name %><br>
             <% });
           }); %>
         </td>
