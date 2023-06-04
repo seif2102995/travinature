@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { fetchusers,toAdmin,toClient,DeleteUser, AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip } from '../controllers/Admin-con.js';
+import { fetchusers,toAdmin,toClient,DeleteUser, AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip ,ajax2} from '../controllers/Admin-con.js';
 import { signup_model } from '../models/signupschema.js';
 import {conts} from "../models/contryscheme.js"
 var router = Router();
@@ -27,6 +27,7 @@ router.get("/", function (req, res, next) {
   router.get("/adduser", function (req, res, next) {
     res.render("adduser", { user: (req.session.user === undefined ? "" : req.session.user) });
   });
+  router.post('/check123',ajax2);
 
   router.get("/addtrips", function (req, res, next) {
     res.render("addtrips", { user: (req.session.user === undefined ? "" : req.session.user) });
