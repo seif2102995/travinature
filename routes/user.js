@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {handleSignup,login,checkUN,handlefgtpass,validToken,GetUser,logoutUser,ajax1} from '../controllers/users.js'
+import {handleSignup,login,checkUN,handlefgtpass,validToken,GetUser,logoutUser,ajax1, DeleteUserr} from '../controllers/users.js'
 
 import {signup_model} from '../models/signupschema.js'
 import bodyParser from "body-parser";
@@ -29,7 +29,8 @@ router.get("/signup", function (req, res) {
   res.render("signup",{ user: (req.session.user === undefined ? "" : req.session.user) });
 });
 
-router.post('/signup',ajax1,handleSignup)
+router.post('/signup',handleSignup)
+router.post('/check',ajax1);
 
 
 router.get('/forget-pass',(req,res)=>{
@@ -57,7 +58,7 @@ router.post('/profile',GetUser);
 router.post('/checkUN', checkUN);
 
 router.get('/logout', logoutUser);
-
+router.post('/delete',DeleteUserr)
 
 // check if logged in
 router.use((req, res, next) => {

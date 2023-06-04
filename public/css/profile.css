@@ -54,10 +54,21 @@ img{
     outline: none;
     font-size: 1rem;
     cursor: pointer;
-    background-color: #8EC5FC;
+    background-color: #ffffff;
     background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
     border-radius: 11px;
 }
 #cover{
     display: none;
+}
+#vid1 {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
 }

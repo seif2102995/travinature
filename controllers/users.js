@@ -152,7 +152,7 @@ const login = async (req, res) => {
   try {
     const check = await signup_model.findOne({ username: req.body.username });
     if (check == null) {
-      res.send("taken");
+      res.send("NULL");
     } else {
       const pcomp = await bcrypt.compare(req.body.password, check.password);
       if (pcomp) {
@@ -247,10 +247,55 @@ const GetUser = async (req, res) => {
       });
       
 };
+
 const logoutUser=(req,res)=>{
 req.session.destroy();
 res.redirect('/');
 }
+
+// const DeleteUserr = (req, res) => {
+//   const userId = req.session.user.id; 
+//   const userImgPath = req.session.user.img;
+// console.log(req.session.user);
+//   signup_model.findByIdAndDelete({_id:req.session.user.id})
+//     .then(result => {
+//       // Delete the user's image file
+//       // fs.unlink(path.join(__dirname, '../public/resources/', userImgPath), (err) => {
+//         if (err) {
+//           console.log(err);
+//         }
+//         res.redirect('/');
+//      //  });
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).send('Internal Server Error');
+//     });
+// };
+const DeleteUserr = (req, res) => {
+  const userId = req.session.user._id;
+  const userImgPath = req.session.user.img;
+
+  console.log(req.session.user);
+
+  signup_model
+    .findByIdAndDelete(userId)
+    .then(result => {
+      // Delete the user's image file
+      // fs.unlink(path.join(__dirname, '../public/resources/', userImgPath), (err) => {
+      //   if (err) {
+      //     console.log(err);
+      //   }
+      req.session.destroy();
+      res.redirect('/');
+      // });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send('Internal Server Error');
+    });
+};
+
 
 
 const checkEmailAvailability = async (email) => {
@@ -270,4 +315,4 @@ const checkEmailAvailability = async (email) => {
 
 
 
-export { handleSignup,login,checkUN,handlefgtpass,validToken,ajax1,GetUser,logoutUser};
+export { handleSignup,login,checkUN,handlefgtpass,validToken,ajax1,GetUser,logoutUser,DeleteUserr};

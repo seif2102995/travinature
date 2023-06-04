@@ -34,7 +34,7 @@ $(document).ready(function() {
     var email = $('#mail').val();
 
     $.ajax({
-      url: '/user/signup', // Update the URL to match your route
+      url: '/user/check', // Update the URL to match your route
       type: 'POST', // Change the request type to POST
       data: { mail: email },
       success: function(response) {
