@@ -181,17 +181,6 @@ const login = async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 const ajax1 = async (req, res) => {
   try {
     const { mail } = req.body;
@@ -211,21 +200,6 @@ const ajax1 = async (req, res) => {
     res.status(500).json({ message: 'Error occurred during validation' });
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 const checkUN = (req, res) => {
@@ -263,25 +237,7 @@ req.session.destroy();
 res.redirect('/');
 }
 
-// const DeleteUserr = (req, res) => {
-//   const userId = req.session.user.id; 
-//   const userImgPath = req.session.user.img;
-// console.log(req.session.user);
-//   signup_model.findByIdAndDelete({_id:req.session.user.id})
-//     .then(result => {
-//       // Delete the user's image file
-//       // fs.unlink(path.join(__dirname, '../public/resources/', userImgPath), (err) => {
-//         if (err) {
-//           console.log(err);
-//         }
-//         res.redirect('/');
-//      //  });
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).send('Internal Server Error');
-//     });
-// };
+
 const DeleteUserr = (req, res) => {
   const userId = req.session.user._id;
   const userImgPath = req.session.user.img;
@@ -318,29 +274,6 @@ const checkEmailAvailability = async (email) => {
   }
 };
 
-// app.post("/create-checkout-session", async (req, res) => { 
-//   const { product } = req.body; 
-//   const session = await stripe.checkout.sessions.create({ 
-//     payment_method_types: ["card"], 
-//     line_items: [ 
-//       { 
-//         price_data: {  
-//           currency: "usd", 
-//           product_data: { 
-//             name: "test", 
-//           }, 
-//           unit_amount: 100 * 100, 
-//         }, 
-//         quantity: 2, 
-//       }, 
-//     ], 
-//     mode: "payment", 
-//     success_url: "http://localhost:8080/success", 
-//     cancel_url: "http://localhost:8080/cancel", 
-//   }); 
-//   res.json({ id: session.id }); 
-//   console.log(session.id );
-// }); 
 
 const checkout = async (req, res) => {
   try {
