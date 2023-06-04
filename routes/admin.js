@@ -15,21 +15,21 @@ var router = Router();
 //   }
 // });
 router.get("/", function (req, res, next) {
-    res.render("admin");
+    res.render("admin", { user: (req.session.user === undefined ? "" : req.session.user) });
   });
   router.get("/reports", function (req, res, next) {
-    res.render("reports-admin");
+    res.render("reports-admin", { user: (req.session.user === undefined ? "" : req.session.user) });
   });
   router.get("/trips", async function (req, res, next) {
     const countries = await conts.find();
-    res.render("trips" , {countries});
+    res.render("trips" , {countries}, { user: (req.session.user === undefined ? "" : req.session.user) });
   });
   router.get("/adduser", function (req, res, next) {
-    res.render("adduser");
+    res.render("adduser", { user: (req.session.user === undefined ? "" : req.session.user) });
   });
 
   router.get("/addtrips", function (req, res, next) {
-    res.render("addtrips");
+    res.render("addtrips", { user: (req.session.user === undefined ? "" : req.session.user) });
   });
   
 
