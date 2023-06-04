@@ -138,11 +138,22 @@ const editpost=async(req,res)=>
 
 //------------------>TRIPS CRUD
 const AddTrip = (req, res) => {
+  let imgFile;
+  let uploadPath;
+  if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).send('No files were uploaded.');
+  }
+  imgFile = req.files.img;
+  uploadPath = path.join(__dirname, '../public/resources/' + req.body.gov + path.extname(imgFile.name));
 
+  imgFile.mv(uploadPath, function (err) {
+    if (err)
+        res.status(500).send(err);
   const newt = new Tripss({
     name: req.body.gov,
     price: req.body.price,
-    description: req.body.desc
+    description: req.body.desc,
+    image: req.body.gov +  path.extname(imgFile.name),
   })
   newt.save()
     .then(result => {
@@ -151,6 +162,7 @@ const AddTrip = (req, res) => {
     .catch(err => {
       console.log(err);
     });
+  });
 
 };
 const GetTrips = async (req, res, next) => {

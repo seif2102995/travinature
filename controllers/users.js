@@ -1,4 +1,6 @@
 import { signup_model } from "../models/signupschema.js";
+import {body,validationResult} from 'express-validator';
+
 
 import fs from "fs";
 import bcrypt from 'bcrypt';
@@ -112,6 +114,9 @@ else{
 }
 
 
+// //if (password !== 'password123') {
+//   return res.status(401).json({ error: 'Invalid password' });
+// }
 
 // Controller for handling the signup form submission
 const handleSignup = async (req, res, next) => 

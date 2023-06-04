@@ -15,6 +15,7 @@ router.get("/login", (req, res)=> {
 router.post("/login", login);
 
 
+
 // router.post("/login", login,async (req, res)=> {
 //   const check = await signup_model.findOne({username:req.body.username});
 //   console.log(req.body.username)
