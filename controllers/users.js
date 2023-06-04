@@ -1,5 +1,6 @@
 import { signup_model } from "../models/signupschema.js";
 
+import fs from "fs";
 import bcrypt from 'bcrypt';
 // import  google  from 'googleapis';
 import nodemailer, { createTransport }   from 'nodemailer'
