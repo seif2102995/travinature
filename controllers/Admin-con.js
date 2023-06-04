@@ -232,7 +232,7 @@ const editTrip = async (req,res)=>
       console.error(error);
       res.redirect("error"); // Redirect to an error page if an error occurs
     });
-
+    
 
 };
 
@@ -265,4 +265,25 @@ const editTripPost = async (req, res) => {
     console.log(err);
   }
 };
-export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip,editTripPost };
+
+const ajax2 = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Check if the email exists in the database
+    const user = await signup_model.findOne({ mail:email });
+
+    if (user) {
+      // Email is already taken
+      res.json({ message: 'taken' });
+    } else {
+      // Email is available
+      res.json({ message: 'available' });
+      
+    }
+  } catch (error) {
+    console.error('Error occurred during email validation:', error);
+    res.status(500).json({ message: 'Error occurred during validation' });
+  }
+};
+export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip,editTripPost,ajax2 };
