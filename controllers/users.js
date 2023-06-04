@@ -252,4 +252,4 @@ const logoutUser=(req,res)=>{
 req.session.destroy();
 res.redirect('/');
 }
-export { handleSignup,login,checkUN,handlefgtpass,validToken,GetUser,logoutUser};
+export { handleSignup,login,checkUN,handlefgtpass,validToken,GetUser,logoutUser,ajax1};
