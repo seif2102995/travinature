@@ -22,7 +22,7 @@ router.get("/", function (req, res, next) {
   });
   router.get("/trips", async function (req, res, next) {
     const countries = await conts.find();
-    res.render("trips" , {countries}, { user: (req.session.user === undefined ? "" : req.session.user) });
+    res.render("trips" , {countries});
   });
   router.get("/adduser", function (req, res, next) {
     res.render("adduser", { user: (req.session.user === undefined ? "" : req.session.user) });
