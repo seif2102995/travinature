@@ -4,60 +4,79 @@
 <head>
   <title>Trips Data</title>
   <% include('./partials/icon.ejs') %>
+  <link rel="stylesheet" href="../css/products.css">
 </head>
 
 <body>
   <h1>Trips Data</h1>    
-  <table>
-    <tr>
-      <th>Title</th>
-      <th>Image</th>
-      <th>Hotel Names</th>
-      <th>Room Types</th>
-      <th>Activity</th>
-      <th>Purchase</th>
-    </tr>
+  <div class="trips">
     <% vac.forEach(trip => { %>
       <% trip.hotels.forEach(hotel => { %>
-        <tr>
-          <td><%= trip.title %></td>
-          <td><img src="<%= trip.image %>" alt="Trip Image" width="100"></td>
-          <td><%= hotel.name %></td>
-          <td>
+        <div class="trip">
+          <div class="slideshow-container">
+            <div class="mySlides fade">
+              <img src="images.jpg" style="width:100%">
+            </div>
+            <div class="mySlides fade">
+              <img src="indiia.jpg" style="width:100%">
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+          </div>
+          <div class="trip-title"><%= trip.title %></div>
+          <div class="trip-description"><%= hotel.name %></div>
+          <div class="trip-options">
             <select name="act">
               <% hotel.roomTypes.forEach(roomType => { %>
                 <option value="<%= roomType.price %>"><%= roomType.name %> - $<%= roomType.price %></option>
               <% }); %>
             </select>
-          </td>
-          <td>
             <select name="act" >
               <% hotel.activities.forEach(activity => { %>
                 <option value="<%= activity.name %>"><%= activity.name %></option>
               <% }); %>
             </select>
-          </td>
-          <td>
             <form action="/user/checkout" method="post">
-                <input type="number" min="1" name="qunt" id="qunt" max="10" value="1">
-                <input type="hidden" name="roomTypePrice" id="roomTypePrice">
-                <button type="submit" class="purch">Purchase</button>
+              <input type="number" min="1" name="qunt" id="qunt" max="10" value="1">
+              <input type="hidden" name="roomTypePrice" id="roomTypePrice">
+              <button type="submit" class="purch">Purchase</button>
             </form>
-          </td>
-        </tr>
+          </div>
+        </div>
       <% }); %>
     <% }); %>
-  </table>
-</body>
-
-  <script>
-  const selectElement = document.querySelector('select[name="act"]');
-  const hiddenInput = document.getElementById('roomTypePrice');
+  </div>
   
-  selectElement.addEventListener('change', (event) => {
-    hiddenInput.value = event.target.value;
-  });
-</script>
+  <script>
+    const selectElement = document.querySelector('select[name="act"]');
+    const hiddenInput = document.getElementById('roomTypePrice');
+    
+    selectElement.addEventListener('change', (event) => {
+      hiddenInput.value = event.target.value;
+    });
+    
+    var slideIndex = 1;
+showSlides(slideIndex);
 
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  if (n > slides.length) {
+    slideIndex = 1
+  }
+  if (n < 1) {
+    slideIndex = slides.length
+  }
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slides[slideIndex - 1].style.display = "block";
+}
+  </script>
+</body>
 
 </html>
