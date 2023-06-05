@@ -14,6 +14,50 @@
         
 
     <title>Add user</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Assuming you have included the necessary jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <script>
+    $(document).ready(function() {
+      var emailTimer;
+      $('#mail').on('input', function() {
+        clearTimeout(emailTimer);
+        emailTimer = setTimeout(validateEmail, 500); // Wait for 500ms after the last input change
+      });
+    
+      function validateEmail() {
+        var email = $('#mail').val();
+    
+        $.ajax({
+          url: '/admin/check123', // Update the URL to match your route
+          type: 'POST', // Change the request type to POST
+          data: { email: email },
+          success: function(response) {
+            if (response.message === 'taken') {
+              $('#email-error').text('Email already taken');
+              $('#submitbtn').prop('disabled', true); // Disable the button
+              
+    
+            } else {
+              $('#email-error').text('');
+              $('#submitbtn').prop('disabled', false); // enable the button
+             
+    
+            }
+          },
+          error: function() {
+            $('#email-error').text('Error occurred during validation');
+          }
+        });
+      }
+    });
+    
+    
+    </script>
+    
+
+
 </head>
 
 <body>
@@ -22,7 +66,7 @@
         <h3>Add user</h3>
         <div class="table">
             <div class="tr">
-                <form action="/admin/adduser" enctype="multipart/form-data" method="post" id="add-form">
+                <form action="/admin/adduser" enctype="multipart/form-data" method="post" id="add-form" >
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputName">FirstName</label>
@@ -64,7 +108,9 @@
 
                     <div class="form-group">
                         <label for="inputEmail">Email</label>
-                        <input type="email" class="form-control" name="email" id="inputEmail" placeholder="mail@example.com"
+                        
+                        <input type="email" class="form-control" name="email" id="mail" placeholder="mail@example.com"
+                          
                             required>
                     </div>
 
@@ -73,8 +119,9 @@
 
 
                     <!-- <button type="submit" class="btn btn-primary" onclick="">Add user</button> -->
-                    <input type="submit" name="submit" class="btn btn-primary">
+                    <input type="submit" id='submitbtn' name="submit" class="btn btn-primary">
                 </form>
+                <span id="email-error"> </span>
             </div>
         </div>
 

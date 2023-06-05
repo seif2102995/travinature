@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Trips Data</title>
+  <% include('./partials/icon.ejs') %>
+</head>
+
+<body>
+  <h1>Trips Data</h1>    
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Image</th>
+      <th>Hotel Names</th>
+      <th>Room Types</th>
+      <th>Activity</th>
+      <th>Purchase</th>
+    </tr>
+    <% vac.forEach(trip => { %>
+      <% trip.hotels.forEach(hotel => { %>
+        <tr>
+          <td><%= trip.title %></td>
+          <td><img src="<%= trip.image %>" alt="Trip Image" width="100"></td>
+          <td><%= hotel.name %></td>
+          <td>
+            <select name="act">
+              <% hotel.roomTypes.forEach(roomType => { %>
+                <option value="<%= roomType.price %>"><%= roomType.name %> - $<%= roomType.price %></option>
+              <% }); %>
+            </select>
+          </td>
+          <td>
+            <select name="act" >
+              <% hotel.activities.forEach(activity => { %>
+                <option value="<%= activity.name %>"><%= activity.name %></option>
+              <% }); %>
+            </select>
+          </td>
+          <td>
+            <form action="/user/checkout" method="post">
+                <input type="number" min="1" name="qunt" id="qunt" max="10" value="1">
+                <input type="hidden" name="roomTypePrice" id="roomTypePrice">
+                <button type="submit" class="purch">Purchase</button>
+            </form>
+          </td>
+        </tr>
+      <% }); %>
+    <% }); %>
+  </table>
+</body>
+
+  <script>
+  const selectElement = document.querySelector('select[name="act"]');
+  const hiddenInput = document.getElementById('roomTypePrice');
+  
+  selectElement.addEventListener('change', (event) => {
+    hiddenInput.value = event.target.value;
+  });
+</script>
+
+
+</html>

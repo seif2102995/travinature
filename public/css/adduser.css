@@ -52,6 +52,9 @@ body {
     label{
         color : white;
     }
-  
+  span{
+    color: red;
+    background-color: white;
+  }
   
     

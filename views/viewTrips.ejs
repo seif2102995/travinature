@@ -3,56 +3,57 @@
 
 <head>
   <title>Trips Data</title>
-  <link rel="stylesheet" type="text/css" href="../css/customers.css">
-  <%-include('./partials/icon.ejs')%>
-
+  <% include('./partials/icon.ejs') %>
 </head>
 
 <body>
-  
   <h1>Trips Data</h1>
   <table>
     <tr>
-      <th>Name</th>
-      <th>Price</th> 
-      <th>Description</th>
+      <th>Title</th>
+      <th>Image</th>
+      <th>Hotel Names</th>
+      <th>Room Types</th>
+      <th>Activity</th>
       <th>Delete Trip</th>
       <th>Edit Trip</th>
-      
-
     </tr>
-    <% vac.forEach(va=> { %>
+    <% vac.forEach(trip => { %>
       <tr>
+        <td><%= trip.title %></td>
+        <td><img src="<%= trip.image %>" alt="Trip Image" width="100"></td>
         <td>
-          <%= va.name%>
+          <% trip.hotels.forEach(hotel => { %>
+            <%= hotel.name %><br>
+          <% }); %>
         </td>
         <td>
-          <%= va.price%>
+          <% trip.hotels.forEach(hotel => {
+            hotel.roomTypes.forEach(roomType => { %>
+              <%= roomType.name %> - $<%= roomType.price %><br>
+            <% });
+          }); %>
         </td>
         <td>
-          <%= va.description %>
+          <% trip.hotels.forEach(hotel => {
+            hotel.activities.forEach(activity => { %>
+              <%= activity.name %><br>
+            <% });
+          }); %>
         </td>
         <td>
-          <a href="/admin/deleteTrip/<%= va.id %>">Delete <%=va.name%></a>
+          <a href="/admin/deleteTrip/<%= trip._id %>">Delete <%= trip.title %></a>
         </td>
         <td>
-            <a href="/admin/editTrip/<%= va.id %>">Edit <%=va.name%></a>
-          </td>
-        
+          <a href="/admin/editTrip/<%= trip._id %>">Edit <%= trip.title %></a>
+        </td>
       </tr>
-      
-      <% }); %>
-      
-       
-        <button>
-        
-          <a href="/admin/addtrips">Add Trip</a>
-
-        </button>
-       
-      
+    <% }); %>
   </table>
 
+  <button>
+    <a href="/admin/trips">Add Trip</a>
+  </button>
 </body>
 
 </html>

@@ -162,6 +162,10 @@ const AddTrip = (req, res) => {
             { name: req.body.room1Type1, price: req.body.room1Price1 },
             { name: req.body.room1Type2, price: req.body.room1Price2 },
           ],
+          activities: [
+            { name: req.body.activity1 },
+            { name: req.body.activity2 }
+          ]
         },
         {
           name: req.body.hotel2,
@@ -169,6 +173,10 @@ const AddTrip = (req, res) => {
             { name: req.body.room2Type1, price: req.body.room2Price1 },
             { name: req.body.room2Type2, price: req.body.room2Price2 },
           ],
+          activities: [
+            { name: req.body.activity3 },
+            { name: req.body.activity4 }
+          ]
         },
       ],
     });
@@ -183,8 +191,6 @@ const AddTrip = (req, res) => {
       });
   });
 };
-
-
 
 const GetTrips = async (req, res, next) => {
   try {
@@ -223,7 +229,58 @@ const editTrip = async (req,res)=>
       console.error(error);
       res.redirect("error"); // Redirect to an error page if an error occurs
     });
-
+    
 
 };
-export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip };
+
+const editTripPost = async (req, res) => {
+  try {
+    await Tripss.findByIdAndUpdate(req.params.id, {
+      title: req.body.title,
+      description: req.body.description,
+      image: req.body.image,
+      'hotels.0.name': req.body.hotel1,
+      'hotels.0.roomTypes.0.name':req.body.room1Type1,
+      'hotels.0.roomTypes.0.price':req.body.room1Price1,
+      'hotels.0.roomTypes.1.name':req.body.room1Type2,
+      'hotels.0.roomTypes.1.price':req.body.room1Price2,
+      'hotels.0.activities.0.name':req.body.activity1,
+      'hotels.0.activities.1.name':req.body.activity2,
+
+      'hotels.1.name': req.body.hotel2,
+      'hotels.1.roomTypes.0.name':req.body.room2Type1,
+      'hotels.1.roomTypes.0.price':req.body.room2Price1,
+      'hotels.1.roomTypes.1.name':req.body.room2Type2,
+      'hotels.1.roomTypes.1.price':req.body.room2Price2,
+      'hotels.1.activities.0.name':req.body.activity3,
+      'hotels.1.activities.1.name':req.body.activity4,
+
+    });
+
+    res.redirect('/admin');
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const ajax2 = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Check if the email exists in the database
+    const user = await signup_model.findOne({ mail:email });
+
+    if (user) {
+      // Email is already taken
+      res.json({ message: 'taken' });
+    } else {
+      // Email is available
+      res.json({ message: 'available' });
+      
+    }
+  } catch (error) {
+    console.error('Error occurred during email validation:', error);
+    res.status(500).json({ message: 'Error occurred during validation' });
+  }
+};
+export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip,editTripPost,ajax2 };
