@@ -7,7 +7,6 @@
 </head>
 
 <body>
-   
   <h1>Trips Data</h1>    
   <table>
     <tr>
@@ -25,14 +24,14 @@
           <td><img src="<%= trip.image %>" alt="Trip Image" width="100"></td>
           <td><%= hotel.name %></td>
           <td>
-            <select>
+            <select name="act">
               <% hotel.roomTypes.forEach(roomType => { %>
-                <option value="<%= roomType.name %>"><%= roomType.name %> - $<%= roomType.price %></option>
+                <option value="<%= roomType.price %>"><%= roomType.name %> - $<%= roomType.price %></option>
               <% }); %>
             </select>
           </td>
           <td>
-            <select name="act">
+            <select name="act" >
               <% hotel.activities.forEach(activity => { %>
                 <option value="<%= activity.name %>"><%= activity.name %></option>
               <% }); %>
@@ -41,14 +40,24 @@
           <td>
             <form action="/user/checkout" method="post">
                 <input type="number" min="1" name="qunt" id="qunt" max="10" value="1">
+                <input type="hidden" name="roomTypePrice" id="roomTypePrice">
                 <button type="submit" class="purch">Purchase</button>
             </form>
-            
           </td>
         </tr>
       <% }); %>
     <% }); %>
   </table>
 </body>
+
+  <script>
+  const selectElement = document.querySelector('select[name="act"]');
+  const hiddenInput = document.getElementById('roomTypePrice');
+  
+  selectElement.addEventListener('change', (event) => {
+    hiddenInput.value = event.target.value;
+  });
+</script>
+
 
 </html>

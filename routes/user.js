@@ -105,12 +105,14 @@ router.post('/delete',DeleteUserr)
 router.get("/pack", async function (req, res) {
   try {
     const vac = await Tripss.find();
-    console.log(vac + " \nuserrssssssssssss");
-    res.render("products", {vac});
+    const cust = req.session.user;
+    console.log(vac + " \nuserrssssssssssss", cust);
+    res.render("products", { vac, cust }); 
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
   }
+  
 });
 
 // check if logged in

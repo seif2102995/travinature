@@ -274,6 +274,99 @@ const checkEmailAvailability = async (email) => {
   }
 };
 
+// const checkout = async (req, res) => {
+//   try {
+    
+//     var query = { name:req.body.act };
+//     const result = await Tripss.findOne(query);
+//     const sess = req.session.user;
+//     console.log(sess);
+
+//     if (!result) {
+//       throw new Error('Trip not found');
+//     }
+
+//     const roomType = result.hotels.flatMap(hotel => hotel.roomTypes.find(rt => rt.name === name));
+//     if (!roomType) {
+//       throw new Error('Room type not found');
+//     }
+
+//     console.log(roomType.price);
+//     const session = await stripe.checkout.sessions.create({
+//       payment_method_types: ['card'],
+//       line_items: [
+//         {
+//           price_data: {
+//             currency: 'usd',
+//             product_data: {
+//               name: result.title,
+//             },
+//             unit_amount: roomType.price * 100,
+//           },
+//           quantity: req.body.qunt,
+//         },
+//       ],
+//       mode: 'payment',
+//       success_url: `http://127.0.0.1:8080/user/success?email=${req.session.user.mail}`,
+//       cancel_url: `http://127.0.0.1:8080/user/?email=${req.session.user.mail}`,
+//     });
+
+//     console.log(session.url);
+//     res.redirect(303, session.url);
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json({ error: 'An error occurred' });
+//   }
+// };
+
+
+
+
+// const checkout = async (req, res) => {
+//   try {
+//     const { act, qunt } = req.body;
+//     const query = { "hotels.roomTypes.name": act };
+//     const result = await Tripss.findOne(query);
+//     const sess = req.session.user;
+//     console.log(sess);
+
+//     if (!result) {
+//       throw new Error('Trip not found');
+//     }
+
+//     const roomType = result.hotels.flatMap(hotel => hotel.roomTypes.find(rt => rt.name === act));
+//     if (!roomType) {
+//       throw new Error('Room type not found');
+//     }
+
+//     console.log(roomType.price);
+//     const session = await stripe.checkout.sessions.create({
+//       payment_method_types: ['card'],
+//       line_items: [
+//         {
+//           price_data: {
+//             currency: 'usd',
+//             product_data: {
+//               name: result.title,
+//             },
+//             unit_amount: 100 * 100,
+//           },
+//           quantity: qunt,
+//         },
+//       ],
+//       mode: 'payment',
+//       success_url: `http://127.0.0.1:8080/user/success?email=${req.session.user.mail}`,
+//       cancel_url: `http://127.0.0.1:8080/user/?email=${req.session.user.mail}`,
+//     });
+
+//     console.log(session.url);
+//     res.redirect(303, session.url);
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json({ error: 'An error occurred' });
+//   }
+// };
+
 
 const checkout = async (req, res) => {
   try {
@@ -282,11 +375,13 @@ const checkout = async (req, res) => {
     const sess = req.session.user;
     console.log(sess);
 
+   
     if (!result) {
       throw new Error('Trip not found');
     }
-
-    console.log(result.price);
+     
+    const roomTypePrice = req.body.roomTypePrice;
+    console.log(roomTypePrice);
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
@@ -296,7 +391,7 @@ const checkout = async (req, res) => {
             product_data: {
               name: result.title,
             },
-            unit_amount: 1212 * 100,
+            unit_amount: 11122 * 100,
           },
           quantity: req.body.qunt,
         },
