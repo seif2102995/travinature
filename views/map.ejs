@@ -843,18 +843,22 @@
 <script src="../js/interface.js"></script>
 
 <script>
-  const searchInput = document.querySelector('#search-input');
-  const searchBtn = document.querySelector('#search-btn');
-  const path = document.querySelector('#AF');
+  const searchInput = document.getElementById('search-input');
+  const countryPaths = document.querySelectorAll('path');
 
-  // Add an event listener to the search button
-  searchBtn.addEventListener('click', () => {
-      const countryName = searchInput.value.trim().toLowerCase();
-      if (countryName) {
-          // Highlight the selected country on the map
-          path.style.fill = '#ccc'; // Change the fill color to gray
-      }
-  });
+  searchInput.addEventListener('input', () => {
+    const searchQuery = searchInput.value.trim().toLowerCase();
+
+countryPaths.forEach(path => {
+  const name = path.getAttribute('class');
+  if (name.toLowerCase().includes(searchQuery)) {
+    path.classList.add('highlight');
+  } else {
+    path.classList.remove('highlight');
+  }
+});
+   });
+
 </script>
 
 </html>
