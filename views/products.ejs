@@ -2,12 +2,14 @@
 <html>
 
 <head>
+
   <title>Trips Data</title>
   <% include('./partials/icon.ejs') %>
     <link rel="stylesheet" href="../css/products.css">
 </head>
 
 <body>
+
   <h1>Trips Data</h1>
   <div class="trips">
     <% vac.forEach(trip=> { %>
@@ -29,6 +31,11 @@
           <div class="trip-description">
             <%= hotel.name %>
           </div>
+
+          <div class="trip-wishlist" data-trip-id="<%= trip.id %>" data-hotel-id="<%= hotel.id %>">
+            <span class="heart">&#10084;</span>
+          </div>
+
           <div class="trip-options">
             <select name="act">
               <% hotel.roomTypes.forEach(roomType=> { %>
@@ -93,6 +100,21 @@
                       slides[slideIndex - 1].style.display = "block";
                     }
 
+                    const tripWishlists = document.querySelectorAll('.trip-wishlist');
+
+                    tripWishlists.forEach(tripWishlist => {
+                      const tripId = tripWishlist.getAttribute('data-trip-id');
+                      const hotelId = tripWishlist.getAttribute('data-hotel-id');
+                      const heart = tripWishlist.querySelector('.heart');
+
+                      heart.addEventListener('click', () => {
+                        // Toggle the wished class on the heart icon
+                        heart.classList.toggle('wished');
+
+                        // TODO: Add the trip to the wishlist
+                        console.log(`Added trip ${tripId} and hotel ${hotelId} to wishlist`);
+                      });
+                    });
 
                     const trips = document.querySelectorAll('.trip');
                     const itemsPerPage = 2;
