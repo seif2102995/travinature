@@ -41,3 +41,14 @@
     border-radius: 5px 0 0 5px;
     font-size: 17px;
   }
+  
+  #search-btn {
+    width: 15%;
+    padding: 6px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+  }
