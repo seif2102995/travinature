@@ -44,6 +44,10 @@ router.get('/chat',(req,res)=>{
   res.render('chatbox')
 });
 
+router.get('/wishlist',(req,res)=>{
+  res.render('whishList')
+});
+
 
 router.get('/reset',(req,res)=>{
   res.render('reset')
