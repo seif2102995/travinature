@@ -4,14 +4,14 @@
 <head>
   <title>Trips Data</title>
   <% include('./partials/icon.ejs') %>
-  <link rel="stylesheet" href="../css/products.css">
+    <link rel="stylesheet" href="../css/products.css">
 </head>
 
 <body>
-  <h1>Trips Data</h1>    
+  <h1>Trips Data</h1>
   <div class="trips">
-    <% vac.forEach(trip => { %>
-      <% trip.hotels.forEach(hotel => { %>
+    <% vac.forEach(trip=> { %>
+      <% trip.hotels.forEach(hotel=> { %>
         <div class="trip">
           <div class="slideshow-container">
             <div class="mySlides fade">
@@ -23,18 +23,26 @@
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
           </div>
-          <div class="trip-title"><%= trip.title %></div>
-          <div class="trip-description"><%= hotel.name %></div>
+          <div class="trip-title">
+            <%= trip.title %>
+          </div>
+          <div class="trip-description">
+            <%= hotel.name %>
+          </div>
           <div class="trip-options">
             <select name="act">
-              <% hotel.roomTypes.forEach(roomType => { %>
-                <option value="<%= roomType.price %>"><%= roomType.name %> - $<%= roomType.price %></option>
-              <% }); %>
+              <% hotel.roomTypes.forEach(roomType=> { %>
+                <option value="<%= roomType.price %>">
+                  <%= roomType.name %> - $<%= roomType.price %>
+                </option>
+                <% }); %>
             </select>
-            <select name="act" >
-              <% hotel.activities.forEach(activity => { %>
-                <option value="<%= activity.name %>"><%= activity.name %></option>
-              <% }); %>
+            <select name="act">
+              <% hotel.activities.forEach(activity=> { %>
+                <option value="<%= activity.name %>">
+                  <%= activity.name %>
+                </option>
+                <% }); %>
             </select>
             <form action="/user/checkout" method="post">
               <input type="number" min="1" name="qunt" id="qunt" max="10" value="1">
@@ -43,88 +51,90 @@
             </form>
           </div>
         </div>
-      <% }); %> 
-    <% }); %>
-    <% const itemsPerPage = 2; %>
-    <% const totalPages = Math.ceil(vac.length / itemsPerPage); %>
-    <% let currentPage = 1; %>
-    <div class="pagination">
-      <% for (let i = 1; i <= totalPages; i++) { %>
-      <a href="/trips?page=<%= i %>" class="page-link<%= currentPage === i ? ' active' : '' %>"><%= i %></a>
-      <% } %>
-    </div>
-  <script>
-    const selectElement = document.querySelector('select[name="act"]');
-    const hiddenInput = document.getElementById('roomTypePrice');
-    
-    selectElement.addEventListener('change', (event) => {
-      hiddenInput.value = event.target.value;
-    });
-    
-    var slideIndex = 1;
-showSlides(slideIndex);
+        <% }); %>
+          <% }); %>
+            <% const itemsPerPage=2; %>
+              <% const totalPages=Math.ceil(vac.length / itemsPerPage); %>
+                <% let currentPage=1; %>
+                  <div class="pagination">
+                    <% for (let i=1; i <=totalPages; i++) { %>
+                      <a href="/trips?page=<%= i %>" class="page-link<%= currentPage === i ? ' active' : '' %>">
+                        <%= i %>
+                      </a>
+                      <% } %>
+                  </div>
+                  <script>
+                    const selectElement = document.querySelector('select[name="act"]');
+                    const hiddenInput = document.getElementById('roomTypePrice');
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
+                    selectElement.addEventListener('change', (event) => {
+                      hiddenInput.value = event.target.value;
+                    });
 
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  if (n > slides.length) {
-    slideIndex = 1
-  }
-  if (n < 1) {
-    slideIndex = slides.length
-  }
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slides[slideIndex - 1].style.display = "block";
-}
+                    var slideIndex = 1;
+                    showSlides(slideIndex);
+
+                    function plusSlides(n) {
+                      showSlides(slideIndex += n);
+                    }
+
+                    function showSlides(n) {
+                      var i;
+                      var slides = document.getElementsByClassName("mySlides");
+                      if (n > slides.length) {
+                        slideIndex = 1
+                      }
+                      if (n < 1) {
+                        slideIndex = slides.length
+                      }
+                      for (i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "none";
+                      }
+                      slides[slideIndex - 1].style.display = "block";
+                    }
 
 
-const trips = document.querySelectorAll('.trip');
-const itemsPerPage = 2;
-const totalPages = Math.ceil(trips.length / itemsPerPage);
-let currentPage = 1;
+                    const trips = document.querySelectorAll('.trip');
+                    const itemsPerPage = 2;
+                    const totalPages = Math.ceil(trips.length / itemsPerPage);
+                    let currentPage = 1;
 
-showPage(currentPage);
+                    showPage(currentPage);
 
-function showPage(page) {
-  const startIndex = (page - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  trips.forEach((trip, index) => {
-    if (index >= startIndex && index < endIndex) {
-      trip.style.display = 'flex';
-    } else {
-      trip.style.display = 'none';
-    }
-  });
-}
+                    function showPage(page) {
+                      const startIndex = (page - 1) * itemsPerPage;
+                      const endIndex = startIndex + itemsPerPage;
+                      trips.forEach((trip, index) => {
+                        if (index >= startIndex && index < endIndex) {
+                          trip.style.display = 'flex';
+                        } else {
+                          trip.style.display = 'none';
+                        }
+                      });
+                    }
 
-const pageLinks = document.querySelectorAll('.page-link');
-pageLinks.forEach(pageLink => {
- pageLink.addEventListener('click', (event) => {
-    event.preventDefault();
-    const newPage = parseInt(event.target.textContent);
-    currentPage = newPage;
-    showPage(currentPage);
-    updatePagination();
-  });
-});
+                    const pageLinks = document.querySelectorAll('.page-link');
+                    pageLinks.forEach(pageLink => {
+                      pageLink.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        const newPage = parseInt(event.target.textContent);
+                        currentPage = newPage;
+                        showPage(currentPage);
+                        updatePagination();
+                      });
+                    });
 
-function updatePagination() {
-  pageLinks.forEach(pageLink => {
-    if (parseInt(pageLink.textContent) === currentPage) {
-      pageLink.classList.add('active');
-    } else {
-      pageLink.classList.remove('active');
-    }
-  });
-}
+                    function updatePagination() {
+                      pageLinks.forEach(pageLink => {
+                        if (parseInt(pageLink.textContent) === currentPage) {
+                          pageLink.classList.add('active');
+                        } else {
+                          pageLink.classList.remove('active');
+                        }
+                      });
+                    }
 
-  </script>
+                  </script>
 </body>
 
 </html>
