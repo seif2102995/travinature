@@ -115,6 +115,30 @@ router.get("/pack", async function (req, res) {
   
 });
 
+router.get('/wishlist', (req, res) => {
+  const wishlist = [
+    {
+      title: 'Trip 1',
+      description: 'Lorem ipsum dolor sit amet',
+      price: '$100',
+      image: 'images/trip-1.jpg'
+    },
+    {
+      title: 'Trip 2',
+      description: 'Consectetur adipiscing elit',
+      price: '$200',
+      image: 'images/trip-2.jpg'
+    },
+    {
+      title: 'Trip 3',
+      description: 'Sed do eiusmod tempor incididunt',
+      price: '$300',
+      image: 'images/trip-3.jpg'
+    }
+  ];
+  res.render('wishlist', { wishlist });
+});
+
 // check if logged in
 // router.use((req, res, next) => {
 //   req.session.user=req.body.username;
