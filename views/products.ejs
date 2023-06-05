@@ -82,6 +82,48 @@ function showSlides(n) {
   }
   slides[slideIndex - 1].style.display = "block";
 }
+
+
+const trips = document.querySelectorAll('.trip');
+const itemsPerPage = 2;
+const totalPages = Math.ceil(trips.length / itemsPerPage);
+let currentPage = 1;
+
+showPage(currentPage);
+
+function showPage(page) {
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  trips.forEach((trip, index) => {
+    if (index >= startIndex && index < endIndex) {
+      trip.style.display = 'flex';
+    } else {
+      trip.style.display = 'none';
+    }
+  });
+}
+
+const pageLinks = document.querySelectorAll('.page-link');
+pageLinks.forEach(pageLink => {
+ pageLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    const newPage = parseInt(event.target.textContent);
+    currentPage = newPage;
+    showPage(currentPage);
+    updatePagination();
+  });
+});
+
+function updatePagination() {
+  pageLinks.forEach(pageLink => {
+    if (parseInt(pageLink.textContent) === currentPage) {
+      pageLink.classList.add('active');
+    } else {
+      pageLink.classList.remove('active');
+    }
+  });
+}
+
   </script>
 </body>
 
