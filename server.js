@@ -28,6 +28,22 @@ console.log(`Project Root dir : ${__dirname}`);
 
 let app = express();
 
+// for auto refresh
+//const path = require("path");
+import livereload from 'livereload';
+const liveReloadServer = livereload.createServer();
+liveReloadServer.watch(path.join(__dirname, 'public'));
+ 
+ 
+import connectLivereload from 'connect-livereload';
+app.use(connectLivereload());
+ 
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 100);
+}); 
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
