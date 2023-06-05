@@ -1,3 +1,9 @@
+body{
+     background-color: #FFFF ; 
+    /* background: linear-gradient(270deg,#37D5D6 , #36096D); */
+    background-repeat:round;
+    background-size: cover;
+  }
 .trips {
     display: flex;
     flex-wrap: wrap;
