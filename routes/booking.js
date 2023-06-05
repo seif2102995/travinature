@@ -9,7 +9,8 @@ router.get("/", async function (req, res, next) {
 
 
 router.get("/:class", async function (req, res, next) {
-    fs.readFile('../travinature/routes/ao.svg', 'utf8', (err, data) => {
+  let x = req.params.class;
+    fs.readFile(`../travinature/public/countries/${x}.svg`, 'utf8', (err, data) => {
         if (err) throw err;
         // console.log(data); // Log the SVG file contents to the console
         res.render("country",{data});
