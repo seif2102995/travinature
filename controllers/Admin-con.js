@@ -192,9 +192,6 @@ const AddTrip = (req, res) => {
   });
 };
 
-
-
-
 const GetTrips = async (req, res, next) => {
   try {
     const vac = await Tripss.find();

@@ -3,6 +3,7 @@ import {handleSignup,login,checkUN,handlefgtpass,validToken,GetUser,logoutUser,a
 
 import {signup_model} from '../models/signupschema.js'
 import bodyParser from "body-parser";
+import { Tripss } from "../models/tripsSchema.js";
 
 const router = Router();
 router.use(bodyParser.json());
@@ -100,18 +101,29 @@ router.post('/checkUN', checkUN);
 
 router.get('/logout', logoutUser);
 router.post('/delete',DeleteUserr)
-
-// check if logged in
-router.use((req, res, next) => {
-  req.session.user=req.body.username;
-  if (req.session.user !== undefined) 
-  {
-      next();
-  }
-  else {
-      res.render('error', { err: 'You must login to access this page', user: (req.session.user === undefined ? "" : req.session.user) })
+// router.get('/pack',fetchpackages);
+router.get("/pack", async function (req, res) {
+  try {
+    const vac = await Tripss.find();
+    console.log(vac + " \nuserrssssssssssss");
+    res.render("products", {vac});
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
   }
 });
+
+// check if logged in
+// router.use((req, res, next) => {
+//   req.session.user=req.body.username;
+//   if (req.session.user !== undefined) 
+//   {
+//       next();
+//   }
+//   else {
+//       res.render('error', { err: 'You must login to access this page', user: (req.session.user === undefined ? "" : req.session.user) })
+//   }
+// });
 // router.post("/chatt",msg);
 
 

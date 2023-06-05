@@ -277,7 +277,7 @@ const checkEmailAvailability = async (email) => {
 
 const checkout = async (req, res) => {
   try {
-    var query = { name: req.body.name };
+    var query = { name: req.body.act };
     const result = await Tripss.findOne(query);
     const sess = req.session.user;
     console.log(sess);
@@ -294,9 +294,9 @@ const checkout = async (req, res) => {
           price_data: {
             currency: 'usd',
             product_data: {
-              name: result.name,
+              name: result.title,
             },
-            unit_amount: result.price * 100,
+            unit_amount: 1212 * 100,
           },
           quantity: req.body.qunt,
         },
@@ -322,4 +322,62 @@ const checkout = async (req, res) => {
 
 
 
-export { handleSignup,login,checkUN,handlefgtpass,validToken,ajax1,GetUser,logoutUser,DeleteUserr,checkout};
+// const checkout = async (req, res) => {
+//   try {
+//     const { name, qunt } = req.body;
+//     const query = { name };
+//     const result = await Tripss.findOne(query);
+//     const sess = req.session.user;
+//     console.log(sess);
+
+//     if (!result) {
+//       throw new Error('Trip not found');
+//     }
+
+//     console.log(result.price);
+//     const session = await stripe.checkout.sessions.create({
+//       payment_method_types: ['card'],
+//       line_items: [
+//         {
+//           price_data: {
+//             currency: 'usd',
+//             product_data: {
+//               name: result.name,
+//             },
+//             unit_amount: result.price * 100,
+//           },
+//           quantity: qunt,
+//         },
+//       ],
+//       mode: 'payment',
+//       success_url: `http://127.0.0.1:8080/user/success?email=${req.session.user.mail}`, // Append user session as a query parameter
+//       cancel_url: `http://127.0.0.1:8080/user/?email=${req.session.user.mail}`,
+//     });
+
+//     console.log(session.url);
+//     res.redirect(303, session.url);
+//     // res.json({ id: session.id });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json({ error: 'An error occurred' });
+//   }
+// };
+
+const fetchpackages = async (req, res, next) => {
+  try {
+    const vac = await Tripss.find();
+    console.log(vac + " \nuserrssssssssssss");
+    res.render("products", { vac });
+    next();
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+};
+
+
+
+
+
+
+export { handleSignup,login,checkUN,handlefgtpass,validToken,ajax1,GetUser,logoutUser,DeleteUserr,fetchpackages,checkout};
