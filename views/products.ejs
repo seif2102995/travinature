@@ -43,10 +43,16 @@
             </form>
           </div>
         </div>
-      <% }); %>
+      <% }); %> 
     <% }); %>
-  </div>
-  
+    <% const itemsPerPage = 2; %>
+    <% const totalPages = Math.ceil(vac.length / itemsPerPage); %>
+    <% let currentPage = 1; %>
+    <div class="pagination">
+      <% for (let i = 1; i <= totalPages; i++) { %>
+      <a href="/trips?page=<%= i %>" class="page-link<%= currentPage === i ? ' active' : '' %>"><%= i %></a>
+      <% } %>
+    </div>
   <script>
     const selectElement = document.querySelector('select[name="act"]');
     const hiddenInput = document.getElementById('roomTypePrice');
