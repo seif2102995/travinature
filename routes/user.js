@@ -111,13 +111,19 @@ router.get("/pack", async function (req, res) {
     const vac = await Tripss.find();
     const cust = req.session.user;
     console.log(vac + " \nuserrssssssssssss", cust);
-    res.render("products", { vac, cust }); 
+
+    if (!cust ) {
+      // Redirect the user or handle the error appropriately
+      throw new Error('User not logged in');
+    }
+
+    res.render("products", { vac, user: cust });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
   }
-  
 });
+
 
 router.get('/wishlist', (req, res) => {
   const wishlist = [
