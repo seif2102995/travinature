@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html lang="it">
-
+<!-- <!DOCTYPE html> -->
+<html lang="en">
 <head>
-    <!-- meta -->
+  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <%-include('./partials/icon.ejs')%>`
+    <%-include('./partials/icon.ejs')%>
     <!-- stylesheets -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../css/adduser.css">
         
 
@@ -57,11 +57,25 @@
     </script>
     
 
-
 </head>
-
 <body>
-    <div class="container">
+  <div class="grid-container">
+    <header class="header">
+      <div class="menu-icon" onclick="openSidebar()">
+        <span class="material-icons-outlined">menu</span>
+      </div>
+      <div class="header-left">
+        <span class="material-icons-outlined">search</span>
+      </div>
+      <div class="header-right">
+        <span class="material-icons-outlined">notifications</span>
+        <span class="material-icons-outlined">email</span>
+        <span class="material-icons-outlined">account_circle</span>
+      </div>
+    </header>
+    <%- include('./partials/sidebar-admin'); %>
+    <main class="main-container">
+        <div class="container">
 
         <h3>Add user</h3>
         <div class="table">
@@ -102,7 +116,7 @@
                                 >
                         </div>
                         <div>
-                       
+                            
                         </div>
                     </div>
 
@@ -132,5 +146,4 @@
     <!-- <script src="script.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </body>
-
 </html>
