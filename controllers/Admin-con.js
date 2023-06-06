@@ -88,7 +88,7 @@ const AddUser = async (req, res,next) => {
         console.log("Awaiting save...");
         await data.save();
         console.log("Data saved");
-        req.session.user=data;  
+      
         res.redirect("/")
 
         // Continue to the next middleware or redirect to a success page
