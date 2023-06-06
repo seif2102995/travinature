@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html lang="it">
-
+<!-- <!DOCTYPE html> -->
+<html lang="en">
 <head>
-    <!-- meta -->
+  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <%-include('./partials/icon.ejs')%>`
+    <%-include('./partials/icon.ejs')%>
     <!-- stylesheets -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../css/adduser.css">
         
 
@@ -57,11 +57,25 @@
     </script>
     
 
-
 </head>
-
 <body>
-    <div class="container">
+  <div class="grid-container">
+    <header class="header">
+      <div class="menu-icon" onclick="openSidebar()">
+        <span class="material-icons-outlined">menu</span>
+      </div>
+      <div class="header-left">
+        <span class="material-icons-outlined">search</span>
+      </div>
+      <div class="header-right">
+        <span class="material-icons-outlined">notifications</span>
+        <span class="material-icons-outlined">email</span>
+        <span class="material-icons-outlined">account_circle</span>
+      </div>
+    </header>
+    <%- include('./partials/sidebar-admin'); %>
+    <main class="main-container">
+        <div class="container">
 
         <h3>Add user</h3>
         <div class="table">
@@ -70,46 +84,46 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputName">FirstName</label>
-                            <input type="text" class="form-control" name="fname" id="inputName" placeholder="Enter name" required>
+                            <input type="text" class="form-control" name="firstname" id="inputName" placeholder="Enter name" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputSurname">Lastname</label>
-                            <input type="text" class="form-control" name="lname" id="inputSurname" placeholder="Enter surname"
+                            <input type="text" class="form-control" name="lastname" id="inputSurname" placeholder="Enter surname"
                                 required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputSurname">Username</label>
-                            <input type="text" class="form-control" name="uname" id="inputSurname" placeholder="Enter username"
+                            <input type="text" class="form-control" name="username" id="inputSurname" placeholder="Enter username"
                                 required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputSurname">Password</label>
-                            <input type="text" class="form-control" name="pass" id="inputSurname" placeholder="Enter password"
+                            <input type="text" class="form-control" name="password" id="inputSurname" placeholder="Enter password"
                                 required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputSurname">Phone</label>
-                            <input type="text" class="form-control" name="ph" id="inputSurname" placeholder="Enter phone number"
+                            <input type="text" class="form-control" name="phone" id="inputSurname" placeholder="Enter phone number"
                                 required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputSurname">Age</label>
-                            <input type="text" class="form-control" name="age" id="inputSurname" placeholder="Enter age" required>
+                            <input type="text" class="form-control" name="dob" id="inputSurname" placeholder="Enter age" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputSurname">Type</label>
-                            <input type="text" class="form-control" name="typee" id="inputSurname" placeholder="Enter account type"
+                            <input type="text" class="form-control" name="type" id="inputSurname" placeholder="Enter account type"
                                 required>
                         </div>
                         <div>
-                            Profile Picture: <input type="file" name="img">
+                            
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="inputEmail">Email</label>
                         
-                        <input type="email" class="form-control" name="email" id="mail" placeholder="mail@example.com"
+                        <input type="email" class="form-control" name="mail" id="mail" placeholder="mail@example.com"
                           
                             required>
                     </div>
@@ -132,5 +146,4 @@
     <!-- <script src="script.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </body>
-
 </html>

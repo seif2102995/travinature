@@ -149,3 +149,9 @@
   .center-div{
     text-align: center;
   }
+  @media (max-width: 768px) {
+    /* Styles for screens smaller than 768px */
+    h1 {
+      font-size: 24px;
+    }
+  }
