@@ -12,6 +12,10 @@
 
 <body>
   <header> <%- include('./partials/header'); %></header>
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="Search for a country...">
+    <!-- <button type="button" id="search-btn">Search</button> -->
+</div>
 
   <svg viewbox="0 0 2000 857" width="2000" xmlns="http://www.w3.org/2000/svg" id="mp">
 
@@ -1633,5 +1637,22 @@ id="GN" class="Guinea">
   <footer id="fff"> <%- include('./partials/footer'); %></footer>
 </body>
 <script src="../js/interface.js"></script>
+<script>
+  const searchInput = document.getElementById('search-input');
+  const countryPaths = document.querySelectorAll('path');
 
+  searchInput.addEventListener('input', () => {
+    const searchQuery = searchInput.value.trim().toLowerCase();
+
+countryPaths.forEach(path => {
+  const name = path.getAttribute('class');
+  if (name.toLowerCase().includes(searchQuery)) {
+    path.classList.add('highlight');
+  } else {
+    path.classList.remove('highlight');
+  }
+});
+   });
+
+</script>
 </html>

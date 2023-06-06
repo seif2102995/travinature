@@ -36,9 +36,9 @@
   }
   #search-input {
     flex: 1;
-    padding: 6px;
+    padding: 2%;
     border: 1px solid grey;
-    border-radius: 5px 0 0 5px;
+    border-radius: 5px;
     font-size: 17px;
   }
   
