@@ -63,7 +63,7 @@ router.get('/success', (req, res) => {
   signup_model.findOne(query)
     .then(result => {
       req.session.user = result;
-      res.redirect('/');
+      res.render('paymentSucc',{user:req.session.user});
     })
     .catch(err => {
       console.log(err);
@@ -73,6 +73,11 @@ router.get('/success', (req, res) => {
 
   // Handle the logic for the /success route
 });
+
+
+
+
+
 router.get('/cancel', (req, res) => {
   // Access the GET parameters from the URL
   const email = req.query.email;
@@ -81,7 +86,7 @@ router.get('/cancel', (req, res) => {
   signup_model.findOne(query)
     .then(result => {
       req.session.user = result;
-      res.redirect('/');
+      res.render('paymentCan',{user:req.session.user});
     })
     .catch(err => {
       console.log(err);
@@ -101,19 +106,24 @@ router.post('/checkUN', checkUN);
 
 router.get('/logout', logoutUser);
 router.post('/delete',DeleteUserr)
-// router.get('/pack',fetchpackages);
 router.get("/pack", async function (req, res) {
   try {
     const vac = await Tripss.find();
     const cust = req.session.user;
     console.log(vac + " \nuserrssssssssssss", cust);
-    res.render("products", { vac, cust }); 
+
+    if (!cust ) {
+      // Redirect the user or handle the error appropriately
+      throw new Error('User not logged in');
+    }
+
+    res.render("products", { vac, user: cust });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
   }
-  
 });
+
 
 router.get('/wishlist', (req, res) => {
   const wishlist = [
