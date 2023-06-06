@@ -1,14 +1,15 @@
 import { Router } from "express";
 import fs from "fs";
+import{isAuth}from'../controllers/users.js';
 
 const router = Router();
 
-router.get("/", async function (req, res, next) {
+router.get("/",isAuth, async function (req, res, next) {
   res.render("map",{ user: (req.session.user === undefined ? "" : req.session.user) });
 });
 
 
-router.get("/:class", async function (req, res, next) {
+router.get("/:class",isAuth, async function (req, res, next) {
   let x = req.params.class;
     fs.readFile(`../travinature/public/countries/${x}.svg`, 'utf8', (err, data) => {
         if (err) throw err;

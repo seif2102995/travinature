@@ -179,6 +179,16 @@ const login = async (req, res) => {
   }
 };
 
+const isAuth = (req, res, next) => {
+  if (req.session.user) {
+    // User is logged in, proceed to the next middleware or route handler
+    next();
+  } else {
+    res.redirect('/user/login'); 
+  }
+};
+
+
 
 
 const ajax1 = async (req, res) => {
@@ -475,4 +485,4 @@ const fetchpackages = async (req, res, next) => {
 
 
 
-export { handleSignup,login,checkUN,handlefgtpass,validToken,ajax1,GetUser,logoutUser,DeleteUserr,fetchpackages,checkout};
+export { handleSignup,login,checkUN,handlefgtpass,validToken,ajax1,GetUser,logoutUser,DeleteUserr,fetchpackages,checkout,isAuth};

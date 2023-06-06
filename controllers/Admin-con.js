@@ -21,6 +21,13 @@ const fetchusers = async (req, res, next) => {
     res.status(500).send("Server Error");
   }
 };
+const isAuthAdmin = (req, res, next) => {
+    if (req.session.user !== undefined && req.session.user.type == 'admin') { 
+    next();
+  } else {
+    res.redirect('error'); 
+  }
+};
 
 const toAdmin = (req, res) => {
   signup_model.findByIdAndUpdate(req.params.id, { type: 'admin' })
@@ -283,4 +290,4 @@ const ajax2 = async (req, res) => {
     res.status(500).json({ message: 'Error occurred during validation' });
   }
 };
-export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip,editTripPost,ajax2 };
+export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip,editTripPost,ajax2,isAuthAdmin };

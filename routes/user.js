@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {handleSignup,login,checkUN,handlefgtpass,validToken,GetUser,logoutUser,ajax1, DeleteUserr,checkout} from '../controllers/users.js'
+import {handleSignup,login,checkUN,handlefgtpass,validToken,GetUser,logoutUser,ajax1, DeleteUserr,checkout,isAuth} from '../controllers/users.js'
 
 import {signup_model} from '../models/signupschema.js'
 import bodyParser from "body-parser";
@@ -139,7 +139,6 @@ router.get('/wishlist', (req, res) => {
   res.render('wishlist', { wishlist });
 });
 
-// check if logged in
 // router.use((req, res, next) => {
 //   req.session.user=req.body.username;
 //   if (req.session.user !== undefined) 
@@ -150,7 +149,6 @@ router.get('/wishlist', (req, res) => {
 //       res.render('error', { err: 'You must login to access this page', user: (req.session.user === undefined ? "" : req.session.user) })
 //   }
 // });
-// router.post("/chatt",msg);
 
 
 

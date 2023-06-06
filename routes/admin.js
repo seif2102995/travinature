@@ -1,42 +1,34 @@
 import { Router } from 'express';
-import { fetchusers,toAdmin,toClient,DeleteUser, AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip,editTripPost ,ajax2} from '../controllers/Admin-con.js';
+import { fetchusers,toAdmin,toClient,DeleteUser, AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip,editTripPost ,ajax2,isAuthAdmin} from '../controllers/Admin-con.js';
 import { signup_model } from '../models/signupschema.js';
 import {conts} from "../models/contryscheme.js"
 var router = Router();
 
 
-// router.use((req, res, next) => 
-// {
-//   if (req.session.user !== undefined && req.session.user.type == 'admin') {
-//       next();
-//   }
-//   else {
-//       res.render('error', { user: (req.session.user === undefined ? "" : req.session.user) })
-//   }
-// });
-router.get("/", function (req, res, next) {
+
+router.get("/",isAuthAdmin, function (req, res, next) {
     res.render("admin", { user: (req.session.user === undefined ? "" : req.session.user) });
   });
-  router.get("/reports", function (req, res, next) {
+  router.get("/reports",isAuthAdmin, function (req, res, next) {
     res.render("reports-admin", { user: (req.session.user === undefined ? "" : req.session.user) });
   });
-  router.get("/trips", async function (req, res, next) {
+  router.get("/trips", isAuthAdmin,async function (req, res, next) {
     const countries = await conts.find();
     res.render("trips" , {countries});
   });
-  router.get("/adduser", function (req, res, next) {
+  router.get("/adduser",isAuthAdmin,function (req, res, next) {
     res.render("adduser", { user: (req.session.user === undefined ? "" : req.session.user) });
   });
   router.post('/check123',ajax2);
 
-  router.get("/addtrips", function (req, res, next) {
+  router.get("/addtrips",isAuthAdmin, function (req, res, next) {
     res.render("addtrips", { user: (req.session.user === undefined ? "" : req.session.user) });
   });
   
 
 
-  router.get("/viewTrips",GetTrips);
-  router.get("/customers",fetchusers);
+  router.get("/viewTrips",isAuthAdmin,GetTrips);
+  router.get("/customers",isAuthAdmin,fetchusers);
   router.get("/toAdmin/:id", toAdmin);
   router.get("/toClient/:id", toClient);
   router.get("/delete/:id", DeleteUser);
