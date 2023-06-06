@@ -3,7 +3,7 @@ import { Tripss } from "../models/tripsSchema.js";
 import  path  from "path";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-
+import bcrypt from 'bcrypt'
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -63,41 +63,42 @@ const DeleteUser = (req, res) => {
     });
 };
 
-const AddUser = (req, res) => {
+const AddUser = async (req, res,next) => {
 
-  let imgFile;
-  let uploadPath;
-  if (!req.files || Object.keys(req.files).length === 0) {
-      return res.status(400).send('No files were uploaded.');
+  const {password} = req.body;
+  const saltRounds = 10; // Number of salt rounds to generate
+  const data = new signup_model(req.body);
+
+
+  try {
+    
+    const salt = await bcrypt.genSalt(saltRounds);
+    bcrypt.hash(password, salt, async function(err, hashedPassword) {
+      if (err) 
+      {
+        console.log("Error in hash function");
+      } 
+      
+      else 
+      {
+        data.password = hashedPassword;
+
+        console.log("The hashed password: ", data.password);
+
+        console.log("Awaiting save...");
+        await data.save();
+        console.log("Data saved");
+      
+        res.redirect("/")
+
+        // Continue to the next middleware or redirect to a success page
+        next();
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
   }
-  imgFile = req.files.img;
-  uploadPath = path.join(__dirname, '../public/resources/' + req.body.uname + path.extname(imgFile.name));
-
-  // Use the mv() method to place the file somewhere on your server
-  imgFile.mv(uploadPath, function (err) {
-      if (err)
-          res.status(500).send(err);
-
-          const auser = new signup_model({
-            firstname: req.body.fname,
-            password: req.body.pass,
-            type: req.body.type,
-            lastname: req.body.lname,
-            mail: req.body.email,
-            phone: req.body.ph,
-            dob: req.body.age,
-            username:req.body.uname,
-            image: req.body.uname +  path.extname(imgFile.name),
-
-          })
-          auser.save()
-            .then(result => {
-              res.redirect('/admin/customers');
-            })
-            .catch(err => {
-              console.log(err);
-            });
-  });
 
 
 

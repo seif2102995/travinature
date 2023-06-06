@@ -77,75 +77,73 @@
     <main class="main-container">
         <div class="container">
 
-            <h3>Add User</h3>
-            <div class="table">
-                <div class="tr">
-                    <form action="/admin/adduser" enctype="multipart/form-data" method="post" id="add-form" >
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputName">FirstName</label>
-                                <input type="text" class="form-control" name="fname" id="inputName" placeholder="Enter name" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputSurname">Lastname</label>
-                                <input type="text" class="form-control" name="lname" id="inputSurname" placeholder="Enter surname"
-                                    required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputSurname">Username</label>
-                                <input type="text" class="form-control" name="uname" id="inputSurname" placeholder="Enter username"
-                                    required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputSurname">Password</label>
-                                <input type="text" class="form-control" name="pass" id="inputSurname" placeholder="Enter password"
-                                    required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputSurname">Phone</label>
-                                <input type="text" class="form-control" name="ph" id="inputSurname" placeholder="Enter phone number"
-                                    required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputSurname">Age</label>
-                                <input type="text" class="form-control" name="age" id="inputSurname" placeholder="Enter age" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputSurname">Type</label>
-                                <input type="text" class="form-control" name="typee" id="inputSurname" placeholder="Enter account type"
-                                    required>
-                            </div>
-                            <div>
-                                Profile Picture: <input type="file" name="img">
-                            </div>
+        <h3>Add user</h3>
+        <div class="table">
+            <div class="tr">
+                <form action="/admin/adduser" enctype="multipart/form-data" method="post" id="add-form" >
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputName">FirstName</label>
+                            <input type="text" class="form-control" name="fname" id="inputName" placeholder="Enter name" required>
                         </div>
-    
-                        <div class="form-group">
-                            <label for="inputEmail">Email</label>
-                            
-                            <input type="email" class="form-control" name="email" id="mail" placeholder="mail@example.com"
-                              
+                        <div class="form-group col-md-6">
+                            <label for="inputSurname">Lastname</label>
+                            <input type="text" class="form-control" name="lname" id="inputSurname" placeholder="Enter surname"
                                 required>
                         </div>
-    
-    
-    
-    
-    
-                        <!-- <button type="submit" class="btn btn-primary" onclick="">Add user</button> -->
-                        <input type="submit" id='submitbtn' name="submit" class="btn btn-primary">
-                    </form>
-                    <span id="email-error"> </span>
-                </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputSurname">Username</label>
+                            <input type="text" class="form-control" name="uname" id="inputSurname" placeholder="Enter username"
+                                required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputSurname">Password</label>
+                            <input type="text" class="form-control" name="pass" id="inputSurname" placeholder="Enter password"
+                                required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputSurname">Phone</label>
+                            <input type="text" class="form-control" name="ph" id="inputSurname" placeholder="Enter phone number"
+                                required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputSurname">Age</label>
+                            <input type="text" class="form-control" name="age" id="inputSurname" placeholder="Enter age" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputSurname">Type</label>
+                            <input type="text" class="form-control" name="typee" id="inputSurname" placeholder="Enter account type"
+                                required>
+                        </div>
+                        <div>
+                            Profile Picture: <input type="file" name="img">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail">Email</label>
+                        
+                        <input type="email" class="form-control" name="email" id="mail" placeholder="mail@example.com"
+                          
+                            required>
+                    </div>
+
+
+
+
+
+                    <!-- <button type="submit" class="btn btn-primary" onclick="">Add user</button> -->
+                    <input type="submit" id='submitbtn' name="submit" class="btn btn-primary">
+                </form>
+                <span id="email-error"> </span>
             </div>
-    
-            <hr>
-    
         </div>
-    
-        <!-- <script src="script.js"></script> -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    </main>
-  </div>
+
+        <hr>
+
+    </div>
+
+    <!-- <script src="script.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </body>
 </html>
