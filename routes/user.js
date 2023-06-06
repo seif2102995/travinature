@@ -95,7 +95,7 @@ router.get('/cancel', (req, res) => {
 
 router.post('/profile',GetUser);
 
-router.post('/checkout',checkout);
+router.post('/checkout',isAuth,checkout);
 
 router.post('/checkUN', checkUN);
 
