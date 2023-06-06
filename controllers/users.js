@@ -383,7 +383,8 @@ const checkout = async (req, res) => {
     var query = { name: req.body.act };
     const result = await Tripss.findOne(query);
     const sess = req.session.user;
-    console.log(sess);
+    // console.log(sess);
+
 
    
     if (!result) {
@@ -408,7 +409,7 @@ const checkout = async (req, res) => {
       ],
       mode: 'payment',
       success_url: `http://127.0.0.1:8080/user/success?email=${req.session.user.mail}`, // Append user session as a query parameter
-      cancel_url: `http://127.0.0.1:8080/user/?email=${req.session.user.mail}`,
+      cancel_url: `http://127.0.0.1:8080/user/cancel?email=${req.session.user.mail}`,
     });
 
     console.log(session.url);
