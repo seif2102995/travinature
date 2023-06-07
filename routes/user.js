@@ -58,7 +58,6 @@ router.get('/profile', (req, res) => {
 });
 
 router.get('/success', (req, res) => {
-  // Access the GET parameters from the URL
   const email = req.query.email;
   var query = { mail: email };
 
@@ -71,9 +70,8 @@ router.get('/success', (req, res) => {
       console.log(err);
     });
 
-  console.log(email); // Output: value1
+  console.log(email); 
 
-  // Handle the logic for the /success route
 });
 
 
@@ -81,7 +79,6 @@ router.get('/success', (req, res) => {
 
 
 router.get('/cancel', (req, res) => {
-  // Access the GET parameters from the URL
   const email = req.query.email;
   var query = { mail: email };
 
@@ -94,9 +91,8 @@ router.get('/cancel', (req, res) => {
       console.log(err);
     });
 
-  console.log(email); // Output: value1
+  console.log(email); 
 
-  // Handle the logic for the /success route
 });
 
 
@@ -129,25 +125,21 @@ router.get("/pack", async function (req, res) {
 
 
 
-// router.use((req, res, next) => {
-//   req.session.user=req.body.username;
-//   if (req.session.user !== undefined) 
-//   {
-//       next();
-//   }
-//   else {
-//       res.render('error', { err: 'You must login to access this page', user: (req.session.user === undefined ? "" : req.session.user) })
-//   }
-// });
 
-
-
-
-router.get('/orders/:userId', async (req, res) => {
-  const userId = req.params.Id;
-  const orders = await Order.find({ userId }).populate('tripId').populate('hotelId').populate('roomTypeId').populate('activityId');
-  res.render('orders', { orders });
+router.get('/orders', async (req, res) => {
+  Order.findOne({ userId: req.session.user.id })
+  .then(result => {
+     res.render('order',{result})
+  })
+  .catch(err => {
+      console.log(err);
+  });
 });
+
+
+
+
+
 
 
 export default router;

@@ -1,44 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <a href="/orders/<%= user.id %>">View Orders</a>
 <head>
-  <title>Orders</title>
-  <% include('./partials/icon.ejs') %>
-  <link rel="stylesheet" href="../css/products.css">
+  <title>Order Details</title>
 </head>
-
 <body>
-
-  <h1>Orders</h1>
-
-  <% if (orders.length === 0) { %>
-    <p>No orders found.</p>
-  <% } else { %>
-    <div class="orders">
-      <% orders.forEach(order => { %>
-        <div class="order">
-          <div class="order-details">
-            <div class="order-title">
-              <%= order.tripId.title %>
-            </div>
-            <div class="order-description">
-              <%= order.hotelId.name %> - <%= order.roomTypeId.name %> - <%= order.activityId.name %>
-            </div>
-            <div class="order-quantity">
-              Quantity: <%= order.quantity %>
-            </div>
-            <div class="order-price">
-              Total Price: $<%= order.totalPrice %>
-            </div>
-          </div>
-          <div class="order-date">
-            <%= new Date(order.createdAt).toLocaleDateString() %>
-          </div>
-        </div>
-      <% }); %>
-    </div>
-  <% } %>
-
+  <h1>Order Details</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Title</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% result.forEach((order) => { %>
+      <tr>
+        <td><%= order._id %></td>
+        <td><%= order.totalPrice %></td>
+        <td><%= order.quantity %></td>
+        <td><%= order.tripId.title %></td>
+        <td><%= order.createdAt.toDateString() %></td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
 </body>
-
 </html>
