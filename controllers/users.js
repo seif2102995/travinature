@@ -4,8 +4,9 @@ import{Tripss} from'../models/tripsSchema.js';
 import {Order} from '../models/ordersSchema.js'; 
 import dotenv from 'dotenv';
 import Stripe from 'stripe';
-const stripe = new Stripe(process.env.stripeSecretKey);
 dotenv.config({ path: './.env' });
+
+const stripe = new Stripe(process.env.stripeSecretKey);
 
 
  
