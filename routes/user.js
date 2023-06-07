@@ -4,6 +4,8 @@ import express from "express";
 import {signup_model} from '../models/signupschema.js'
 import bodyParser from "body-parser";
 import { Tripss } from "../models/tripsSchema.js";
+import {Order} from '../models/ordersSchema.js';
+
 const app = express();
 const router = Router();
 router.use(bodyParser.json());
@@ -126,29 +128,6 @@ router.get("/pack", async function (req, res) {
 });
 
 
-router.get('/wishlist', (req, res) => {
-  const wishlist = [
-    {
-      title: 'Trip 1',
-      description: 'Lorem ipsum dolor sit amet',
-      price: '$100',
-      image: 'images/trip-1.jpg'
-    },
-    {
-      title: 'Trip 2',
-      description: 'Consectetur adipiscing elit',
-      price: '$200',
-      image: 'images/trip-2.jpg'
-    },
-    {
-      title: 'Trip 3',
-      description: 'Sed do eiusmod tempor incididunt',
-      price: '$300',
-      image: 'images/trip-3.jpg'
-    }
-  ];
-  res.render('wishlist', { wishlist });
-});
 
 // router.use((req, res, next) => {
 //   req.session.user=req.body.username;
@@ -164,6 +143,11 @@ router.get('/wishlist', (req, res) => {
 
 
 
+router.get('/orders/:userId', async (req, res) => {
+  const userId = req.params.Id;
+  const orders = await Order.find({ userId }).populate('tripId').populate('hotelId').populate('roomTypeId').populate('activityId');
+  res.render('orders', { orders });
+});
 
 
 export default router;
