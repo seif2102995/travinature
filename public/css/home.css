@@ -18,6 +18,9 @@
       left: 50%;
     }
   }
+#d-block w-100 imgCarousel{
+  height:100%;
+}
   
   .nav-link:hover {
     border-bottom: 3px solid white;
@@ -59,12 +62,12 @@
     background-image: linear-gradient(to right, #4ca1af, #c4e0e5);
   }
   
-  .service-card :hover {
+  /* .service-card :hover {
     color: black;
     border-radius: 5%;
     background-image: linear-gradient(to right, #4ca1af, #c4e0e5);
     cursor: pointer;
-  }
+  } */
   
   .service-card {
     color: white;
