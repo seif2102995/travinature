@@ -9,9 +9,10 @@
   <header>
     <%- include('./partials/header'); %>
   </header>
-  <%- include('./partials/vidbg'); %>
+ 
 
-  <h1>Trips Data</h1>
+
+
   <div class="trips">
     <% vac.forEach(trip => { %>
       <% trip.hotels.forEach(hotel => { %>
@@ -31,9 +32,7 @@
           <div class="trip-description">
             <%= hotel.name %>
           </div>
-          <div class="trip-wishlist" data-trip-id="<%= trip.id %>" data-hotel-id="<%= hotel.id %>">
-            <span class="heart">&#10084;</span>
-          </div>
+         
           <div class="trip-options">
             <form action="/user/checkout" method="post">
               <select name="price">
@@ -57,7 +56,7 @@
         </div>
       <% }); %>
     <% }); %>
-    <% const itemsPerPage = 2; %>
+    <% const itemsPerPage = 3; %>
     <% const totalPages = Math.ceil(vac.length / itemsPerPage); %>
     <% let currentPage = 1; %>
     <div class="pagination">
@@ -90,24 +89,10 @@
         slides[slideIndex - 1].style.display = "block";
       }
 
-      const tripWishlists = document.querySelectorAll('.trip-wishlist');
-
-      tripWishlists.forEach(tripWishlist => {
-        const tripId = tripWishlist.getAttribute('data-trip-id');
-        const hotelId = tripWishlist.getAttribute('data-hotel-id');
-        const heart = tripWishlist.querySelector('.heart');
-
-        heart.addEventListener('click', () => {
-          // Toggle the wished class on the heart icon
-          heart.classList.toggle('wished');
-
-          // TODO: Add the trip to the wishlist
-          console.log(`Added trip ${tripId} and hotel ${hotelId} to wishlist`);
-        });
-      });
+   
 
       const trips = document.querySelectorAll('.trip');
-      const itemsPerPage = 2;
+      const itemsPerPage = 3;
       const totalPages = Math.ceil(trips.length / itemsPerPage);
       let currentPage = 1;
 
