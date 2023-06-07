@@ -9,6 +9,7 @@
   <header>
     <%- include('./partials/header'); %>
   </header>
+  <%- include('./partials/vidbg'); %>
 
   <h1>Trips Data</h1>
   <div class="trips">
@@ -23,7 +24,8 @@
               <img src="indiia.jpg" style="width:100%">
             </div>
           </div>
-          <div class="trip-title" name="act">
+          <div class="trip-title" name="act" id="act" value="<%= trip.title %>">
+            <input type="hidden" name="title" value="<%= trip.title %>">
             <%= trip.title %>
           </div>
           <div class="trip-description">

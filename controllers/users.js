@@ -1,7 +1,9 @@
 import { signup_model } from "../models/signupschema.js";
 import {body,validationResult} from 'express-validator';
 import{Tripss} from'../models/tripsSchema.js';
+import {Order} from '../models/ordersSchema.js'; 
 import dotenv from 'dotenv';
+
 
 
 dotenv.config({ path: './.env' });
@@ -440,21 +442,34 @@ const checkEmailAvailability = async (email) => {
 //     res.status(500).json({ error: 'An error occurred' });
 //   }
 // };
+
 const checkout = async (req, res) => {
   try {
-    var query = { name: req.body.act };
+    var query = { name: req.body.title };
     const price = req.body.price;
     const country = req.body.country;
     const act = req.body.act;
     const result = await Tripss.findOne(query);
     const sess = req.session.user;
-    // console.log(sess);
-    console.log("gdeed" + price);
-    console.log(result);
+    const quantityyy=req.body.qunt;
 
     if (!result) {
       throw new Error("Trip not found");
     }
+
+    const totalPrice = price ;
+
+    const order = new Order({
+      userId: req.session.user._id,
+      tripId: result._id,
+      hotelId: result.hotels[0]._id, 
+      roomTypeId: result.hotels[0].roomTypes[0]._id, 
+      activityId: result.hotels[0].activities[0]._id, 
+      quantity: quantityyy,
+      totalPrice: totalPrice,
+    });
+
+    await order.save();
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -467,7 +482,7 @@ const checkout = async (req, res) => {
             },
             unit_amount: price * 100,
           },
-          quantity: req.body.qunt,
+          quantity: quantityyy,
         },
       ],
       mode: "payment",
@@ -475,14 +490,14 @@ const checkout = async (req, res) => {
       cancel_url: `http://127.0.0.1:8080/user/cancel?email=${req.session.user.mail}`,
     });
 
-    console.log(session.url);
     res.redirect(303, session.url);
-    // res.json({ id: session.id });
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "An error occurred" });
   }
 };
+
+
 
 
 
