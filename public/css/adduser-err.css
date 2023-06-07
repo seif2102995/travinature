@@ -1,0 +1,40 @@
+/* signup-err.css */
+body{
+    background-color: darkgray;
+}
+.container 
+{
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  h1 
+  {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .error-list 
+  {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .error-list li {
+    color: red;
+    margin-bottom: 10px;
+  }
+  
+  a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: blue;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  

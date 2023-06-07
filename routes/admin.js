@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { fetchusers,toAdmin,toClient,DeleteUser, AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip,editTripPost ,ajax2,isAuthAdmin} from '../controllers/Admin-con.js';
+import { fetchusers,toAdmin,toClient,DeleteUser, AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip,editTripPost ,ajax2,isAuthAdmin, handleAddUser} from '../controllers/Admin-con.js';
 import { signup_model } from '../models/signupschema.js';
 import {conts} from "../models/contryscheme.js"
 var router = Router();
@@ -35,7 +35,7 @@ router.get("/",isAuthAdmin, function (req, res, next) {
   router.get("/edituser/:id",editUser);
   router.get("/editTrip/:id",editTrip);
   router.post("/editTrip/:id",editTripPost);
-  router.post("/adduser",AddUser);
+ router.post("/adduser",handleAddUser,AddUser);
   router.post("/addtrips",AddTrip);
   router.post("/edituser/:id",editpost);
   router.get("/deleteTrip/:id", DeleteTrip);

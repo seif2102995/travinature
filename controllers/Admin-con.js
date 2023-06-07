@@ -6,6 +6,7 @@ import { dirname } from 'path';
 import bcrypt from 'bcrypt'
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+import { check, validationResult } from 'express-validator';
 
 import mongoose from "mongoose";
 import flash from "express-flash-message"
@@ -64,7 +65,7 @@ const DeleteUser = (req, res) => {
 };
 
 const AddUser = async (req, res,next) => {
-
+  console.log('insideadduser--------------')
   const {password} = req.body;
   const saltRounds = 10; // Number of salt rounds to generate
   const data = new signup_model(req.body);
@@ -99,10 +100,9 @@ const AddUser = async (req, res,next) => {
     console.error(error);
     res.status(500).send("Internal Server Error");
   }
+}
 
 
-
-};
 
 const editUser = async (req,res)=>
 {
@@ -291,4 +291,44 @@ const ajax2 = async (req, res) => {
     res.status(500).json({ message: 'Error occurred during validation' });
   }
 };
-export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip,editTripPost,ajax2,isAuthAdmin };
+
+const handleAddUser= async(req,res,next)=>{
+  console.log('inside handleeeeee user--------------')
+  const validationMiddleware = [
+    check('firstname').notEmpty().withMessage('First name is required'),
+    check('lastname').notEmpty().withMessage('Last name is required'),
+    check('mail').notEmpty().withMessage('Email is required'),
+    check('phone')
+      .notEmpty().withMessage('Phone number is required')
+      .isNumeric().withMessage('Phone number must consist of numbers only')
+      .isLength({ min: 6 }).withMessage('Phone number must be at least 6 digits long'),
+    check('dob')
+      .notEmpty().withMessage('Age is required')
+      .isNumeric().withMessage('Age must consist of numbers only'),
+    check('username').notEmpty().withMessage('Username is required'),
+    check('password').notEmpty().withMessage('Password is required'),
+  ];
+  
+  await Promise.all(validationMiddleware.map(field => field.run(req)));  
+  //validationMiddleware: array containing the validation middleware functions. 
+//map() function is used to iterate over each element of the validationMiddleware 
+//field.run() checks on all fields in my req 
+// the func returns array of promises
+
+
+
+  const errors = validationResult(req); //extract the validation errors from the request after running the validation middleware.
+  // It returns a ValidationResult object that contains the validation errors.
+  if (!errors.isEmpty()) {
+    console.log('errorss ----------------- : ' , errors.array())
+    return res.render('adduser-err', { errors: errors.array() });
+    
+  }
+  next()
+
+}
+
+
+
+
+export { toAdmin, toClient, fetchusers, DeleteUser,AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip,editTripPost,ajax2,isAuthAdmin,handleAddUser };

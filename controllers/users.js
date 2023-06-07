@@ -167,7 +167,7 @@ const login = async (req, res) => {
   try {
     const check = await signup_model.findOne({ username: req.body.username });
     if (check == null) {
-      res.send("NULL");
+      res.redirect("login");
     } else {
       const pcomp = await bcrypt.compare(req.body.password, check.password);
       if (pcomp) {

@@ -1,0 +1,27 @@
+<!-- signup-err.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Error</title>
+    <link rel="stylesheet" href="/public/css/adduser-err.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Signup Error</h1>
+        <% console.log('errors in ejs file ------------- ' , errors)%>
+        <% if (errors && errors.length > 0) { %>
+            <ul class="error-list">
+                <% for (let i = 0; i < errors.length; i++) { %>
+                    <li><%= errors[i].msg %></li>
+                <% } %>
+            </ul>
+        <% } else { %>
+            <p>Oops! An error occurred during signup.</p>
+        <% } %>
+        <a href="/admin">Go back to admin page</a>
+    </div>
+</body>
+</html>
