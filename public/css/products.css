@@ -1,22 +1,25 @@
 body{
-     background-color: #FFFF ; 
-    /* background: linear-gradient(270deg,#37D5D6 , #36096D); */
+    
+     background: linear-gradient(270deg,#37D5D6 , #36096D); 
     background-repeat:round;
     background-size: cover;
   }
 .trips {
-    display: flex;
+
+  display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
   }
   
   .trip {
+    background-color: #fff;  
     width: 300px;
     height: 400px;
     margin: 20px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 13px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
@@ -30,6 +33,7 @@ body{
     object-fit: cover;
     border-radius: 50%;
     margin-bottom: 20px;
+    display: block;
   }
   
   .trip-title {
@@ -52,7 +56,7 @@ body{
   
   .purch {
     margin-top: 10px;
-    background-color: #4CAF50;
+    background-color: #2e94b3 ;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -62,7 +66,7 @@ body{
   }
   
   .purch:hover {
-    background-color: #3e8e41;
+    background-color: #3e628e;
   }
   
   select {
