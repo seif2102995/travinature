@@ -1,9 +1,14 @@
 import { signup_model } from "../models/signupschema.js";
 import {body,validationResult} from 'express-validator';
 import{Tripss} from'../models/tripsSchema.js';
+import dotenv from 'dotenv';
+
+
+dotenv.config({ path: './.env' });
+
 
 import Stripe from 'stripe';
-const stripe = new Stripe('sk_test_51NEZrSBSmlXfR1acKokUt6gxjLNgc1h0hCWF3Iu08TSrthiGWkOqPQddUzsb3BFJrgPhfC1SE0oXZqaKuGqgx3QG00FjWHuR7C');
+const stripe = new Stripe(process.env.stripeSecretKey);
  
 
 import fs from "fs";
@@ -378,36 +383,94 @@ const checkEmailAvailability = async (email) => {
 // };
 
 
+// const checkout = async (req, res) => {
+//   try {
+//     const query = { name: req.body.act };
+//     const result = await Tripss.findOne(query);
+//     const sess = req.session.user;
+//     console.log(req.body.act);
+
+
+//     if (!result) {
+//       throw new Error('Trip not found');
+//     }
+    
+//     let selectedRoomType;
+//     for (const hotel of result.hotels) {
+//       for (const roomType of hotel.roomTypes) {
+//         if (roomType.name === req.body.act) {
+//           selectedRoomType = roomType;
+//           break;
+//         }
+//       }
+//       if (selectedRoomType) {
+//         break;
+//       }
+//     }
+    
+//     if (!selectedRoomType) {
+//       throw new Error('Selected room type not found');
+//     }
+    
+//     const unitAmount = selectedRoomType.price * 100;
+
+//     const session = await stripe.checkout.sessions.create({
+//       payment_method_types: ['card'],
+//       line_items: [
+//         {
+//           price_data: {
+//             currency: 'usd',
+//             product_data: {
+//               name: result.title,
+//             },
+//             unit_amount: unitAmount,
+//           },
+//           quantity: req.body.qunt,
+//         },
+//       ],
+//       mode: 'payment',
+//       success_url: `http://127.0.0.1:8080/user/success?email=${req.session.user.mail}`, // Append user session as a query parameter
+//       cancel_url: `http://127.0.0.1:8080/user/cancel?email=${req.session.user.mail}`,
+//     });
+
+//     console.log(session.url);
+//     res.redirect(303, session.url);
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json({ error: 'An error occurred' });
+//   }
+// };
 const checkout = async (req, res) => {
   try {
     var query = { name: req.body.act };
+    const price = req.body.price;
+    const country = req.body.country;
+    const act = req.body.act;
     const result = await Tripss.findOne(query);
     const sess = req.session.user;
     // console.log(sess);
+    console.log("gdeed" + price);
+    console.log(result);
 
-
-   
     if (!result) {
-      throw new Error('Trip not found');
+      throw new Error("Trip not found");
     }
-     
-    const roomTypePrice = req.body.roomTypePrice;
-    console.log(roomTypePrice);
+
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
+      payment_method_types: ["card"],
       line_items: [
         {
           price_data: {
-            currency: 'usd',
+            currency: "usd",
             product_data: {
               name: result.title,
             },
-            unit_amount: 11122 * 100,
+            unit_amount: price * 100,
           },
           quantity: req.body.qunt,
         },
       ],
-      mode: 'payment',
+      mode: "payment",
       success_url: `http://127.0.0.1:8080/user/success?email=${req.session.user.mail}`, // Append user session as a query parameter
       cancel_url: `http://127.0.0.1:8080/user/cancel?email=${req.session.user.mail}`,
     });
@@ -417,9 +480,13 @@ const checkout = async (req, res) => {
     // res.json({ id: session.id });
   } catch (err) {
     console.log(err);
-    res.status(500).json({ error: 'An error occurred' });
+    res.status(500).json({ error: "An error occurred" });
   }
 };
+
+
+
+
 
 
 

@@ -1,13 +1,13 @@
 import { Router } from "express";
 import {handleSignup,login,checkUN,handlefgtpass,validToken,GetUser,logoutUser,ajax1, DeleteUserr,checkout,isAuth} from '../controllers/users.js'
-
+import express from "express";
 import {signup_model} from '../models/signupschema.js'
 import bodyParser from "body-parser";
 import { Tripss } from "../models/tripsSchema.js";
-
+const app = express();
 const router = Router();
 router.use(bodyParser.json());
-
+app.use(express.json());
 
 router.get("/login", (req, res)=> {
   // req.session.user=req.body.username;
@@ -106,6 +106,7 @@ router.post('/checkUN', checkUN);
 
 router.get('/logout', logoutUser);
 router.post('/delete',DeleteUserr)
+
 router.get("/pack", async function (req, res) {
   try {
     const vac = await Tripss.find();
