@@ -60,8 +60,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // for post method
 
 mongoose
   .connect(
-    // "mongodb+srv://seif2102995:travi231@travinature.3akvybv.mongodb.net/"
-    "mongodb+srv://gello:123@cluster0.cwjp9ft.mongodb.net/?retryWrites=true&w=majority"
+    "mongodb+srv://seif2102995:travi231@travinature.3akvybv.mongodb.net/"
+    //"mongodb+srv://gello:123@cluster0.cwjp9ft.mongodb.net/?retryWrites=true&w=majority"
   )
   .then((result) => {
     app.listen(port);
