@@ -2,12 +2,21 @@ import { Router } from 'express';
 import { fetchusers,toAdmin,toClient,DeleteUser, AddUser,editUser,editpost,AddTrip,GetTrips,DeleteTrip,editTrip,editTripPost ,ajax2,isAuthAdmin, handleAddUser} from '../controllers/Admin-con.js';
 import { signup_model } from '../models/signupschema.js';
 import {conts} from "../models/contryscheme.js"
+import{Order}from"../models/ordersSchema.js";
+import{Tripss}from"../models/tripsSchema.js";
+
+
 var router = Router();
 
 
 
-router.get("/",isAuthAdmin, function (req, res, next) {
-    res.render("admin", { user: (req.session.user === undefined ? "" : req.session.user) });
+router.get("/",isAuthAdmin, async function (req, res, next) {
+  const count = await signup_model.countDocuments();
+  const count1 = await Order.countDocuments();
+  const count2 = await Tripss.countDocuments();
+
+
+    res.render("admin", { user: (req.session.user === undefined ? "" : req.session.user) ,count,count1,count2});
   });
   router.get("/reports",isAuthAdmin, function (req, res, next) {
     res.render("reports-admin", { user: (req.session.user === undefined ? "" : req.session.user) });

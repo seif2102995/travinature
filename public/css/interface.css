@@ -115,19 +115,19 @@
   padding: 20px;
   width: 200px;
   margin: 20px;
-  position: absolute;
+  position: fixed;
   left: 22%;
   top: 77%;
 }
 #sgu a {
   color: #3e8eba;
-  left: 40%;
-  top: -3%;
+  left: 42%;
+  top: 80%;
 }
 #sgu a:hover {
   color: #36096d;
-  left: 40%;
-  top: -3%;
+  left: 42%;
+  top: 80%;
 }
 .iicon {
   left: -14%;
