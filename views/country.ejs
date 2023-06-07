@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%-include('./partials/icon.ejs')%>
   <link rel="stylesheet" href="../css/argentina.css">
+  <title><%=x%></title>
 </head>
 <body>
   <header> <%- include('./partials/header'); %></header>
@@ -17,10 +18,10 @@
       <div id="text">
         <h1>
           <ul>
-            <li style="list-style-type: square;"></li>
+            <li style="list-style-type: square;"><%=x%></li>
           </ul>
         </h1>
-        <p id="hii"> is a vast country located in the southern part of South America.
+        <p id="hii"><%=x%> is a vast country located in the southern part of South America.
           The eighth largest country in the world,
           it is the second largest country in South America after Brazil, <br>
           and it's about one-third the size of the United
@@ -45,7 +46,14 @@
             <span onclick="slideLeft()" class="btn"></span>
           </div>
         </div>
-        </span>
+        <div id="check">
+          <form action="/user/checkout" method="post">
+            <input type="hidden" name="name" id="name" value="Argentina">
+            <input type="number" min="1" name="qunt" id="qunt" max="10" value="1">
+            <button type="submit" class="purch">Purchase</button>
+          </form>
+        </div>
+        
       </div>
     </div>
   </div>
